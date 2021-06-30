@@ -1,4 +1,3 @@
-from app.models import application
 from .db import db
 
 application_note = db.Table(

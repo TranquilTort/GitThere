@@ -2,7 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-
+from .user_reference import user_reference
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
   base_cover_letter = db.Column(db.String)
 
   applications = db.relationship("Application", backref="user")
+  references = db.relationship("Reference", secondary=user_reference, back_populates="user")
+
   @property
   def password(self):
     return self.hashed_password

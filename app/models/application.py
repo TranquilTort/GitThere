@@ -7,6 +7,7 @@ class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     applicant = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, )
     company = db.Column(db.String, nullable=False)
+    url_link = db.Column(db.text)
     job_title = db.Column(db.String, nullable=False)
     job_description = db.Column(db.Text)
     address = db.Column(db.String, nullable=False)
