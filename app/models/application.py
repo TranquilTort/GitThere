@@ -1,5 +1,6 @@
 from .db import db
 from datetime import datetime
+from .application_note import application_note
 
 class Application(db.Model):
     __tablename__ = "applications"
@@ -17,4 +18,4 @@ class Application(db.Model):
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 
-    
+    notes = db.relationship("Note", secondary=application_note, back_populates="application")
