@@ -1,10 +1,10 @@
 from .db import db
 from datetime import datetime
 
-class Applications(db.Model):
+class Application(db.Model):
     __tablename__ = "applications"
     id = db.Column(db.Integer, primary_key=True)
-    applicant = db.Column(db.Integer, nullable=False)
+    applicant = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, )
     company = db.Column(db.String, nullable=False)
     job_title = db.Column(db.String, nullable=False)
     job_description = db.Column(db.Text)
@@ -16,3 +16,5 @@ class Applications(db.Model):
     priority = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+
+    
