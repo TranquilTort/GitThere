@@ -1,7 +1,8 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from datetime import datetime
+from .user_reference import user_reference
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -9,7 +10,13 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  apply_weekly_goal = db.Column(db.Integer)
+  base_resume = db.Column(db.String)
+  base_cv = db.Column(db.String)
+  base_cover_letter = db.Column(db.String)
 
+  applications = db.relationship("Application", backref="user")
+  references = db.relationship("Reference", secondary=user_reference, back_populates="user")
 
   @property
   def password(self):
