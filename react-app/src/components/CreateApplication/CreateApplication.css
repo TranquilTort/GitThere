@@ -1,0 +1,6 @@
+.create-app-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 20px;
+}

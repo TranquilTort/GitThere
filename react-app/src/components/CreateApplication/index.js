@@ -2,14 +2,24 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
 import "./CreateApplication.css"
 function CreateApplication (){
-    const [url , setUrl] = useState();
-    const [company , setCompany] = useState();
-    const[jobTitle , setJobTitle] = useState();
-    const [description , setDescription] = useState();
-    const[address , setAddress] = useState();
+    const [url , setUrl] = useState('');
+    const [company , setCompany] = useState('');
+    const[jobTitle , setJobTitle] = useState('');
+    const [description , setDescription] = useState('');
+    const[address , setAddress] = useState('');
+    const [submitType, setSubmitType] = useState(1);
+    //submit types: 1 return to home page
+    //2: go to new app's page and
+    //3: add anouther application (new form)
+    function handleSubmit() {
+
+    }
     return(
         <div className='create-app-form-container'>
-            <form className='create-app-form'>
+            <form
+            className='create-app-form'
+            onSubmit={handleSubmit}
+            >
                 <label >Link</label>
                 <input
                 className='create-app-url'
@@ -23,7 +33,7 @@ function CreateApplication (){
                 <input
                 className='create-app-company'
                 type='text'
-                onChange={e=>setCompanyName(e.target.value)}
+                onChange={e=>setCompany(e.target.value)}
                 value = {company}
                 name="company"
                 required
@@ -53,8 +63,9 @@ function CreateApplication (){
                 name='address'
                 >
                 </input>
-                <button type="submit" >Submit and Add Anouther</button>
-                <button type="submit" >Submit and Add Anouther</button>
+                <button onClick={e=>setSubmitType(1)}type="submit" >Submit and go Home</button>
+                <button onClick={e=>setSubmitType(2)}type="submit" >Submit and go to App Info</button>
+                <button onClick={e=>setSubmitType(3)} type="submit" >Submit and Add Anouther</button>
             </form>
         </div>
     )
