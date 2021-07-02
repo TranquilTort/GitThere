@@ -27,7 +27,7 @@ export const authenticate = () => async(dispatch) => {
 }
 
 export const login = (email, password) => async (dispatch) => {
-
+    console.log("INSIDE LOGIN STORE",email, password)
     const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -39,6 +39,7 @@ export const login = (email, password) => async (dispatch) => {
         })
     });
     const data = await response.json();
+    console.log("INSIDE DATA RETURN STORE",data);
     if (data.errors) {
         return data;
     }
@@ -86,7 +87,8 @@ const initialState = { user: null }
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_USER:
-            return { user: action.payload };
+
+            return { user: action.payload};
         case REMOVE_USER:
             return { user: null }
         default:

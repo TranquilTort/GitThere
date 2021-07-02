@@ -6,6 +6,7 @@ import "./CreateApplication.css"
 function CreateApplication (){
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    console.log('USERRRRRR',sessionUser)
 
     const [url , setUrl] = useState('');
     const [company , setCompany] = useState('');
@@ -13,16 +14,23 @@ function CreateApplication (){
     const [description , setDescription] = useState('');
     const[address , setAddress] = useState('');
     const [submitType, setSubmitType] = useState(1);
+    const [priority, setPriority] = useState(false);
     //submit types: 1 return to home page
     //2: go to new app's page and
     //3: add anouther application (new form)
+    const priorityCheck = (e)=>{
+        priority ? setPriority(false): setPriority(true);
+    }
+
     const handleSubmit=(e)=>{
         e.preventDefault();
-        let applicant = 1
+
+        let applicant = sessionUser.id
         let url_link = url;
         let job_title = jobTitle;
         let job_description = description
-        dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address))
+        console.log(applicant, url_link,company,job_title,job_description,address,priority)
+        dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address,priority))
 
         if(submitType === 1){
 
@@ -83,6 +91,8 @@ function CreateApplication (){
                 name='address'
                 >
                 </input>
+                <label>Is this application a priority?</label>
+                <input type="checkbox" value={priority} onChange={priorityCheck}></input>
                 <button onClick={e=>setSubmitType(1)}type="submit" >Submit and go Home</button>
                 <button onClick={e=>setSubmitType(2)}type="submit" >Submit and go to App Info</button>
                 <button onClick={e=>setSubmitType(3)} type="submit" >Submit and Add Anouther</button>
