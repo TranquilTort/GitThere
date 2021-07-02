@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from datetime import datetime
+from sqlalchemy import desc
 
 from app.models import db, Application
 from app.forms import ApplicationForm
@@ -25,6 +26,15 @@ def add_one_application():
     else:
         print('APP FORM DID NOT VALIDATE', form.errors)
         return {}
+
+@login_required
+@application_routes.route('/all/<int:id>')
+def get_all_applications(id):
+    applications = Application.query.filter_by(applicant=id).order_by(desc(Application.created_at)).all()
+    if(len(applications) == 0):
+        return {"error":'no apps'}
+    application_dict = {k: review.to_dict() for k, review in dict( zip(range(len(applications)), applications)).items()}
+    return application_dict
 
 @login_required
 @application_routes.route('/one/<id>')
