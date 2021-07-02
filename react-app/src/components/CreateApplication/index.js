@@ -18,7 +18,19 @@ function CreateApplication (){
     //3: add anouther application (new form)
     const handleSubmit=(e)=>{
         e.preventDefault();
-        dispatch(add_one_application({ applicant:sessionUser.id, url_link:url,company,job_title:jobTitle,job_description:description,address}))
+        let applicant = 1
+        let url_link = url;
+        let job_title = jobTitle;
+        let job_description = description
+        dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address))
+
+        if(submitType === 1){
+
+        }else if(submitType === 2){
+
+        }else {
+
+        }
     }
 
 
