@@ -47,10 +47,10 @@ function Home(){
     <div>
         <Link to="/create_app"> Add Application</Link>
         <div className="app-display-container">
-           <AppDisplayColumn key={1} applications={staging_apps}/>
-           <AppDisplayColumn key={2} applications={applied_apps}/>
-           <AppDisplayColumn key={3} applications={in_contact_apps}/>
-           <AppDisplayColumn key={4} applications={interviewing_apps}/>
+           <AppDisplayColumn key={1} status={1} applications={staging_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={2} status={2} applications={applied_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={3} status={3} applications={in_contact_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={4} status={4} applications={interviewing_apps} user={sessionUser.id}/>
         </div>
     </div>)
 }

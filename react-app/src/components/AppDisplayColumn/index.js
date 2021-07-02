@@ -3,11 +3,15 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import AppCard from "../AppCard"
 import "./AppDisplayColumn.css"
-function AppDisplayColumn(){
+function AppDisplayColumn({status, applications,user}){
     return(
         <div className="app-column-container">
-            eyo app display column
-            <AppCard />
+            <div>Most Recent {status}</div>
+
+            {applications.map((el,i)=>(
+                <AppCard key={i} status={status} application={el} user={user}/>
+            ))}
+
         </div>
     )
 }

@@ -53,6 +53,10 @@ const setAllApplications = (applications) =>({
     payload:applications
 })
 
+export const moveStatus = ( newStatus,applicationId) => async(dispatch)=>{
+    
+}
+
 const initialState = {one_application:{}, staging_apps:[], applied_apps:[], in_contact_apps:[], interviewing_apps:[]}
 
 export default function application (state = initialState, action)  {
