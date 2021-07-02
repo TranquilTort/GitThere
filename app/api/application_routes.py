@@ -21,6 +21,14 @@ def add_one_application():
         print("APP ADD SUCCESS", new_application)
         db.session.add(new_application)
         db.session.commit()
+        return new_application.to_dict();
     else:
         print('APP FORM DID NOT VALIDATE', form.errors)
-    return {}
+        return {}
+
+@login_required
+@application_routes.route('/one/<id>')
+def get_one_application(id):
+    print("GET ONE APP ROUTE")
+    app_fetch = Application.query.get(id)
+    return app_fetch.to_dict()

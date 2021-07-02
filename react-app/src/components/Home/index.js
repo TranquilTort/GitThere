@@ -10,6 +10,9 @@ function Home(){
     return (
     <div>
         <Link to="/create_app"> Add Application</Link>
+        <div className="app-display-container">
+            
+        </div>
     </div>)
 }
 export default Home;

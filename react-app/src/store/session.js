@@ -11,6 +11,7 @@ const removeUser = () => ({
 })
 
 export const authenticate = () => async(dispatch) => {
+    console.log('AUTH ATTEMPT')
     const response = await fetch('/api/auth/',{
         headers: {
             'Content-Type': 'application/json'
@@ -87,7 +88,6 @@ const initialState = { user: null }
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_USER:
-
             return { user: action.payload};
         case REMOVE_USER:
             return { user: null }
