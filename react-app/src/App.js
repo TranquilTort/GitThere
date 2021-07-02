@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Home from "./components/Home"
 import CreateApplication from "./components/CreateApplication"
+import Application from "./components/Application"
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/create_app' exact={true} authenticated={authenticated}>
           <CreateApplication />
+        </ProtectedRoute>
+        <ProtectedRoute path="/application/:appId" exact={true} authenticated={authenticated}>
+          <Application/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -17,9 +17,28 @@ class Application(db.Model):
     resume = db.Column(db.String)
     cv = db.Column(db.String)
     cover_letter = db.Column(db.String)
-    priority = db.Column(db.Boolean, nullable=False)
+    priority = db.Column(db.Boolean)
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.Date, default=datetime.utcnow)
 
     notes = db.relationship("Note", secondary=application_note, back_populates="application")
     screen_shots = db.relationship("ScreenShot", secondary=application_screen_shot, back_populates="application")
+
+    def to_dict(self):
+
+        return {
+            "id":self.id,
+            "applicant": self.applicant,
+            "company": self.company,
+            "url_link": self.url_link,
+            "job_title": self.job_title,
+            "job_description":self.job_description,
+            "address": self.address,
+            "status": self.status,
+            "resume":self.resume,
+            "cv": self.cv,
+            "cover_letter": self.cover_letter,
+            "priority": self.priority,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }

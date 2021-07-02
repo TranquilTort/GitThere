@@ -1,11 +1,21 @@
 import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom"
+
+import {Link,useHistory } from "react-router-dom"
 import {add_one_application} from "../../store/application.js"
+import {authenticate} from "../../store/session.js"
 import "./CreateApplication.css"
 function CreateApplication (){
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
+    let history = useHistory ();
+
+    let sessionUser = useSelector(state => state.session.user);
+    if(!sessionUser){
+        console.log("user null")
+        dispatch(authenticate());
+    }
+    sessionUser = useSelector(state => state.session.user);
+
     console.log('USERRRRRR',sessionUser)
 
     const [url , setUrl] = useState('');
@@ -15,6 +25,7 @@ function CreateApplication (){
     const[address , setAddress] = useState('');
     const [submitType, setSubmitType] = useState(1);
     const [priority, setPriority] = useState(false);
+    const [showError, setShowError] = useState(false);
     //submit types: 1 return to home page
     //2: go to new app's page and
     //3: add anouther application (new form)
@@ -22,20 +33,26 @@ function CreateApplication (){
         priority ? setPriority(false): setPriority(true);
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async (e)=>{
         e.preventDefault();
-
+        setShowError(false);
         let applicant = sessionUser.id
         let url_link = url;
         let job_title = jobTitle;
         let job_description = description
         console.log(applicant, url_link,company,job_title,job_description,address,priority)
-        dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address,priority))
-
+        const appId = await dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address,priority))
+        console.log("RETURNED APP ID",appId)
+        console.log("submitType",submitType)
+        if(!appId){
+            setShowError(true);
+            return ;
+        }
         if(submitType === 1){
-
+            console.log("go home")
+            return history.push ('/')
         }else if(submitType === 2){
-
+            return history.push(`/application/${appId}`)
         }else {
 
         }
@@ -96,6 +113,7 @@ function CreateApplication (){
                 <button onClick={e=>setSubmitType(1)}type="submit" >Submit and go Home</button>
                 <button onClick={e=>setSubmitType(2)}type="submit" >Submit and go to App Info</button>
                 <button onClick={e=>setSubmitType(3)} type="submit" >Submit and Add Anouther</button>
+                {showError && <div className="Error Message"> THERE WAS AN ERROR IN FORM SUBMISSION</div>}
             </form>
         </div>
     )
