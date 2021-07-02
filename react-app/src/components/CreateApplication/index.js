@@ -1,7 +1,12 @@
+import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
+import {add_one_application} from "../../store/application.js"
 import "./CreateApplication.css"
 function CreateApplication (){
+    const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
+
     const [url , setUrl] = useState('');
     const [company , setCompany] = useState('');
     const[jobTitle , setJobTitle] = useState('');
@@ -11,9 +16,12 @@ function CreateApplication (){
     //submit types: 1 return to home page
     //2: go to new app's page and
     //3: add anouther application (new form)
-    function handleSubmit() {
-
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        dispatch(add_one_application({ applicant:sessionUser.id, url_link:url,company,job_title:jobTitle,job_description:description,address}))
     }
+
+
     return(
         <div className='create-app-form-container'>
             <form
