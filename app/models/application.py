@@ -19,7 +19,7 @@ class Application(db.Model):
     cover_letter = db.Column(db.String)
     priority = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.Date, default=datetime.utcnow)
 
     notes = db.relationship("Note", secondary=application_note, back_populates="application")
     screen_shots = db.relationship("ScreenShot", secondary=application_screen_shot, back_populates="application")
