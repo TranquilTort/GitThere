@@ -42,3 +42,14 @@ def get_one_application(id):
     print("GET ONE APP ROUTE")
     app_fetch = Application.query.get(id)
     return app_fetch.to_dict()
+
+@login_required
+@application_routes.route('/status/<int:userId>/<int:appId>/<int:newStatus>')
+def change_app_status(userId, appId, newStatus):
+    if(userId == current_user.id ):
+        changed_app = Application.query.filter_by(id=appId).first()
+        changed_app.status = newStatus
+        db.session.commit();
+        return {}
+    else:
+        return {}
