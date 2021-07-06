@@ -2,6 +2,8 @@ from flask import Flask, Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from datetime import datetime
 from sqlalchemy import desc
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 from app.models import db, Application
 from app.forms import ApplicationForm
@@ -42,3 +44,42 @@ def get_one_application(id):
     print("GET ONE APP ROUTE")
     app_fetch = Application.query.get(id)
     return app_fetch.to_dict()
+
+@login_required
+@application_routes.route('/status/<int:userId>/<int:appId>/<int:newStatus>')
+def change_app_status(userId, appId, newStatus):
+    if(userId == current_user.id ):
+        changed_app = Application.query.filter_by(id=appId).first()
+        changed_app.status = newStatus
+        db.session.commit();
+        return {}
+    else:
+        return {}
+
+@login_required
+@application_routes.route('/resume/add/<int:appId>/<string:fileType>', methods=["POST"])
+def add_resume(appId,fileType):
+    print("hit route")
+    print(request.files)
+    if fileType not in request.files:
+        print("no file")
+        return {"errors": "file required"},400
+
+    file = request.files[fileType]
+
+    if not allowed_file(file.filename):
+        print('file type not allowed')
+        return {"errors": "file type not permitted"}, 400
+    file.filename = get_unique_filename(file.filename)
+    upload = upload_file_to_s3(file)
+    if "url" not in upload:
+        print("upload error")
+        return upload, 400
+
+    url = upload["url"]
+    application_update = Application.query.get(appId)
+    application_update.resume = url
+    db.session.commit()
+    return {"url":url}
+
+    # reference: https://hackmd.io/@jpshafto/SyWY45KGu

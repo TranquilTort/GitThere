@@ -53,8 +53,16 @@ const setAllApplications = (applications) =>({
     payload:applications
 })
 
-export const moveStatus = ( newStatus,applicationId) => async(dispatch)=>{
-    
+export const moveStatus = ( newStatus,applicationId, userId) => async(dispatch)=>{
+    console.log(newStatus,applicationId, userId)
+    const response = await fetch(`/api/application/status/${userId}/${applicationId}/${newStatus}`);
+    if(response.ok) {
+        const data = await response.json();
+        dispatch(get_all_applications(userId))
+        return data;
+    }else{
+        console.log("MOVE STATUS ERRORS");
+    }
 }
 
 const initialState = {one_application:{}, staging_apps:[], applied_apps:[], in_contact_apps:[], interviewing_apps:[]}
