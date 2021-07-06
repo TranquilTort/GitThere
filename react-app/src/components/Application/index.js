@@ -47,15 +47,17 @@ function Application(){
     return (<div>
         {application.job_title}
         <form onSubmit={handleFileSubmit}>
+            <label>Upload the Resume You applied with</label>
             <input
               type="file"
               accept=".pdf,.docx"
               onChange={updateFile}
             />
             {/* <input type='checkbox' value={useDefault} onChange={e=>setUseDefault(e.target.checked)}>Use your Default Resume</input> */}
-            <button type="submit">Submit</button>
+            <button type="submit">Upload</button>
             {(fileLoading)&& <p>Loading...</p>}
         </form>
+        
     </div>)
 }
 
