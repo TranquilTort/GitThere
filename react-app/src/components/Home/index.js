@@ -39,6 +39,7 @@ function Home(){
     if(noApps){
         return (
             <div>
+                <Link to="/create_app"> Add Application</Link>
                 No Applications yet
             </div>
         )

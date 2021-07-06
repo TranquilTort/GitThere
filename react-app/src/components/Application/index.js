@@ -1,14 +1,16 @@
 import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import NotesForm from "../NotesForm"
 
 import {get_one_application} from "../../store/application"
 function Application(){
     const { appId } = useParams();
-    const [file,setFile] = useState(null)
+    const [file,setFile] = useState(null);
     const [uploadSuccess, setUploadSuccess] = useState(false);
-    const [fileLoading, setFileLoading] = useState(false)
-    const [useDefault, setUseDefault] = useState(false)
+    const [fileLoading, setFileLoading] = useState(false);
+    const [useDefault, setUseDefault] = useState(false);
+    const [showNotesForm, setShowNotesForm] = useState(false);
     const dispatch = useDispatch();
     useEffect (()=>{
         dispatch(get_one_application(appId))
@@ -44,6 +46,13 @@ function Application(){
         const file = e.target.files[0];
         setFile(file);
     }
+    const toggleForm=() =>{
+        if (showNotesForm){
+            setShowNotesForm(false);
+        }else{
+            setShowNotesForm(true);
+        }
+    }
     return (<div>
         {application.job_title}
         <form onSubmit={handleFileSubmit}>
@@ -57,7 +66,9 @@ function Application(){
             <button type="submit">Upload</button>
             {(fileLoading)&& <p>Loading...</p>}
         </form>
-        
+
+        <button onClick={toggleForm} className="toggle-notes-btn">Add a note</button>
+        {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
     </div>)
 }
 
