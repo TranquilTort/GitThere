@@ -12,6 +12,7 @@ export const add_one_note = (appId, title, body) => async (dispatch) => {
     if(data.errors) {
         return "error"
     }else{
+        console.log("all notes in store",data)
         set_all_notes(data)
     }
 
@@ -24,7 +25,7 @@ const set_all_notes = (notes) =>({
 
 const initialState = {notes:{}}
 
-export default function note(state=initialState, action) {
+export default function note (state=initialState, action) {
     switch (action.type) {
         case SET_ALL_NOTES:
             return {...state, notes:action.payload}

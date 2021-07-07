@@ -6,9 +6,9 @@ from app.forms import NoteForm
 note_routes = Blueprint('note', __name__)
 
 @login_required
-@note_routes.route('/add/<int:appId>',methods=["POST"])
-def add_one_note(appId):
-    print("hit route add note",appId)
+@note_routes.route('/add',methods=["POST"])
+def add_one_note():
+    print("hit route add note")
     form = NoteForm()
 
     if form['body'] and form['title']:
@@ -17,7 +17,6 @@ def add_one_note(appId):
         print('SUCCESS ADDING NOTE')
         db.session.add(new_note)
         db.session.commit()
-        db.session.commit()
-        db.session.query(Note).join(application_note)
-
-    return {}
+        all_notes_arr = Note.query.filter_by(application_id=form['application_id'].data).order_by(desc(Note.created_at)).all()
+        return {k: note.to_dict() for k, note in dict( zip(range(len(all_notes_arr)), all_notes_arr)).items()}
+    return {"error":"error"}

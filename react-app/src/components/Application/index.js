@@ -16,7 +16,11 @@ function Application(){
         dispatch(get_one_application(appId))
     },[])
     let application = useSelector(state => state.application.one_application);
+    let notes = useSelector(state => state.note.notes);
+    useEffect (()=>{
 
+    },[notes])
+    console.log("ALL NOTES:", notes)
     const handleFileSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();

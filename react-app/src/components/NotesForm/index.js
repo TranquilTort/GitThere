@@ -5,7 +5,7 @@ function NotesForm({toggleForm,appId}) {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const dispatch = useDispatch();
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         add_one_note(appId,)
