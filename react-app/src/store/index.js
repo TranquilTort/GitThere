@@ -5,9 +5,9 @@ import application from './application'
 import note from './note'
 
 const rootReducer = combineReducers({
+    note,
     session,
     application,
-    note
 });
 
 let enhancer;

@@ -1,4 +1,4 @@
-const SET_ALL_NOTES = 'notes/all_notes'
+const SET_ALL_NOTES = 'note/all_notes'
 
 export const add_one_note = (appId, title, body) => async (dispatch) => {
     const response = await fetch(`/api/note/add`,{
@@ -13,22 +13,38 @@ export const add_one_note = (appId, title, body) => async (dispatch) => {
         return "error"
     }else{
         console.log("all notes in store",data)
-        set_all_notes(data)
+        dispatch(set_all_notes(data))
     }
 
 }
-
 const set_all_notes = (notes) =>({
     type: SET_ALL_NOTES,
     payload:notes
 })
+export const get_all_notes = (appId) => async (dispatch) => {
+    const response = await fetch(`/api/note/all/${appId}`)
+    const data = await response.json();
+    console.log("all notes",data)
+    if(data.error){
 
-const initialState = {notes:{}}
+    }
+    dispatch(set_all_notes(data))
+    return 200;
+}
+
+
+
+
+const initialState = {notes:[]}
 
 export default function note (state=initialState, action) {
-    switch (action.type) {
+    switch(action.type) {
         case SET_ALL_NOTES:
-            return {...state, notes:action.payload}
+            const note_arr =[];
+            for (let key in action.payload) {
+                note_arr.push(action.payload[key])
+            }
+            return {...state, notes:note_arr}
         default:
             return state;
     }

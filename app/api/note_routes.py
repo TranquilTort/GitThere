@@ -20,3 +20,12 @@ def add_one_note():
         all_notes_arr = Note.query.filter_by(application_id=form['application_id'].data).order_by(desc(Note.created_at)).all()
         return {k: note.to_dict() for k, note in dict( zip(range(len(all_notes_arr)), all_notes_arr)).items()}
     return {"error":"error"}
+
+@login_required
+@note_routes.route('/all/<int:app_id>')
+def get_all_notes(app_id):
+    all_notes_arr = Note.query.filter_by(application_id=app_id).order_by(desc(Note.created_at)).all()
+    if(len(all_notes_arr) == 0):
+        return {"error":"none"}
+    else:
+        return {k: note.to_dict() for k, note in dict( zip(range(len(all_notes_arr)), all_notes_arr)).items()}

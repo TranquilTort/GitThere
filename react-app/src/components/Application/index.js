@@ -2,22 +2,26 @@ import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NotesForm from "../NotesForm"
-
+import NoteDisplay from "../NoteDisplay"
 import {get_one_application} from "../../store/application"
+import {get_all_notes} from "../../store/note"
 function Application(){
     const { appId } = useParams();
+    const [pageLoaded, setPageLoaded] = useState(false);
+
     const [file,setFile] = useState(null);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [fileLoading, setFileLoading] = useState(false);
     const [useDefault, setUseDefault] = useState(false);
     const [showNotesForm, setShowNotesForm] = useState(false);
     const dispatch = useDispatch();
-    useEffect (()=>{
-        dispatch(get_one_application(appId))
+    useEffect (async ()=>{
+        await dispatch(get_one_application(appId))
+        await dispatch(get_all_notes(appId))
     },[])
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
-    useEffect (()=>{
+    useEffect (() => {
 
     },[notes])
     console.log("ALL NOTES:", notes)
@@ -73,6 +77,9 @@ function Application(){
 
         <button onClick={toggleForm} className="toggle-notes-btn">Add a note</button>
         {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
+        {notes && notes.length > 0 && notes.map((note,index)=>(
+            <NoteDisplay note={note} key={index} />
+        ))}
     </div>)
 }
 
