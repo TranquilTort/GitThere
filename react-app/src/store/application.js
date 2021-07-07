@@ -70,7 +70,7 @@ const initialState = {one_application:{}, staging_apps:[], applied_apps:[], in_c
 export default function application (state = initialState, action)  {
     switch(action.type) {
         case SET_ONE_APPLICATION:
-            return {one_application:action.payload};
+            return {...state, one_application:action.payload};
         case SET_ALL_APPLICATIONS:
             const set_staging_apps = [];
             const set_applied_apps = [];
