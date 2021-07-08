@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../../store/session.js";
-
+import "./LoginForm.css"
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
 
@@ -36,6 +36,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
+    <div className="login-container">
+
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
@@ -64,6 +66,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         <button type="submit">Login</button>
       </div>
     </form>
+    </div>
   );
 };
 

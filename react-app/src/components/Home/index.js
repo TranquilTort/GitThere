@@ -35,6 +35,13 @@ function Home(){
         return null;
     }
     console.log('ALL Staging',staging_apps)
+    if(sessionUser === null){
+        return (
+            <div className="no-auth-home">
+                There is no auth here
+            </div>
+        )
+    }
 
     if(noApps){
         return (

@@ -15,9 +15,18 @@ function AppCard({application,status,user}){
     return(
         <div className="app-card-container" style={{backgroundColor:`${style}`}}>
             <div className="app-card-content">
+                <div className="app-card-company">
+                    {application.company}
+                </div>
+                <div className="app-card-ob-title">
+
                 {application.job_title}
-                <button onClick={(e)=>{moveUp(status,application.id)}}>Next Stage</button>
+                </div>
+                <div className="app-card-date">
+                    {application.updated_at? application.updated_at: application.created_at}
+                </div>
             </div>
+            <button className="app-card-move-btn"onClick={(e)=>{moveUp(status,application.id)}}><i class="fas fa-chevron-right"></i></button>
 
         </div>
     )

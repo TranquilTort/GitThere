@@ -1,0 +1,24 @@
+.nav-bar-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    background-color: rgb(153, 152, 152);
+
+}
+.nav-home {
+    font-size: 25px;
+}
+
+.nav-right {
+    display: flex;
+    margin-right: 10px;
+}
+.nav-logout {
+    margin-left: 10px;
+}
+
+.nav-login {
+    margin-right:30px;
+}

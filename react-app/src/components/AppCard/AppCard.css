@@ -2,7 +2,32 @@
     margin-top:5px;
     margin-bottom:5px;
     border: 1px solid black;
-    padding: 5px;
-    border-radius:4px;
+    padding-left:5px;
 
+    border-radius:4px;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+
+}
+
+.app-card-move-btn {
+
+    height: 100%;
+    transition: right ease 0.5s;
+    position: relative;
+}
+
+.app-card-move-btn:hover {
+
+    width: 50px;
+    left:20px;
+
+}
+.app-card-content {
+    margin: 8px;
+}
+.app-card-company {
+    font-weight: bold;
+    font-size: 17px;
 }

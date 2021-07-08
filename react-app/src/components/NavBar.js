@@ -1,36 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-
+import "./NavBar.css"
 const NavBar = ({ setAuthenticated }) => {
+  const user = useSelector(state => state.session.user);
+  useEffect(()=>{
+  },[user])
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
+    <div className="nav-bar-container">
+
+        <div className="nav-left">
+          <div className="nav-home">
+            <NavLink to="/" exact={true} activeClassName="active">
+            <i class="fas fa-home"></i>
+            </NavLink>
+          </div>
+        </div>
+        <div className="nav-center">
+            GIT THERE
+        </div>
+        <div className="nav-right">
+          {(user!==null)&&<div className="nav-profile">
+            <NavLink to="/users" exact={true} activeClassName="active">
+              Your Profile
+            </NavLink>
+
+          </div>}
+          {(user!==null)&& <div className="nav-logout">
+            <LogoutButton setAuthenticated={setAuthenticated} />
+          </div>}
+
+          {(user=== null) &&<div className="nav-login">
+                <NavLink to="/login" exact={true} activeClassName="active">
+                Login
+               </NavLink>
+            </div>}
+          {(user=== null) &&<div className="nav-signup">
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
-    </nav>
+            </div>}
+        </div>
+
+
+
+
+
+    </div>
+
   );
 }
 

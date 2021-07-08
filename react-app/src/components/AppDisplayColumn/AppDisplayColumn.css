@@ -4,7 +4,10 @@
     margin: 30px;
     padding: 10px;
     overflow-y: scroll;
-
+    border-radius:4px;
+    min-width: 220px;
+    max-width: 220px;
+    overflow-x: hidden;
 }
 .app-column-container::-webkit-scrollbar {
     display: none;
