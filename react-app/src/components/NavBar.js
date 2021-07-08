@@ -5,8 +5,8 @@ import LogoutButton from './auth/LogoutButton';
 import "./NavBar.css"
 const NavBar = ({ setAuthenticated }) => {
   const user = useSelector(state => state.session.user);
-  useEffect(()=>{
-  },[user])
+
+  console.log("NAV BAR USER PRINT",user)
   return (
     <div className="nav-bar-container">
 

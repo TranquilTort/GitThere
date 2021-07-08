@@ -5,6 +5,7 @@ import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
 import {get_one_application} from "../../store/application"
 import {get_all_notes} from "../../store/note"
+import {authenticate} from "../../store/session.js"
 import "./Application.css"
 function Application(){
     const { appId } = useParams();
@@ -19,6 +20,7 @@ function Application(){
     useEffect (async ()=>{
         await dispatch(get_one_application(appId))
         await dispatch(get_all_notes(appId))
+        dispatch(authenticate());
     },[])
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
@@ -107,8 +109,7 @@ function Application(){
             <button type="submit">Upload</button>
             {(fileLoading)&& <p>Loading...</p>}
         </form>
-
-        <button onClick={toggleForm} className="toggle-notes-btn">Add a note</button>
+        {showNotesForm ?<button style={{backgroundColor:'#233043'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
         {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
         {notes && notes.length > 0 && notes.map((note,index)=>(
             <NoteDisplay note={note} key={index} />
