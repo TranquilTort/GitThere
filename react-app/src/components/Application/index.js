@@ -5,6 +5,7 @@ import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
 import {get_one_application} from "../../store/application"
 import {get_all_notes} from "../../store/note"
+import "./Application.css"
 function Application(){
     const { appId } = useParams();
     const [pageLoaded, setPageLoaded] = useState(false);
@@ -45,9 +46,6 @@ function Application(){
             // error handling
             console.log("error");
         }
-
-
-
     }
 
     const updateFile = (e) => {
@@ -61,8 +59,43 @@ function Application(){
             setShowNotesForm(true);
         }
     }
-    return (<div>
-        {application.job_title}
+
+    let statusText ='';
+    if(application.status === 1){
+        statusText= "Staged";
+    }else if(application.status ===2){
+        statusText= "Applied";
+    }else if(application.status ===3){
+        statusText= "Heard Back";
+
+    }else {
+        statusText= "Interviewing";
+    }
+    return (
+    <div className="app-page-container">
+        <div className="app-info-container">
+            <div className="app-job-name">
+                {application.company}
+            </div>
+            <div className="app-job-title">
+                {application.job_title}
+            </div>
+            <div className="app-status">
+                Status: {statusText}
+            </div>
+            <div className="app-updated-at">
+                Last updated: {application.updated_at}
+            </div>
+            <div className="app-decription-label">
+            Description:
+            </div>
+
+            <div className="app-description">
+
+                {application.job_description}
+            </div>
+
+        </div>
         <form onSubmit={handleFileSubmit}>
             <label>Upload the Resume You applied with</label>
             <input
