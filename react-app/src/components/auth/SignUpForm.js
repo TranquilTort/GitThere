@@ -49,7 +49,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       <div className="signup-form">
 
       <div className="signup-welcome">
-        Hiii There
+        Welcome!
       </div>
       <form onSubmit={onSignUp}>
         <div className="signup-input-container">
@@ -99,7 +99,12 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         </div>
         <button className="signup-form-submit-btn" type="submit">Sign Up</button>
       </form>
-      <Link to="/login" exact={true} className="sign-up-link">Login</Link>
+      <div className="login-link-container">
+        <div>
+        Already have an account?
+        </div>
+        <Link to="/login" className="login-link" exact={true} >Go To Login</Link></div>
+
       </div>
 
     </div>

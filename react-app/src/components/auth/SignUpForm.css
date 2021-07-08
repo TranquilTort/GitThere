@@ -9,7 +9,7 @@
 
 .signup-form {
     width: 220px;
-    
+
 }
 .signup-welcome {
     margin: 10px;
@@ -48,4 +48,18 @@
 .signup-form-submit-btn:hover {
     background-color: #325a56;
     color: #F6E0ED;
+}
+
+.login-link-container {
+
+    margin-top: 10px;
+    color: #233043;
+
+}
+.login-link {
+    color: #233043;
+}
+.signup-welcome {
+    font-size: 30px;
+    margin-bottom: 20;
 }
