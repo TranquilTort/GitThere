@@ -9,7 +9,7 @@ class Note(db.Model):
     application_id = db.Column(db.Integer, db.ForeignKey("applications.id"))
     title =db.Column(db.String, nullable=False)
     body = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.Date, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     application = db.relationship("Application",  back_populates="notes")
 
 

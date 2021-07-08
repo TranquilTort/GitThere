@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import "./NavBar.css"
 const NavBar = ({ setAuthenticated }) => {
@@ -21,9 +21,13 @@ const NavBar = ({ setAuthenticated }) => {
             GIT THERE
         </div>
         <div className="nav-right">
+          {(user!==null)&&<Link to="/create_app" className="no-decoration">
+          <div className="nav-add-application">Add Application</div>
+          </Link>}
+
           {(user!==null)&&<div className="nav-profile">
-            <NavLink to="/users" exact={true} activeClassName="active">
-              Your Profile
+            <NavLink to="/users" exact={true} className="no-decoration">
+              {user.username} Profile
             </NavLink>
 
           </div>}
@@ -31,16 +35,6 @@ const NavBar = ({ setAuthenticated }) => {
             <LogoutButton setAuthenticated={setAuthenticated} />
           </div>}
 
-          {(user=== null) &&<div className="nav-login">
-                <NavLink to="/login" exact={true} activeClassName="active">
-                Login
-               </NavLink>
-            </div>}
-          {(user=== null) &&<div className="nav-signup">
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-            </div>}
         </div>
 
 

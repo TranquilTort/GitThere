@@ -21,3 +21,38 @@
 .nav-login {
     margin-right:30px;
 }
+.nav-add-application {
+    text-decoration: none;
+    background-color:#F6E0ED;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    margin-right: 60px;
+}
+.nav-profile {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    margin-right: 10px;
+    background-color:#F6E0ED;
+
+}
+
+.no-decoration {
+    text-decoration: none;
+    color: #233043;
+}
+
+.nav-logout-btn {
+    border: none;
+    font-size:18px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+}

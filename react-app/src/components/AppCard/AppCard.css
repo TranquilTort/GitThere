@@ -6,28 +6,83 @@
 
     border-radius:4px;
     display: flex;
-    justify-content: space-between;
-    height: 100px;
+
+    height: fit-content;
+
+    align-items: center;
 
 }
 
 .app-card-move-btn {
-
-    height: 100%;
-    transition: right ease 0.5s;
     position: relative;
+    left: 48px;
+    width: 0px;
+    height: 0px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid green;
+    border-right: 25px solid transparent;
+    background-color: transparent;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    /* border: none; */
 }
 
 .app-card-move-btn:hover {
-
-    width: 50px;
-    left:20px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid green;
+    border-right: 30px solid transparent;
 
 }
 .app-card-content {
+    width: fit-content;
     margin: 8px;
 }
 .app-card-company {
     font-weight: bold;
     font-size: 17px;
+    max-width: 80%;
+
+    text-decoration: none;
+}
+.app-card-link {
+    text-decoration: none;
+    color: #233043;
+    font-weight: bold;
+}
+.app-card-link:hover {
+    color: #000000;
+}
+
+.app-card-posting-link {
+    color: #233043;
+}
+
+.app-card-posting-link:hover {
+    color: #020202;
+}
+.scroll-button {
+    font-weight: bolder;
+    display: flex;
+    position: relative;
+    left: 10px;
+    align-content: center;
+    justify-items: center;
+    height: 40px;
+    width: 45px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 50%;
+    border: .0625rem solid #d8d9db;
+    box-shadow: 0 0.125rem 0.5rem hsl(0deg 0% 60% / 40%);
+  /* display: inline-block; */
+}
+.scroll-button:hover {
+    border: 2px solid rgb(172,42,33);
+}
+.chevron-right {
+    align-self: center;
+    justify-self: center;
+    margin-left: 30%;
+    font-size: 30px;
+    color: #233043;
 }

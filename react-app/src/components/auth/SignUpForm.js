@@ -103,7 +103,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         <div>
         Already have an account?
         </div>
-        <Link to="/login" className="login-link" exact={true} >Go To Login</Link></div>
+        <Link to="/login" className="login-link" exact={true} >Go To Login</Link>
+      </div>
 
       </div>
 

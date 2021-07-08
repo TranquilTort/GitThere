@@ -36,16 +36,10 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(application_routes, url_prefix='/api/application')
 app.register_blueprint(note_routes, url_prefix='/api/note')
 db.init_app(app)
-Migrate(app, db)
+Migrate(app, db,compare_type=True)
 
 # Application Security
 CORS(app)
-
-# Since we are deploying with Docker and Flask,
-# we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any
-# request made over http is redirected to https.
-# Well.........
 
 @app.before_request
 def https_redirect():

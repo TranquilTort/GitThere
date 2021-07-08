@@ -37,18 +37,21 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div className="login-container">
-      <div className="login-welcome">
+      <div className="signup-form">
+
+      <div className="signup-welcome">
         WELCOME BACK TO THE HUSTLE
       </div>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
-          <div>{error}</div>
+          <div className="login-errors">{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor="email">Email </label>
+      <div className="signup-input-container">
+      <div className="form-icon"><i class="far fa-envelope"></i></div>
         <input
+          className="signup-input"
           name="email"
           type="text"
           placeholder="Email"
@@ -56,20 +59,26 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
+      <div className="signup-input-container">
+      <div className="form-icon"><i class="fas fa-key"></i></div>
         <input
+          className="signup-input"
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
       </div>
+      <button className="signup-form-submit-btn" type="submit">Login</button>
     </form>
-
-    <Link to="/sign-up" exact={true} className="sign-up-link"> Sign Up</Link>
+    <div className="login-link-container">
+        <div>
+        Need to create an account?
+        </div>
+        <Link to="/sign-up" className="login-link" exact={true} >Go To SignUp</Link>
+      </div>
+      </div>
     </div>
   );
 };

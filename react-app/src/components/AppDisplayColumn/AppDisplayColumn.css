@@ -2,12 +2,15 @@
     border: 1px solid black;
     height: 70vh;
     margin: 30px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
     overflow-y: scroll;
     border-radius:4px;
     min-width: 220px;
     max-width: 220px;
-    overflow-x: hidden;
+
 }
 .app-column-container::-webkit-scrollbar {
     display: none;
