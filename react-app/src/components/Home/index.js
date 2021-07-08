@@ -43,17 +43,12 @@ function Home(){
         )
     }
 
-    if(noApps){
-        return (
-            <div>
-                <Link to="/create_app"> Add Application</Link>
-                No Applications yet
-            </div>
-        )
-    }
     return (
     <div>
-        <Link to="/create_app"> Add Application</Link>
+        <div className="home-header">
+            <div className="header-text">Your Application Dashboard:</div>
+        </div>
+        {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">
            <AppDisplayColumn key={1} status={1} applications={staging_apps} user={sessionUser.id}/>
            <AppDisplayColumn key={2} status={2} applications={applied_apps} user={sessionUser.id}/>

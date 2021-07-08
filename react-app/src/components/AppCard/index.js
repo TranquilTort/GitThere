@@ -30,9 +30,9 @@ function AppCard({application,status,user}){
                     <a className="app-card-posting-link" href={`${application.url_link}`} target= "_blank">Go To Site</a>
                 </div>
             </div>
-            <button style={{backgroundColor:`${style}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
+            {(status<4)&&<button style={{backgroundColor:`${style}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
                         <div className="fas fa-angle-right chevron-right"></div>
-                    </button>
+                    </button>}
 
         </div>
     )
