@@ -1,4 +1,14 @@
 .login-container {
     display: flex;
-    flec
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-welcome {
+    margin-bottom: 40px;
+}
+
+.sign-up-link {
+    text-decoration: none;
 }

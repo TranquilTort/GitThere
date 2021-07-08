@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../../store/session.js";
@@ -37,7 +37,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div className="login-container">
-
+      <div className="login-welcome">
+        WELCOME BACK TO THE HUSTLE
+      </div>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
@@ -66,6 +68,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         <button type="submit">Login</button>
       </div>
     </form>
+
+    <Link to="/sign-up" exact={true} className="sign-up-link"> Sign Up</Link>
     </div>
   );
 };

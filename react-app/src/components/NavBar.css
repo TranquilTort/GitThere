@@ -3,9 +3,8 @@
     justify-content: space-between;
     margin-bottom: 10px;
     padding: 10px;
-
-    background-color: rgb(153, 152, 152);
-
+    align-items: center;
+    background-color: #90CBC5
 }
 .nav-home {
     font-size: 25px;
