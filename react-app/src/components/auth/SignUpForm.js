@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { useDispatch,useSelector } from 'react-redux';
+import "./SignUpForm.css"
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
@@ -44,46 +45,70 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
+    <div className="signup-container">
+      <div className="signup-form">
+
+      <div className="signup-welcome">
+        Welcome!
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
+      <form onSubmit={onSignUp}>
+        <div className="signup-input-container">
+          <div className="form-icon"><i class="fas fa-user"></i></div>
+          <input
+            className="signup-input"
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div className="signup-input-container">
+        <div className="form-icon"><i class="far fa-envelope"></i></div>
+          <input
+          className="signup-input"
+            type="text"
+            placeholder="Email"
+            name="email"
+            onChange={updateEmail}
+            value={email}
+          ></input>
+        </div>
+        <div className="signup-input-container">
+          <div className="form-icon"><i class="fas fa-key"></i></div>
+          <input
+            className="signup-input"
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div className="signup-input-container">
+          <div className="form-icon"><i class="fas fa-lock"></i></div>
+          <input
+            className="signup-input"
+            placeholder="Repeat Password"
+            type="password"
+            name="repeat_password"
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+        </div>
+        <button className="signup-form-submit-btn" type="submit">Sign Up</button>
+      </form>
+      <div className="login-link-container">
+        <div>
+        Already have an account?
+        </div>
+        <Link to="/login" className="login-link" exact={true} >Go To Login</Link>
       </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
+
       </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+
+    </div>
   );
 };
 

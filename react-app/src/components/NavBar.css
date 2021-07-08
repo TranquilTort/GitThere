@@ -1,0 +1,58 @@
+.nav-bar-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    align-items: center;
+    background-color: #90CBC5
+}
+.nav-home {
+    font-size: 25px;
+}
+
+.nav-right {
+    display: flex;
+    margin-right: 10px;
+}
+.nav-logout {
+    margin-left: 10px;
+}
+
+.nav-login {
+    margin-right:30px;
+}
+.nav-add-application {
+    text-decoration: none;
+    background-color:#F6E0ED;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    margin-right: 60px;
+}
+.nav-profile {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    margin-right: 10px;
+    background-color:#F6E0ED;
+
+}
+
+.no-decoration {
+    text-decoration: none;
+    color: #233043;
+}
+
+.nav-logout-btn {
+    border: none;
+    font-size:18px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+}

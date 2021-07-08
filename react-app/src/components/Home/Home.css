@@ -1,5 +1,27 @@
 .app-display-container {
     display: flex;
     flex-direction: row;
-    margin: 30px;
+    margin-right: 20px;
+    width: 100%;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .app-display-container{
+        flex-direction: column;
+
+    }
+}
+
+body {
+    font-family: 'Mukta', sans-serif;
+}
+
+.home-header {
+    display: flex;
+    margin-left:82px;
+    color: #1e2530;
+}
+.header-text {
+    font-size: 20px;
+    font-weight: 600;
 }

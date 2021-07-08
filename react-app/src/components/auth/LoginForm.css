@@ -1,0 +1,19 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #233043;
+}
+
+.login-welcome {
+    margin-bottom: 40px;
+}
+
+.sign-up-link {
+    text-decoration: none;
+}
+
+.login-errors {
+    color: rgb(170, 21, 21);
+}

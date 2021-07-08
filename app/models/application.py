@@ -18,8 +18,8 @@ class Application(db.Model):
     cv = db.Column(db.String)
     cover_letter = db.Column(db.String)
     priority = db.Column(db.Boolean)
-    created_at = db.Column(db.Date, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.Date, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     notes = db.relationship("Note", back_populates="application")
     screen_shots = db.relationship("ScreenShot", secondary=application_screen_shot, back_populates="application")
