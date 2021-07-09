@@ -6,10 +6,16 @@ function NoteDisplay({note}) {
             <div className="note-display-title">
                 {note.title}
             </div>
-            <div class>
-
+            <div className="note-display-body">
+            {note.body}
             </div>
-
+            <div className="note-display-date">
+                Created: {note.created_at}
+            </div>
+            <div className="note-display-buttons">
+                <button className="edit-app-btn"> Edit</button>
+                <button className="delete-app-btn"> Delete</button>
+            </div>
 
         </div>
 

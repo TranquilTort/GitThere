@@ -2,4 +2,29 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     padding: 15px;
     margin-top: 10px;
+    width: 70%;
+    border-radius:4px;
+}
+
+.note-display-title {
+    font-size: 20px;
+    width: fit-content;
+    border-bottom: 1px solid grey;
+    padding-bottom:5px;
+}
+.note-display-body {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color:#bad0e4;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+.note-display-date {
+    font-size: 13px;
+}
+
+.note-display-buttons {
+    margin-top: 8px;
 }

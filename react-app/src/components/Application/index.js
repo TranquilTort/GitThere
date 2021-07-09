@@ -78,7 +78,7 @@ function Application(){
                 {application.job_title}
             </div>
             <div className="app-status">
-                Status: <select onChange={e=>dispatch(moveStatus(e.target.value,application.id,user.id))}>
+                Status: <select className="app-status-select" onChange={e=>dispatch(moveStatus(e.target.value,application.id,user.id))}>
                     {application.status===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
                     {application.status===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
                     {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
@@ -89,9 +89,9 @@ function Application(){
                 Last updated: {application.updated_at}
             </div>
             <div className="app-edit-btns-container">
-                <button >Edit Application Info</button>
+                <button className="edit-app-btn">Edit Application Info</button>
 
-                <button onClick={handleDelete}>Remove Application</button>
+                <button className="delete-app-btn" onClick={handleDelete}>Remove Application</button>
             </div>
 
 
@@ -116,9 +116,9 @@ function Application(){
             <button type="submit">Upload</button>
             {(fileLoading)&& <p>Loading...</p>}
         </form>
-        {showNotesForm ?<button style={{backgroundColor:'#233043'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
+        {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
         {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
-        {notes  && !notes.error==="none" && notes.map((note,index)=>(
+        {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
             <NoteDisplay note={note} key={index} />
         ))}
     </div>)

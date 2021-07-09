@@ -13,6 +13,17 @@
     width: fit-content;
     margin-bottom: 10px;
 }
+.app-status-select {
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border: 0px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    background-color:#99B9D6;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
+
+}
 .app-status {
 
 }
@@ -37,15 +48,51 @@
 }
 .app-decription-label {
 
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom:3px;
 }
 
 .toggle-notes-btn {
+    cursor: pointer;
     border: none;
     padding: 10px;
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.app-edit-btns-container {
+    margin-top: 10px;
+}
+.delete-app-btn {
+    border: 0px;
+    background-color:#F6E0ED;
+    color: #2d333f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    cursor: pointer;
+}
+.delete-app-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
+}
+.edit-app-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
+}
+.toggle-notes-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
+}
+.edit-app-btn {
+    border: 0px;
+    background-color:#d8d9db;
+    color: #2d333f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    cursor: pointer;
+    margin-right: 30px;
 }
