@@ -18,10 +18,10 @@ class Application(db.Model):
     cv = db.Column(db.String)
     cover_letter = db.Column(db.String)
     priority = db.Column(db.Boolean)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now)
 
-    notes = db.relationship("Note", back_populates="application")
+    notes = db.relationship("Note",cascade="all,delete", backref="application")
     screen_shots = db.relationship("ScreenShot", secondary=application_screen_shot, back_populates="application")
 
     def to_dict(self):
@@ -39,6 +39,6 @@ class Application(db.Model):
             "cv": self.cv,
             "cover_letter": self.cover_letter,
             "priority": self.priority,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "created_at": self.created_at.strftime("%m/%d/%Y, %-I:%M%p"),
+            "updated_at": self.updated_at.strftime("%m/%d/%Y, %-I:%M%p"),
         }

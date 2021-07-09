@@ -65,6 +65,16 @@ export const moveStatus = ( newStatus,applicationId, userId) => async(dispatch)=
     }
 }
 
+export const deleteApp = (appId)=> async (dispatch) => {
+    const response = await fetch(`/api/application/delete/${appId}`);
+    if(response.ok){
+        const data = await response.json();
+        return data;
+    }else {
+        return {"error":"no auth"}
+    }
+}
+
 const initialState = {one_application:{}, staging_apps:[], applied_apps:[], in_contact_apps:[], interviewing_apps:[]}
 
 export default function application (state = initialState, action)  {
