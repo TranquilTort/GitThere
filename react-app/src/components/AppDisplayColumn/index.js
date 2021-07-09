@@ -5,17 +5,22 @@ import AppCard from "../AppCard"
 import "./AppDisplayColumn.css"
 function AppDisplayColumn({status, applications,user}){
     let statusMessage= "status";
+    let colColor = "#fff"
     if(status === 1){
-        statusMessage = "Application Staging"
+        statusMessage = "APPLICATION STAGING"
+        colColor="#BF4444"
     }else if(status ===2 ){
-        statusMessage = "Applied"
+        statusMessage = "APPLIED"
+        colColor="#E5853C"
     }else if(status ===3){
-        statusMessage = "Heard Back"
+        statusMessage = "IN CONTACT"
+        colColor="#E5E570"
     }else {
-        statusMessage = "Interviewing"
+        statusMessage = "INTERVIEWING"
+        colColor="#72B774"
     }
     return(
-        <div className="app-column-container">
+        <div style={{backgroundColor:`${colColor}`}} className="app-column-container">
             <div className="status-message">{statusMessage}</div>
 
             {applications.map((el,i)=>(

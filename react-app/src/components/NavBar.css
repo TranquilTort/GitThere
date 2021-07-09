@@ -1,15 +1,17 @@
 .nav-bar-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
     padding: 10px;
     align-items: center;
-    background-color: #90CBC5
+    background-color: #2d333f;
 }
 .nav-home {
     font-size: 25px;
+    color: #303636
 }
-
+.home-icon{
+    color: #d8d9db;
+}
 .nav-right {
     display: flex;
     margin-right: 10px;
@@ -23,7 +25,8 @@
 }
 .nav-add-application {
     text-decoration: none;
-    background-color:#F6E0ED;
+    background-color:#d8d9db;
+    color: #2d333f;
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 15px;
@@ -41,7 +44,10 @@
     background-color:#F6E0ED;
 
 }
+.nav-center {
+    color: #F6E0ED;
 
+}
 .no-decoration {
     text-decoration: none;
     color: #233043;

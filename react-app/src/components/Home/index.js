@@ -44,9 +44,9 @@ function Home(){
     }
 
     return (
-    <div>
+    <div className="home-container">
         <div className="home-header">
-            <div className="header-text">Your Application Dashboard:</div>
+            <div className="header-text">APPLICATION DASHBOARD:</div>
         </div>
         {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">
