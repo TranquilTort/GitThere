@@ -7,8 +7,15 @@ function AppCard({application,status,user}){
     let dispatch = useDispatch();
     let style = '#E6FFFF'
     if(status == 1 ){
-         style ='#13FFFD'
+        style ='#DEA4A4'
+    }else if(status == 2){
+        style ='#E5AB7E'
+    }else if(status == 3) {
+        style ='#E9E9B4'
+    }else{
+        style ='#B5E3B7'
     }
+
     const moveUp = (e)=>{
         dispatch(moveStatus(status+1,application.id,user))
     }

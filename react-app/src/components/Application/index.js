@@ -5,6 +5,8 @@ import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
 import {get_one_application} from "../../store/application"
 import {get_all_notes} from "../../store/note"
+import {authenticate} from "../../store/session.js"
+import "./Application.css"
 function Application(){
     const { appId } = useParams();
     const [pageLoaded, setPageLoaded] = useState(false);
@@ -18,6 +20,7 @@ function Application(){
     useEffect (async ()=>{
         await dispatch(get_one_application(appId))
         await dispatch(get_all_notes(appId))
+        dispatch(authenticate());
     },[])
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
@@ -45,9 +48,6 @@ function Application(){
             // error handling
             console.log("error");
         }
-
-
-
     }
 
     const updateFile = (e) => {
@@ -61,8 +61,43 @@ function Application(){
             setShowNotesForm(true);
         }
     }
-    return (<div>
-        {application.job_title}
+
+    let statusText ='';
+    if(application.status === 1){
+        statusText= "Staged";
+    }else if(application.status ===2){
+        statusText= "Applied";
+    }else if(application.status ===3){
+        statusText= "Heard Back";
+
+    }else {
+        statusText= "Interviewing";
+    }
+    return (
+    <div className="app-page-container">
+        <div className="app-info-container">
+            <div className="app-job-name">
+                {application.company}
+            </div>
+            <div className="app-job-title">
+                {application.job_title}
+            </div>
+            <div className="app-status">
+                Status: {statusText}
+            </div>
+            <div className="app-updated-at">
+                Last updated: {application.updated_at}
+            </div>
+            <div className="app-decription-label">
+            Description:
+            </div>
+
+            <div className="app-description">
+
+                {application.job_description}
+            </div>
+
+        </div>
         <form onSubmit={handleFileSubmit}>
             <label>Upload the Resume You applied with</label>
             <input
@@ -74,8 +109,7 @@ function Application(){
             <button type="submit">Upload</button>
             {(fileLoading)&& <p>Loading...</p>}
         </form>
-
-        <button onClick={toggleForm} className="toggle-notes-btn">Add a note</button>
+        {showNotesForm ?<button style={{backgroundColor:'#233043'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
         {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
         {notes && notes.length > 0 && notes.map((note,index)=>(
             <NoteDisplay note={note} key={index} />

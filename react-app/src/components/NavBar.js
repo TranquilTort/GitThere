@@ -5,15 +5,15 @@ import LogoutButton from './auth/LogoutButton';
 import "./NavBar.css"
 const NavBar = ({ setAuthenticated }) => {
   const user = useSelector(state => state.session.user);
-  useEffect(()=>{
-  },[user])
+
+  console.log("NAV BAR USER PRINT",user)
   return (
     <div className="nav-bar-container">
 
         <div className="nav-left">
           <div className="nav-home">
             <NavLink to="/" exact={true} activeClassName="active">
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home home-icon"></i>
             </NavLink>
           </div>
         </div>

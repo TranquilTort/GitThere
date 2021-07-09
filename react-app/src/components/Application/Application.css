@@ -1,0 +1,51 @@
+.app-page-container {
+    margin: 40px;
+}
+
+.app-info-container {
+
+}
+.app-job-name {
+    font-size: 40px;
+
+    color: #1e2530;
+    border-bottom: 1px solid grey;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+.app-status {
+
+}
+.app-updated-at {
+
+}
+.app-job-title {
+    font-size:25px;
+
+    color: #1e2530;
+}
+
+.app-description {
+
+    max-height: 200px;
+    overflow-y: scroll;
+
+    background-color: #bad0e4;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.app-decription-label {
+
+    margin-top: 30px;
+    margin-bottom:3px;
+}
+
+.toggle-notes-btn {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
