@@ -34,7 +34,7 @@ function Home(){
     if(!loaded){
         return null;
     }
-    console.log('ALL Staging',staging_apps)
+    console.log('ALL in contact',in_contact_apps)
     if(sessionUser === null){
         return (
             <div className="no-auth-home">

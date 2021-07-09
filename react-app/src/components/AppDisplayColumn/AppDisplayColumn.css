@@ -1,29 +1,84 @@
 .app-column-container {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.app-column {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     height: 70vh;
-    margin: 20px;
+
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
     padding-right: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-y: auto;
     border-radius:4px;
-    min-width: 220px;
-    max-width: 220px;
+    min-width: 240px;
+    max-width: 240px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #01cdfe;
 
 }
-.app-column-container::-webkit-scrollbar {
-    display: none;
+
+.scroll-up-btn {
+    position: relative;
+    top: 20px;
+    height:40px;
+    width: 40px;
+    border-radius:50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scroll-down-btn {
+    position: relative;
+    bottom: 20px;
+    height:40px;
+    width: 40px;
+    border-radius:50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scroll-class-1 {
+    background-color:#BF4444
+}
+.scroll-class-2 {
+    background-color:#E5853C
+}
+.scroll-class-3 {
+    background-color:#E5E570
+}
+.scroll-class-4 {
+    background-color:#72B774
+}
+.scroll-class-1:hover {
+    box-shadow: 0px 0px 30px 10px #BF4444;
+    background-color: #DEA4A4;
+}
+.scroll-class-2:hover {
+    box-shadow: 0px 0px 30px 10px #E5853C;
+    background-color: #E5AB7E;
+}
+.scroll-class-3:hover {
+    box-shadow: 0px 0px 30px 10px #E5E570;
+    background-color: #E9E9B4;
+}
+.scroll-class-4:hover {
+    box-shadow: 0px 0px 30px 10px #72B774;
+    background-color: #B5E3B7;
 }
 
 .status-message {
     font-weight: bold;
     font-size: 16px;
-    margin-bottom:10px;
+    margin-bottom:30px;
     border-bottom:1px solid #303636;
     color: #1e2530;
 }

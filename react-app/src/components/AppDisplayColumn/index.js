@@ -20,13 +20,33 @@ function AppDisplayColumn({status, applications,user}){
         colColor="#72B774"
     }
     return(
-        <div style={{backgroundColor:`${colColor}`}} className="app-column-container">
-            <div className="status-message">{statusMessage}</div>
+        <div className="app-column-container">
+        <div className="status-message">{statusMessage}</div>
+        <div
+            id={`scroll-button-up-${status}`}
+            style={{display:'none'}}
+            className={`scroll-up-btn scroll-class-${status}`}
+            onClick={(e)=>{
+
+                console.log("hi from onClick")
+            }}
+        ><i class="fas fa-angle-double-up"></i></div>
+        <div style={{backgroundColor:`${colColor}`}} className="app-column" id={`app-column-${status}`}>
 
             {applications.map((el,i)=>(
                 <AppCard key={i} status={status} application={el} user={user}/>
             ))}
-
+        </div>
+            <div  className={`scroll-down-btn scroll-class-${status}`}
+            onClick={(e)=>{
+                console.log("hi from onClick")
+                let scrollCol = document.getElementById(`app-column-${status}`)
+                let scrollAmount = scrollCol.scrollTop -= 30;
+                if (scrollAmount > 0) {
+                    document.getElementById(`scroll-button-up-${status}`).style.display ="flex"
+                }
+            }}
+            ><i class="fas fa-angle-double-down"></i></div>
         </div>
     )
 }

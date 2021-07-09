@@ -3,7 +3,7 @@
     margin-bottom:5px;
     border: 1px solid black;
     padding-left:5px;
-
+    z-index: 2;
     border-radius:4px;
     display: flex;
 
@@ -74,6 +74,7 @@
     border-radius: 50%;
     border: .0625rem solid #d8d9db;
     box-shadow: 0 0.125rem 0.5rem hsl(0deg 0% 60% / 40%);
+    cursor: pointer;
   /* display: inline-block; */
 }
 .scroll-button:hover {
