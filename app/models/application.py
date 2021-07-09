@@ -21,7 +21,7 @@ class Application(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
 
-    notes = db.relationship("Note", back_populates="application")
+    notes = db.relationship("Note",cascade="all,delete", backref="application")
     screen_shots = db.relationship("ScreenShot", secondary=application_screen_shot, back_populates="application")
 
     def to_dict(self):

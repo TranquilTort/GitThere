@@ -10,7 +10,7 @@ class Note(db.Model):
     title =db.Column(db.String, nullable=False)
     body = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    application = db.relationship("Application",  back_populates="notes")
+    
 
 
     def to_dict(self):

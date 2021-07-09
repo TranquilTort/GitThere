@@ -3,12 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
-import {get_one_application,moveStatus} from "../../store/application"
+import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
 function Application(){
     const { appId } = useParams();
+    const history = useHistory();
     const [pageLoaded, setPageLoaded] = useState(false);
 
     const [file,setFile] = useState(null);
@@ -60,7 +61,13 @@ function Application(){
             setShowNotesForm(true);
         }
     }
-
+    const handleDelete =async(e) => {
+        const response = await dispatch(deleteApp(appId));
+        console.log("DELETED RESPONSE",response);
+        if(response.success == 'deleted'){
+            history.push('/')
+        }
+    }
     return (
     <div className="app-page-container">
         <div className="app-info-container">
@@ -82,9 +89,9 @@ function Application(){
                 Last updated: {application.updated_at}
             </div>
             <div className="app-edit-btns-container">
-                <button>Edit Application Info</button>
+                <button >Edit Application Info</button>
 
-                <button>Remove Application</button>
+                <button onClick={handleDelete}>Remove Application</button>
             </div>
 
 

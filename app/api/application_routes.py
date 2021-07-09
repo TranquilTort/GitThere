@@ -50,7 +50,8 @@ def get_one_application(id):
 def change_app_status(userId, appId, newStatus):
     if(userId == current_user.id ):
         changed_app = Application.query.filter_by(id=appId).first()
-        changed_app.status = newStatus
+        changed_app.status = newStatus;
+        changed_app.updated_at = datetime.now();
         db.session.commit();
         return {}
     else:
@@ -81,5 +82,16 @@ def add_resume(appId,fileType):
     application_update.resume = url
     db.session.commit()
     return {"url":url}
-
     # reference: https://hackmd.io/@jpshafto/SyWY45KGu
+
+@login_required
+@application_routes.route('/delete/<int:appId>')
+def delete_app(appId):
+    delete_application = Application.query.filter_by(id=appId).first()
+    print("THIS IS THE APP TO BE DELETED",delete_application)
+    if current_user.id == delete_application.applicant:
+        db.session.delete(delete_application)
+        db.session.commit()
+        return {"success":"deleted"}
+    else:
+        return {"error":"no auth"}
