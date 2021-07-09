@@ -29,10 +29,10 @@
 
 .scroll-up-btn {
     position: relative;
-    top: 10px;
-    height:40px;
-    width: 40px;
-    border-radius:50%;
+    top: -10px;
+    height:25px;
+    width: 40%;
+    border-radius:5px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -44,8 +44,7 @@
     height:25px;
     width: 40%;
     border-radius:5px;
-    border-bottom-left-radius:5px;
-    border-bottom-right-radius:5px;
+
     cursor: pointer;
     display: flex;
     align-items: center;

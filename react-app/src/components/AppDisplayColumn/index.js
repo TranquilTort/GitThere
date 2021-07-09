@@ -22,7 +22,7 @@ function AppDisplayColumn({status, applications,user}){
 
     function scrollColumn(scrollCol, direction){
         console.log("hi from onClick")
-        scrollCol.scrollTop += (30*direction);
+        scrollCol.scrollTop += (60*direction);
     }
     return(
         <div className="app-column-container">
