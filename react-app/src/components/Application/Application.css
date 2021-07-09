@@ -13,6 +13,13 @@
     width: fit-content;
     margin-bottom: 10px;
 }
+
+.app-job-link {
+    margin-left: 20px;
+    color: #1e2530;
+    font-size: 20px;
+
+}
 .app-status-select {
     cursor: pointer;
     margin-top: 8px;
@@ -32,7 +39,7 @@
 }
 .app-job-title {
     font-size:25px;
-
+    margin-bottom: 10px;
     color: #1e2530;
 }
 
@@ -95,4 +102,45 @@
     border-radius:4px;
     cursor: pointer;
     margin-right: 30px;
+}
+
+.file-upload-form {
+    margin-top:10px;
+    display: flex;
+    flex-direction: column;
+}
+.file-type-select {
+    width: 100px;
+    border: 0px;
+    background-color:#d8d9db;
+    color: #2d333f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.upload-file-btn {
+    width: 120px;
+    border: 0px;
+    background-color:#d8d9db;
+    color: #2d333f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.upload-selection {
+
+}
+.file-download-container {
+    display: flex;
+    flex-direction: column;
 }
