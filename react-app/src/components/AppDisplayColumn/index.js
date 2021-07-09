@@ -24,7 +24,7 @@ function AppDisplayColumn({status, applications,user}){
         <div className="status-message">{statusMessage}</div>
         <div
             id={`scroll-button-up-${status}`}
-            style={{display:'none'}}
+            // style={{display:'none'}}
             className={`scroll-up-btn scroll-class-${status}`}
             onClick={(e)=>{
 
@@ -41,11 +41,12 @@ function AppDisplayColumn({status, applications,user}){
             onClick={(e)=>{
                 console.log("hi from onClick")
                 let scrollCol = document.getElementById(`app-column-${status}`)
-                let scrollAmount = scrollCol.scrollTop -= 30;
+                let scrollAmount = scrollCol.scrollTop += 30;
                 if (scrollAmount > 0) {
-                    document.getElementById(`scroll-button-up-${status}`).style.display ="flex"
+                    document.getElementById(`scroll-button-up-${status}`).style.removeProperty("display")
                 }
             }}
+            // add animation and smart hiding
             ><i class="fas fa-angle-double-down"></i></div>
         </div>
     )
