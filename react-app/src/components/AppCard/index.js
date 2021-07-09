@@ -27,11 +27,10 @@ function AppCard({application,status,user}){
 
                 </div>
                 <div className="app-card-ob-title">
-
-                {application.job_title}
+                    {application.job_title}
                 </div>
                 <div className="app-card-date">
-                    {application.updated_at? application.updated_at: application.created_at}
+                    {(status===1)? "Added: ": "Updated: "} {application.updated_at? application.updated_at: application.created_at}
                 </div>
                 <div >
                     <a className="app-card-posting-link" href={`${application.url_link}`} target= "_blank">Go To Site</a>

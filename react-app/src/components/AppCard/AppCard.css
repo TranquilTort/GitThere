@@ -6,11 +6,11 @@
     z-index: 2;
     border-radius:4px;
     display: flex;
-
+    width: 90%;
     height: fit-content;
 
     align-items: center;
-
+    position: relative;
 }
 
 .app-card-move-btn {
@@ -64,11 +64,11 @@
 .scroll-button {
     font-weight: bolder;
     display: flex;
-    position: relative;
-    left: 10px;
+    position: absolute;
+    left: 200px;
     align-content: center;
     justify-items: center;
-    height: 40px;
+    height: 45px;
     width: 45px;
     background-color: rgb(236, 236, 236);
     border-radius: 50%;
@@ -78,7 +78,7 @@
   /* display: inline-block; */
 }
 .scroll-button:hover {
-    border: 2px solid rgb(172,42,33);
+    border: 2px solid #233043;
 }
 .chevron-right {
     align-self: center;
@@ -86,4 +86,11 @@
     margin-left: 30%;
     font-size: 30px;
     color: #233043;
+}
+.app-card-date {
+    font-size: 12px;
+}
+.app-card-ob-title {
+    margin-top: 3px;
+    margin-bottom:5px;
 }

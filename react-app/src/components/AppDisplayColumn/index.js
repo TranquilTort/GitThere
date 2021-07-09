@@ -19,14 +19,28 @@ function AppDisplayColumn({status, applications,user}){
         statusMessage = "INTERVIEWING"
         colColor="#72B774"
     }
+    let lastDayCount = 0;
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    console.log(today)
+    applications.forEach(el=>{
+        if(el.updated_at.substring(0,10) === today ){
+            lastDayCount ++;
+        }
+    })
 
     function scrollColumn(scrollCol, direction){
         console.log("hi from onClick")
         scrollCol.scrollTop += (60*direction);
     }
+
     return(
         <div className="app-column-container">
         <div className="status-message">{statusMessage}</div>
+        <div className="column-info">Total: {applications.length} Today:{lastDayCount}</div>
         <div
             id={`scroll-button-up-${status}`}
             // style={{display:'none'}}
