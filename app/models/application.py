@@ -39,6 +39,6 @@ class Application(db.Model):
             "cv": self.cv,
             "cover_letter": self.cover_letter,
             "priority": self.priority,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "created_at": self.created_at.strftime("%m/%d/%Y, %H:%M"),
+            "updated_at": self.updated_at.strftime("%m/%d/%Y, %H:%M"),
         }
