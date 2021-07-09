@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
   base_cover_letter = db.Column(db.String)
 
   applications = db.relationship("Application", backref="user")
-  references = db.relationship("Reference", secondary=user_reference, back_populates="user")
+  references = db.relationship("Reference", cascade="all,delete",  backref="user")
 
   @property
   def password(self):

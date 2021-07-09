@@ -34,7 +34,6 @@ function Application(){
         const formData = new FormData();
         formData.append(fileType,file)
         setFileLoading(true);
-
         const res = await fetch(`/api/application/document/add/${appId}/${fileType}`, {
             method: "POST",
             body: formData,
