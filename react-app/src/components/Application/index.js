@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
-import {get_one_application} from "../../store/application"
+import {get_one_application,moveStatus} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
@@ -24,6 +24,7 @@ function Application(){
     },[])
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
+    let user = useSelector(state => state.session.user);
     useEffect (() => {
 
     },[notes])
@@ -44,8 +45,6 @@ function Application(){
         }
         else {
             setFileLoading(false);
-            // a real app would probably use more advanced
-            // error handling
             console.log("error");
         }
     }
@@ -62,17 +61,6 @@ function Application(){
         }
     }
 
-    let statusText ='';
-    if(application.status === 1){
-        statusText= "Staged";
-    }else if(application.status ===2){
-        statusText= "Applied";
-    }else if(application.status ===3){
-        statusText= "Heard Back";
-
-    }else {
-        statusText= "Interviewing";
-    }
     return (
     <div className="app-page-container">
         <div className="app-info-container">
@@ -83,11 +71,23 @@ function Application(){
                 {application.job_title}
             </div>
             <div className="app-status">
-                Status: {statusText}
+                Status: <select onChange={e=>dispatch(moveStatus(e.target.value,application.id,user.id))}>
+                    {application.status===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
+                    {application.status===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
+                    {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
+                    {application.status===4 ? <option selected value={4}>Interviewing</option>:<option  value={4}>Interviewing</option>}
+                </select>
             </div>
             <div className="app-updated-at">
                 Last updated: {application.updated_at}
             </div>
+            <div className="app-edit-btns-container">
+                <button>Edit Application Info</button>
+
+                <button>Remove Application</button>
+            </div>
+
+
             <div className="app-decription-label">
             Description:
             </div>
@@ -111,7 +111,7 @@ function Application(){
         </form>
         {showNotesForm ?<button style={{backgroundColor:'#233043'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
         {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
-        {notes && notes.length > 0 && notes.map((note,index)=>(
+        {notes  && !notes.error==="none" && notes.map((note,index)=>(
             <NoteDisplay note={note} key={index} />
         ))}
     </div>)

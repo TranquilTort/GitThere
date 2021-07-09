@@ -19,5 +19,5 @@ class Note(db.Model):
             "application_id":self.application_id,
             "title":self.title,
             "body":self.body,
-            "created_at":self.created_at
+            "created_at":self.created_at.strftime("%m/%d/%Y, %-I:%M%p")
         }
