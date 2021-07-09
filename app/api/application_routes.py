@@ -85,6 +85,7 @@ def add_document(appId,fileType):
         application_update.cv = url
     elif(fileType == 'cover_letter'):
         application_update.cover_letter = url
+    application_update.updated_at = datetime.now()
     db.session.commit()
     return {"url":url}
     # reference: https://hackmd.io/@jpshafto/SyWY45KGu

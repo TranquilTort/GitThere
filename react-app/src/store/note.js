@@ -31,7 +31,11 @@ export const get_all_notes = (appId) => async (dispatch) => {
     dispatch(set_all_notes(data))
     return 200;
 }
-
+export const delete_note = (noteId) => async (dispatch) => {
+    const response = await fetch(`/api/note/delete/${noteId}`)
+    const data = await response.json();
+    return data;
+}
 
 
 

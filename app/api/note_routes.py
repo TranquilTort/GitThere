@@ -29,3 +29,11 @@ def get_all_notes(app_id):
         return {"error":"none"}
     else:
         return {k: note.to_dict() for k, note in dict( zip(range(len(all_notes_arr)), all_notes_arr)).items()}
+
+@login_required
+@note_routes.route('/delete/<int:note_id>')
+def delete_note(note_id):
+    deleted_note = Note.query.get(note_id)
+    db.session.delete(deleted_note)
+    db.session.commit()
+    return {}

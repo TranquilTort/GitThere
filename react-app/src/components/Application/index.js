@@ -10,25 +10,24 @@ import "./Application.css"
 function Application(){
     const { appId } = useParams();
     const history = useHistory();
-    const [pageLoaded, setPageLoaded] = useState(false);
     const [fileType, setFileType] = useState("resume");
+    const [newInfo, setNewInfo] = useState(1);
     const [file,setFile] = useState(null);
-    const [uploadSuccess, setUploadSuccess] = useState(false);
     const [fileLoading, setFileLoading] = useState(false);
     const [showNotesForm, setShowNotesForm] = useState(false);
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
     const dispatch = useDispatch();
+    let application = useSelector(state => state.application.one_application);
+    let notes = useSelector(state => state.note.notes);
+    let user = useSelector(state => state.session.user);
     useEffect (async ()=>{
         await dispatch(get_one_application(appId))
         await dispatch(get_all_notes(appId))
         dispatch(authenticate());
-    },[fileLoading])
-    let application = useSelector(state => state.application.one_application);
-    let notes = useSelector(state => state.note.notes);
-    let user = useSelector(state => state.session.user);
+    },[fileLoading,showNotesForm,newInfo])
     console.log('THE CURRENT APPLICATION',application)
-    useEffect (() => {
 
-    },[notes,fileLoading])
     console.log("ALL NOTES:", notes)
     const handleFileSubmit = async (e) => {
         e.preventDefault();
@@ -82,7 +81,10 @@ function Application(){
                 <a  className="app-job-link" href={`${application.url_link}`} target="_blank">Go To Link</a>
             </div>
             <div className="app-status">
-                Status: <select className="app-status-select" onChange={e=>dispatch(moveStatus(e.target.value,application.id,user.id))}>
+                Status: <select className="app-status-select" onChange={e=>{
+                    dispatch(moveStatus(e.target.value,application.id,user.id));
+                    setNewInfo(newInfo+1)
+                    }}>
                     {application.status===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
                     {application.status===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
                     {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
@@ -123,8 +125,8 @@ function Application(){
             <label>Upload Documents</label>
             <select value={fileType}className="file-type-select" onChange={e=>{setFileType(e.target.value)}}>
                 <option value='resume'>Resume</option>
-                <option value='cv'>CV</option>
                 <option value='cover_letter'>Cover Letter</option>
+                <option value='cv'>CV</option>
             </select>
             <input
               className = 'upload-selection'
@@ -137,9 +139,9 @@ function Application(){
             {(fileLoading)&& <p>Loading...</p>}
         </form>
         {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
-        {showNotesForm && <NotesForm toggleForm={toggleForm} appId={appId} />}
+        {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
         {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
-            <NoteDisplay note={note} key={index} />
+            <NoteDisplay note={note} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setTitle={setTitle} setBody={setBody} setShowNotesForm={setShowNotesForm}/>
         ))}
     </div>)
 }
