@@ -77,7 +77,7 @@ function Application({appId}){
             </div>
             <div className="app-job-title">
                 {application.job_title}
-                <a  className="app-job-link" href={`${application.url_link}`} target="_blank">Go To Link</a>
+                <a  className="app-job-link" href={`${application.url_link}`} target="_blank">Go To Site</a>
             </div>
             <div className="app-status">
                 Status: <select className="app-status-select" onChange={e=>{
