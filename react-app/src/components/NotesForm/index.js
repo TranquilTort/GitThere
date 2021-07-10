@@ -2,9 +2,8 @@ import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import {add_one_note} from "../../store/note"
 import "./NotesForm.css"
-function NotesForm({toggleForm,appId}) {
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
+    
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {

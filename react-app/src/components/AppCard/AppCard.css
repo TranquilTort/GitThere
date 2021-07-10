@@ -49,6 +49,7 @@
     text-decoration: none;
     color: #233043;
     font-weight: bold;
+    cursor: pointer;
 }
 .app-card-link:hover {
     color: #000000;

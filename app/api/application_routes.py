@@ -58,8 +58,8 @@ def change_app_status(userId, appId, newStatus):
         return {}
 
 @login_required
-@application_routes.route('/resume/add/<int:appId>/<string:fileType>', methods=["POST"])
-def add_resume(appId,fileType):
+@application_routes.route('/document/add/<int:appId>/<string:fileType>', methods=["POST"])
+def add_document(appId,fileType):
     print("hit route")
     print(request.files)
     if fileType not in request.files:
@@ -79,7 +79,13 @@ def add_resume(appId,fileType):
 
     url = upload["url"]
     application_update = Application.query.get(appId)
-    application_update.resume = url
+    if(fileType =='resume'):
+        application_update.resume = url
+    elif(fileType == 'cv'):
+        application_update.cv = url
+    elif(fileType == 'cover_letter'):
+        application_update.cover_letter = url
+    application_update.updated_at = datetime.now()
     db.session.commit()
     return {"url":url}
     # reference: https://hackmd.io/@jpshafto/SyWY45KGu

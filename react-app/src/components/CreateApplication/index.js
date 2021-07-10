@@ -5,7 +5,7 @@ import {Link,useHistory } from "react-router-dom"
 import {add_one_application} from "../../store/application.js"
 import {authenticate} from "../../store/session.js"
 import "./CreateApplication.css"
-function CreateApplication (){
+function CreateApplication ({showModal, setShowModal}){
     const dispatch = useDispatch();
     let history = useHistory ();
 
@@ -50,6 +50,7 @@ function CreateApplication (){
         }
         if(submitType === 1){
             console.log("go home")
+            setShowModal(false)
             return history.push ('/')
         }else if(submitType === 2){
             return history.push(`/application/${appId}`)
