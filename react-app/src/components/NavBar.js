@@ -22,13 +22,7 @@ const NavBar = ({ setAuthenticated }) => {
             GIT THERE
         </div>
         <div className="nav-right">
-          {(user!==null)&&
-            <CreateApplicationModal />
-          // <Link to="/create_app" className="no-decoration">
-          // <div className="nav-add-application">Add Application</div>
-          // </Link>
-          }
-
+          
           {(user!==null)&&<div className="nav-profile">
             <NavLink to="/users" exact={true} className="no-decoration">
               {user.username} Profile

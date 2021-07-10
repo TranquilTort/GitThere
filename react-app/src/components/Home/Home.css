@@ -32,3 +32,20 @@ body {
     background-color: rgb(233, 233, 233);
     height: 115vh;
 }
+#add-application-button {
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
+    border: 0px;
+    background-color:#afb2b9;
+    color: #2d333f;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:4px;
+    height: 33px;
+    width: 200px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-left: 30px;
+}

@@ -5,7 +5,7 @@ function CreateApplicationModal({showModal, setShowModal}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Create App</button>
+      <button id="add-application-button" onClick={() => setShowModal(true)}>Add Application</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateApplication showModal={showModal} setShowModal={setShowModal}/>

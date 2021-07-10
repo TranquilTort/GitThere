@@ -102,7 +102,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
         console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
     }
     return (
-    <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 10px`}}>
+    <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 8px`}}>
         <div className="app-info-container" >
             <div className="app-job-name">
                 {application.company}
@@ -142,13 +142,13 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
             <div>
                 Application Documents: {(fileLoading)&& <p>Loading...</p>}
             </div>
-            <div>
-                {application.resume? <div>Your resume has been uploaded: <button onClick={e=>handleFileDownload(application.resume)} >Download Resume</button> </div>:
+            <div className="file-download-component">
+                {application.resume? <div>Download Resume: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.resume)} ><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('resume')
                         }}>
-                        <label>Upload Resume</label>
+                        <label>Upload Resume:</label>
                         <label className='input-file-button'>
                             <input
                             className = 'upload-selection'
@@ -164,13 +164,13 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
                     </form>
                 }
             </div>
-            <div>
-                {application.cover_letter? <div>Your CV Has been uploaded <button onClick={e=>handleFileDownload(application.cv)} >Download CV</button> </div>:
+            <div className="file-download-component">
+                {application.cover_letter? <div>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
                         }}>
-                        <label>Upload CV</label>
+                        <label>Upload CV:</label>
                         <label className='input-file-button'>
                             <input
                             className = 'upload-selection'
@@ -186,8 +186,8 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
                     </form>
                  }
             </div>
-            <div>
-                {application.cv?<div>Your Cover Letter has been uploaded <button onClick={e=>handleFileDownload(application.cover_letter)}>Download CV</button> </div>:
+            <div className="file-download-component">
+                {application.cv?<div>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cover_letter')

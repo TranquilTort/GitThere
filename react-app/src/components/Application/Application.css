@@ -36,7 +36,7 @@
     padding: 5px;
     background-color:#99B9D6;
     margin-left: 10px;
-    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
 
 }
 .app-edit-span {
@@ -57,7 +57,7 @@
     margin-left: 8px;
     margin-right: 8px;
     max-height: 200px;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-width: 35vw;
     max-height: 20vh;
     background-color: rgba(0, 0, 0, 0.15);
@@ -68,7 +68,7 @@
 .app-decription-label {
 
     margin-top: 10px;
-    margin-bottom:3px;
+    margin-bottom:8px;
 }
 
 .toggle-notes-btn {
@@ -83,7 +83,8 @@
 
 .delete-app-btn {
     border: 0px;
-    background-color:#F6E0ED;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
+    background-color:#ece7ea;
     color: #2d333f;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -102,8 +103,9 @@
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 10px;
 }
 .edit-app-btn {
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
     border: 0px;
-    background-color:#d8d9db;
+    background-color:#ece7ea;
     color: #2d333f;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -116,7 +118,6 @@
 }
 
 .file-upload-form {
-    margin-top:10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -137,18 +138,17 @@
     margin-top: 10px;
 }
 .upload-file-btn {
-    width: 120px;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
     border: 0px;
-    background-color:#d8d9db;
+    background-color:#ece7ea;
     color: #2d333f;
     padding-bottom: 5px;
     padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius:4px;
     cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-left: 30px;
 }
 
 input[type="file"] {
@@ -157,6 +157,9 @@ input[type="file"] {
 .file-download-container {
     display: flex;
     flex-direction: column;
+}
+.file-download-component {
+    margin-top:10px;
 }
 .input-file-button{
     background-color: rgba(0,0,0,0.4);
