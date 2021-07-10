@@ -19,6 +19,7 @@ function Home(){
     const [appDisplayStatus, setAppDisplayStatus] = useState(1);
     const sessionUser = useSelector(state => state.session.user);
     console.log('USERRRRRR',sessionUser)
+    console.log('APP INFO IS SHOWING: ', showAppModal)
     if(!sessionUser){
         console.log("user null")
         dispatch(authenticate());
@@ -58,7 +59,7 @@ function Home(){
     <div className="home-container">
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
-          <Application appId={appId} setShowAppModal={setShowModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}/>
+          <Application appId={appId} setShowAppModal={setShowAppModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}/>
         </Modal>
         )}
 

@@ -7,7 +7,7 @@ import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application({appId, appDisplayStatus, setAppDisplayStatus}){
+function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal}){
     // const { appId } = useParams();
     const history = useHistory();
     const [fileType, setFileType] = useState("resume");
@@ -93,9 +93,11 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
     }
     const handleDelete =async(e) => {
         const response = await dispatch(deleteApp(appId));
+        setNewInfo(newInfo+1)
+        setShowAppModal(false);
         console.log("DELETED RESPONSE",response);
         if(response.success == 'deleted'){
-            history.push('/')
+
         }
     }
     function handleFileDownload(awsUrl) {
@@ -243,7 +245,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus}){
                         borderRight:`2px solid ${darkColor}`,
                     }}
                 >
-                {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
+                {showNotesForm ?<button style={{backgroundColor:lightColor}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:"#ece7ea"}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
                 {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
                 {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
                     <NoteDisplay note={note} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setTitle={setTitle} setBody={setBody} setShowNotesForm={setShowNotesForm}/>

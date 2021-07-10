@@ -23,11 +23,11 @@ function NoteDisplay({note,setShowNotesForm,setTitle,setBody, newInfo, setNewInf
             {note.body}
             </div>
             <div className="note-display-date">
-                Created: {note.created_at}
-            </div>
+                {note.created_at}
             <div className="note-display-buttons">
                 <button onClick={handleEditNote} className="edit-app-btn"> Edit</button>
                 <button onClick={handleDeleteNote} className="delete-app-btn"> Delete</button>
+            </div>
             </div>
 
         </div>
