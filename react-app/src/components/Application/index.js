@@ -19,6 +19,9 @@ function Application({appId}){
     const [showNotesForm, setShowNotesForm] = useState(false);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [showRefDisplay, setShowRefDisplay] = useState(false);
+
+
     const dispatch = useDispatch();
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
@@ -97,11 +100,8 @@ function Application({appId}){
                     {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
                     {application.status===4 ? <option selected value={4}>Interviewing</option>:<option  value={4}>Interviewing</option>}
                 </select>
-
-
                 <button className="edit-app-btn">Edit</button>
                 <button className="delete-app-btn" onClick={handleDelete}>Delete</button>
-
             </div>
             <div className="app-updated-at">
                 Last updated: {application.updated_at}
@@ -123,7 +123,6 @@ function Application({appId}){
                         handleFileSubmit('resume')
                         }}>
                         <label>Upload Resume</label>
-
                         <label className='input-file-button'>
                             <input
                             className = 'upload-selection'
@@ -141,7 +140,6 @@ function Application({appId}){
             </div>
             <div>
                 {application.cover_letter? <div>Your CV Has been uploaded <button onClick={e=>handleFileDownload(application.cv)} >Download CV</button> </div>:
-
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
@@ -188,11 +186,34 @@ function Application({appId}){
         </div>
         {/* reference: https://hackmd.io/@jpshafto/SyWY45KGu */}
          <div className="notes-ref-container">
-            {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
-            {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
-            {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
-                <NoteDisplay note={note} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setTitle={setTitle} setBody={setBody} setShowNotesForm={setShowNotesForm}/>
-            ))}
+             <div className="note-ref-selection">
+                 <div onClick={e=>{
+                     e.preventDefault();
+                     setShowRefDisplay(false)
+                }}className="note-selection">
+                    Notes
+                 </div>
+                 <div onClick={e=>{
+                     e.preventDefault();
+                     setShowRefDisplay(true)
+                }}className="ref-selection">
+                    References
+                 </div>
+             </div>
+             {showRefDisplay
+                ?
+                <div className="ref-selection-display">
+                    ref display placeholder
+                </div>
+                :
+                <div className="note-selection-display">
+                {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
+                {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
+                {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
+                    <NoteDisplay note={note} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setTitle={setTitle} setBody={setBody} setShowNotesForm={setShowNotesForm}/>
+                ))}
+             </div>
+             }
 
          </div>
     </div>)

@@ -1,5 +1,8 @@
 .app-page-container {
-    margin: 20px;
+    margin-left: 18px;
+    margin-bottom: 18px;
+    margin-right: 12px;
+    margin-top: 10px;
     height: 80vh;
     display: flex;
 }
@@ -165,5 +168,46 @@ input[type="file"] {
 }
 
 .notes-ref-container {
-    
+    border-left: 2px solid grey;
+    margin-left:10px;
+    padding: 4px;
+    width: 20vw;
+
+}
+.note-ref-selection {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    height: 7%;
+}
+.note-selection:hover {
+    font-weight: bold;
+}
+.ref-selection:hover {
+    font-weight: bold;
+}
+.note-selection {
+    background-color: lightblue;
+    width: 50%;
+    padding: 5px;
+    border-top-left-radius: 4px;
+    display: flex;
+    justify-content:center;
+}
+
+.ref-selection {
+    background-color: blue;
+    padding: 5px;
+    border-top-right-radius: 4px;
+    width: 50%;
+    display: flex;
+    justify-content:center;
+}
+.note-selection-display {
+    background-color:lightblue;
+    padding: 10px;
+    min-height: fit-content;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    height: 90%;
 }
