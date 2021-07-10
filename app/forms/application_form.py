@@ -9,4 +9,4 @@ class ApplicationForm(FlaskForm):
     job_title = StringField("job_title", validators=[DataRequired()])
     job_description = TextAreaField("job_description")
     address = StringField("address")
-    priority = BooleanField("priority",validators=[DataRequired()])
+    priority = BooleanField("priority")

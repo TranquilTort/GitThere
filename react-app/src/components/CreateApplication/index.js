@@ -109,11 +109,13 @@ function CreateApplication ({showModal, setShowModal}){
                 name='address'
                 >
                 </input>
-                <label>Is this application a priority?</label>
-                <input type="checkbox" value={priority} onChange={priorityCheck}></input>
-                <button onClick={e=>setSubmitType(1)}type="submit" >Submit and go Home</button>
-                <button onClick={e=>setSubmitType(2)}type="submit" >Submit and go to App Info</button>
-                <button onClick={e=>setSubmitType(3)} type="submit" >Submit and Add Anouther</button>
+                {/* <label>Is this application a priority?</label>
+                <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
+                <div className="submission-btn-group">
+                    <button onClick={e=>setSubmitType(1)}type="submit" >Submit</button>
+                    <button onClick={e=>setSubmitType(2)}type="submit" >Add More Info</button>
+                    <button onClick={e=>setSubmitType(3)} type="submit" >Add Another App</button>
+                </div>
                 {showError && <div className="Error Message"> THERE WAS AN ERROR IN FORM SUBMISSION</div>}
             </form>
         </div>

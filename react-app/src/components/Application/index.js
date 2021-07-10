@@ -106,12 +106,12 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
     return (
     <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 8px`}}>
         <div className="app-info-container" >
-            <div className="app-job-name">
-                {application.company}
-            </div>
+
+            <a  className="app-job-link" href={`${application.url_link}`} target="_blank" alt="Job Application Link">{application.company}</a>
+
             <div className="app-job-title">
                 {application.job_title}
-                <a  className="app-job-link" href={`${application.url_link}`} target="_blank">Go To Site</a>
+
             </div>
             <div className="app-edit-span">
                 Status: <select className="app-status-select" onChange={e=>{
@@ -136,7 +136,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
             Description:
             </div>
             <div className="app-description"
-                style={{boxShadow:`${darkColor} 0px 0px 10px`}}
+                // style={{boxShadow:`${darkColor} 0px 0px 3px`}}
             >
                 {application.job_description}
             </div>

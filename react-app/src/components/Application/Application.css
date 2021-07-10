@@ -12,21 +12,19 @@
 .app-info-container {
     overflow-y: auto;
 }
-.app-job-name {
-    font-size: 40px;
+.app-job-link {
+    font-size: 45px;
     padding-bottom: 5px;
     color: #1e2530;
-    border-bottom: 1px solid grey;
+    /* border-bottom: 1px solid grey; */
     width: fit-content;
     margin-bottom: 10px;
+    text-decoration: none;
+}
+.app-job-link:hover {
+    color: #5a5d61;
 }
 
-.app-job-link {
-    margin-left: 20px;
-    color: #1e2530;
-    font-size: 20px;
-
-}
 .app-status-select {
     cursor: pointer;
     margin-top: 8px;
@@ -59,7 +57,7 @@
     max-height: 200px;
     overflow-y: auto;
     max-width: 35vw;
-    max-height: 20vh;
+    max-height: 17vh;
     background-color: rgba(0, 0, 0, 0.15);
     padding: 10px;
     border-radius: 3px;
@@ -178,7 +176,6 @@ input[type="file"] {
 }
 
 .notes-ref-container {
-    border-left: 2px solid grey;
     margin-left:10px;
     padding: 4px;
     width: 30vw;
