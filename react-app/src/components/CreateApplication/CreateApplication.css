@@ -5,3 +5,6 @@
     margin: 20px;
     justify-content: space-between;
 }
+.create-app-form-container {
+    border-radius: 4px;
+}
