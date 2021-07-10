@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import AppCard from "../AppCard"
 import "./AppDisplayColumn.css"
-function AppDisplayColumn({status, applications,user}){
+function AppDisplayColumn({status, applications,user,handleAppSelection}){
     let statusMessage= "status";
     let colColor = "#fff"
     if(status === 1){
@@ -53,7 +53,7 @@ function AppDisplayColumn({status, applications,user}){
         <div style={{backgroundColor:`${colColor}`}} className="app-column" id={`app-column-${status}`}>
 
             {applications.map((el,i)=>(
-                <AppCard key={i} status={status} application={el} user={user}/>
+                <AppCard key={i} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
             ))}
         </div>
             <div  className={`scroll-down-btn scroll-class-${status}`}

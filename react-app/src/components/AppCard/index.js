@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import {moveStatus} from "../../store/application.js"
 import "./AppCard.css"
-function AppCard({application,status,user}){
+function AppCard({application,status,user,handleAppSelection}){
     let dispatch = useDispatch();
     let style = '#E6FFFF'
     if(status == 1 ){
@@ -23,7 +23,8 @@ function AppCard({application,status,user}){
         <div className="app-card-container" style={{backgroundColor:`${style}`}}>
             <div className="app-card-content">
                 <div className="app-card-company-container">
-                    <Link to={`/application/${application.id}`} className="app-card-link">{application.company}</Link>
+                    <div onClick={e=>handleAppSelection(application.id,status)} className="app-card-link">{application.company}</div>
+                    {/* <Link to={`/application/${application.id}`} className="app-card-link">{application.company}</Link> */}
 
                 </div>
                 <div className="app-card-ob-title">

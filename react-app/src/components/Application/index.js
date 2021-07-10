@@ -7,8 +7,8 @@ import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application(){
-    const { appId } = useParams();
+function Application({appId}){
+    // const { appId } = useParams();
     const history = useHistory();
     const [fileType, setFileType] = useState("resume");
     const [newInfo, setNewInfo] = useState(1);
