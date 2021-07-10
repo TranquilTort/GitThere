@@ -7,7 +7,7 @@ import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application({appId}){
+function Application({appId, appDisplayStatus, setAppDisplayStatus}){
     // const { appId } = useParams();
     const history = useHistory();
     const [fileType, setFileType] = useState("resume");
@@ -22,15 +22,36 @@ function Application({appId}){
     const [showRefDisplay, setShowRefDisplay] = useState(false);
 
 
+
+
     const dispatch = useDispatch();
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
     let user = useSelector(state => state.session.user);
+
+
+    //color picker
+    let lightColor=''
+    let darkColor=''
+    if(appDisplayStatus == 1){
+        darkColor="#BF4444"
+        lightColor='#DEA4A4'
+    }else if(appDisplayStatus == 2){
+        darkColor="#E5853C"
+        lightColor='#E5AB7E'
+    }else if(appDisplayStatus == 3){
+        darkColor="#E5E570"
+        lightColor='#E9E9B4'
+    }else {
+        darkColor="#72B774"
+        lightColor='#B5E3B7'
+    }
     useEffect (async ()=>{
         await dispatch(get_one_application(appId))
         await dispatch(get_all_notes(appId))
-        dispatch(authenticate());
-    },[fileLoading,showNotesForm,newInfo])
+        await dispatch(authenticate());
+    },[fileLoading,showNotesForm,newInfo,appDisplayStatus])
+
     console.log('THE CURRENT APPLICATION',application)
 
     console.log("ALL NOTES:", notes)
@@ -81,8 +102,8 @@ function Application({appId}){
         console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
     }
     return (
-    <div className="app-page-container">
-        <div className="app-info-container">
+    <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 10px`}}>
+        <div className="app-info-container" >
             <div className="app-job-name">
                 {application.company}
             </div>
@@ -92,9 +113,12 @@ function Application({appId}){
             </div>
             <div className="app-edit-span">
                 Status: <select className="app-status-select" onChange={e=>{
+                    setAppDisplayStatus(e.target.value)
                     dispatch(moveStatus(e.target.value,application.id,user.id));
                     setNewInfo(newInfo+1)
-                    }}>
+                    }}
+                    style={{backgroundColor:lightColor}}
+                    >
                     {application.status===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
                     {application.status===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
                     {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
@@ -109,12 +133,14 @@ function Application({appId}){
             <div className="app-decription-label">
             Description:
             </div>
-            <div className="app-description">
+            <div className="app-description"
+                style={{boxShadow:`${darkColor} 0px 0px 10px`}}
+            >
                 {application.job_description}
             </div>
             <div className="file-download-container">
             <div>
-                Your files here: {(fileLoading)&& <p>Loading...</p>}
+                Application Documents: {(fileLoading)&& <p>Loading...</p>}
             </div>
             <div>
                 {application.resume? <div>Your resume has been uploaded: <button onClick={e=>handleFileDownload(application.resume)} >Download Resume</button> </div>:
@@ -166,7 +192,7 @@ function Application({appId}){
                         e.preventDefault();
                         handleFileSubmit('cover_letter')
                         }}>
-                        <label>Upload Cover Letter</label>
+                        <label>Upload Cover Letter:</label>
                         <label className='input-file-button'>
                             <input
                             className = 'upload-selection'
@@ -190,7 +216,12 @@ function Application({appId}){
                  <div onClick={e=>{
                      e.preventDefault();
                      setShowRefDisplay(false)
-                }}className="note-selection">
+                }}className="note-selection"
+                style={{borderTop:`2px solid ${darkColor}`,
+                        borderLeft:`2px solid ${darkColor}`,
+                        borderRight:`2px solid ${darkColor}`,
+                    }}
+                >
                     Notes
                  </div>
                  <div onClick={e=>{
@@ -206,7 +237,12 @@ function Application({appId}){
                     ref display placeholder
                 </div>
                 :
-                <div className="note-selection-display">
+                <div className="note-selection-display"
+                    style={{borderBottom:`2px solid ${darkColor}`,
+                        borderLeft:`2px solid ${darkColor}`,
+                        borderRight:`2px solid ${darkColor}`,
+                    }}
+                >
                 {showNotesForm ?<button style={{backgroundColor:'#F6E0ED'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:'#d8d9db'}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
                 {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
                 {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(

@@ -16,6 +16,7 @@ function Home(){
     const [noApps, setNoApps] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showAppModal, setShowAppModal] = useState(false);
+    const [appDisplayStatus, setAppDisplayStatus] = useState(1);
     const sessionUser = useSelector(state => state.session.user);
     console.log('USERRRRRR',sessionUser)
     if(!sessionUser){
@@ -38,6 +39,7 @@ function Home(){
     const interviewing_apps = useSelector(state => state.application.interviewing_apps)
     function handleAppSelection(appId,status){
         setAppId(appId)
+        setAppDisplayStatus(status)
         setShowAppModal(true)
     }
     if(!loaded){
@@ -56,7 +58,7 @@ function Home(){
     <div className="home-container">
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
-          <Application appId={appId} setShowAppModal={setShowModal}/>
+          <Application appId={appId} setShowAppModal={setShowModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}/>
         </Modal>
         )}
 
