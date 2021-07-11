@@ -1,19 +1,37 @@
 const SET_ONE_APPLICATION = "application/one_application";
 const SET_ALL_APPLICATIONS = 'application/all_applications';
 
-export const add_one_application = (applicant, url_link,company,job_title,job_description,address,priority)=>async(dispatch)=>{
+export const add_one_application = (status,applicant, url_link,company,job_title,job_description,address,priority)=>async(dispatch)=>{
     const response = await fetch("/api/application/new",{
         method:"POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            applicant, url_link,company,job_title,job_description,address,priority
+            status,applicant, url_link,company,job_title,job_description,address,priority
         }),
     });
     const data = await response.json();
     if(!data.errors){
-        return data.id;
+        return [data.id,data.status];
+
+    }else{
+        return null
+    }
+}
+export const edit_application = (id, status,applicant, url_link,company,job_title,job_description,address,priority)=>async(dispatch)=>{
+    const response = await fetch(`/api/application/edit/${id}`,{
+        method:"PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            status,applicant, url_link,company,job_title,job_description,address,priority
+        }),
+    });
+    const data = await response.json();
+    if(!data.errors){
+        return [data.id,data.status];
 
     }else{
         return null

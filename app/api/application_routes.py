@@ -20,11 +20,25 @@ def add_one_application():
         new_application = Application()
         form.populate_obj(new_application)
         new_application.created_at=datetime.now()
-        new_application.status=1
         print("APP ADD SUCCESS", new_application)
         db.session.add(new_application)
         db.session.commit()
         return new_application.to_dict();
+    else:
+        print('APP FORM DID NOT VALIDATE', form.errors)
+        return {}
+@login_required
+@application_routes.route('/edit/<int:id>',methods=['PUT'])
+def edit_application(id):
+    form = ApplicationForm();
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        edit_application = Application.query.get(id)
+        form.populate_obj(edit_application)
+        edit_application.updated_at=datetime.now()
+        db.session.commit()
+        print("App Edit Success", edit_application)
+        return edit_application.to_dict();
     else:
         print('APP FORM DID NOT VALIDATE', form.errors)
         return {}
@@ -35,7 +49,7 @@ def get_all_applications(id):
     applications = Application.query.filter_by(applicant=id).order_by(desc(Application.created_at)).all()
     if(len(applications) == 0):
         return {"error":'no apps'}
-    application_dict = {k: review.to_dict() for k, review in dict( zip(range(len(applications)), applications)).items()}
+    application_dict = {k: review.to_dict() for k, review in dict(zip(range(len(applications)), applications)).items()}
     return application_dict
 
 @login_required

@@ -53,7 +53,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       </div>
       <form onSubmit={onSignUp}>
         <div className="signup-input-container">
-          <div className="form-icon"><i class="fas fa-user"></i></div>
+          <div className="form-icon"><i className="fas fa-user"></i></div>
           <input
             className="signup-input"
             type="text"
@@ -64,7 +64,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           ></input>
         </div>
         <div className="signup-input-container">
-        <div className="form-icon"><i class="far fa-envelope"></i></div>
+        <div className="form-icon"><i className="far fa-envelope"></i></div>
           <input
           className="signup-input"
             type="text"
@@ -75,7 +75,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           ></input>
         </div>
         <div className="signup-input-container">
-          <div className="form-icon"><i class="fas fa-key"></i></div>
+          <div className="form-icon"><i className="fas fa-key"></i></div>
           <input
             className="signup-input"
             type="password"
@@ -86,7 +86,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           ></input>
         </div>
         <div className="signup-input-container">
-          <div className="form-icon"><i class="fas fa-lock"></i></div>
+          <div className="form-icon"><i className="fas fa-lock"></i></div>
           <input
             className="signup-input"
             placeholder="Repeat Password"

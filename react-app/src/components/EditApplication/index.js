@@ -2,10 +2,9 @@ import { useDispatch,useSelector } from 'react-redux';
 import React, { useState, useEffect } from "react";
 
 import {Link,useHistory } from "react-router-dom"
-import {add_one_application} from "../../store/application.js"
+import {edit_application} from "../../store/application.js"
 import {authenticate} from "../../store/session.js"
-import "./CreateApplication.css"
-function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,setAppDisplayStatus}){
+function EditApplication ({ setShowEditModal,editStates}){
     const dispatch = useDispatch();
     let history = useHistory ();
 
@@ -15,18 +14,10 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
         dispatch(authenticate());
     }
     sessionUser = useSelector(state => state.session.user);
-
     console.log('USERRRRRR',sessionUser)
-
-    const [url , setUrl] = useState('');
-    const [company , setCompany] = useState('');
-    const[jobTitle , setJobTitle] = useState('');
-    const [description , setDescription] = useState('');
-    const[address , setAddress] = useState('');
     const [submitType, setSubmitType] = useState(1);
     const [priority, setPriority] = useState(false);
     const [showError, setShowError] = useState(false);
-    const [status, setStatus] = useState(1);
     //submit types: 1 return to home page
     //2: go to new app's page and
     //3: add anouther application (new form)
@@ -37,12 +28,7 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
     const handleSubmit= async (e)=>{
         e.preventDefault();
         setShowError(false);
-        let applicant = sessionUser.id
-        let url_link = url;
-        let job_title = jobTitle;
-        let job_description = description
-        console.log(applicant, url_link,company,job_title,job_description,address,priority)
-        const dataArr = await dispatch(add_one_application( status,applicant, url_link,company,job_title,job_description,address,priority))
+        const dataArr = await dispatch(edit_application(editStates.editId, editStates.editStatus,sessionUser.id, editStates.editUrl,editStates.editCompany,editStates.editJobTitle,editStates.editDescription,editStates.editAddress,priority))
         console.log("RETURNED APP ID",dataArr[0])
         const appId = dataArr[0]
         console.log("submitType",submitType)
@@ -52,12 +38,12 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
         }
         if(submitType === 1){
             console.log("go home")
-            setShowModal(false)
+            setShowEditModal(false)
         }else if(submitType === 2){
-            setShowModal(false);
-            setAppId(dataArr[0])
-            setAppDisplayStatus(dataArr[1])
-            setShowAppModal(true)
+            // setShowModal(false);
+            // setAppId(dataArr[0])
+            // setAppDisplayStatus(dataArr[1])
+            // setShowAppModal(true)
         }else {
 
         }
@@ -70,53 +56,55 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
             >
                 <label >Link</label>
                 <input
-                    className='create-app-url'
-                    type='text'
-                    onChange={e=>setUrl(e.target.value)}
-                    value = {url}
-                    name="url_link"
-                    required
+                className='create-app-url'
+                type='text'
+                onChange={e=>editStates.setEditUrl(e.target.value)}
+                value = {editStates.editUrl}
+                name="url_link"
+                required
                 ></input>
                 <label>Company Name</label>
                 <input
-                    className='create-app-company'
-                    type='text'
-                    onChange={e=>setCompany(e.target.value)}
-                    value = {company}
-                    name="company"
-                    required
+                className='create-app-company'
+                type='text'
+                onChange={e=>editStates.setEditCompany(e.target.value)}
+                value = {editStates.editCompany}
+                name="company"
+                required
                 ></input>
                 <label>Job Title</label>
                 <input
-                    className='create-app-job-title'
-                    type='text-box'
-                    onChange={e=>setJobTitle(e.target.value)}
-                    value = {jobTitle}
-                    name="job_title"
-                    required
+                className='create-app-job-title'
+                type='text-box'
+                onChange={e=>editStates.setEditJobTitle(e.target.value)}
+                value = {editStates.editJobTitle}
+                name="job_title"
+                required
                 ></input>
                 <label>Job Description</label>
                 <textarea
-                    className='create-app-job-description'
-                    onChange={e=>setDescription(e.target.value)}
-                    value = {description}
-                    name="job_description"
+                className='create-app-job-description'
+                onChange={e=>editStates.setEditDescription(e.target.value)}
+                value = {editStates.editDescription}
+                name="job_description"
                 >
                 </textarea>
                 <label>Address</label>
                 <input
-                    className='create-app-address'
-                    onChange={e=>setAddress(e.target.value)}
-                    value = {address}
-                    name='address'
+                className='create-app-address'
+                onChange={e=>editStates.setEditAddress(e.target.value)}
+                value = {editStates.editAddress}
+                name='address'
                 >
                 </input>
-                <label>Application Stage</label>
-                <select onChange={e=>setStatus(e.target.value)}>
-                    <option selected value={1}>Staging</option>
-                    <option  value={2}>Applied</option>
-                    <option  value={3}>In Contact</option>
-                    <option  value={4}>Interviewing</option>
+                <select className="app-status-select"
+                onChange={e=>editStates.setEditStatus(e.target.value)}
+                value={editStates.editStatus}
+                >
+                    {editStates.editStatus===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
+                    {editStates.editStatus===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
+                    {editStates.editStatus===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
+                    {editStates.editStatus===4 ? <option selected value={4}>Interviewing</option>:<option  value={4}>Interviewing</option>}
                 </select>
                 {/* <label>Is this application a priority?</label>
                 <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
@@ -130,4 +118,4 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
         </div>
     )
 }
-export default CreateApplication;
+export default EditApplication;

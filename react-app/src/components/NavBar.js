@@ -14,7 +14,7 @@ const NavBar = ({ setAuthenticated }) => {
         <div className="nav-left">
           <div className="nav-home">
             <NavLink to="/" exact={true} activeClassName="active">
-            <i class="fas fa-home home-icon"></i>
+            <i className="fas fa-home home-icon"></i>
             </NavLink>
           </div>
         </div>
@@ -22,12 +22,6 @@ const NavBar = ({ setAuthenticated }) => {
             GIT THERE
         </div>
         <div className="nav-right">
-          {(user!==null)&&
-            <CreateApplicationModal />
-          // <Link to="/create_app" className="no-decoration">
-          // <div className="nav-add-application">Add Application</div>
-          // </Link>
-          }
 
           {(user!==null)&&<div className="nav-profile">
             <NavLink to="/users" exact={true} className="no-decoration">

@@ -49,7 +49,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
                 let scrollCol = document.getElementById(`app-column-${status}`)
                 scrollColumn(scrollCol,-1)
             }}
-        ><i class="fas fa-angle-double-up"></i></div>
+        ><i className="fas fa-angle-double-up"></i></div>
         <div style={{backgroundColor:`${colColor}`}} className="app-column" id={`app-column-${status}`}>
 
             {applications.map((el,i)=>(
@@ -62,7 +62,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
                 scrollColumn(scrollCol,1)
             }}
             // add animation and smart hiding
-            ><i class="fas fa-angle-double-down"></i></div>
+            ><i className="fas fa-angle-double-down"></i></div>
         </div>
     )
 }

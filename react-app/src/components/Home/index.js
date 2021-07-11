@@ -7,6 +7,7 @@ import {authenticate} from "../../store/session.js"
 import {get_all_applications} from "../../store/application.js"
 import { Modal } from '../Modal';
 import CreateApplicationModal from"../CreateApplicationModal"
+import EditApplicationModal from"../EditApplicationModal"
 import "./Home.css"
 
 function Home(){
@@ -16,8 +17,21 @@ function Home(){
     const [noApps, setNoApps] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showAppModal, setShowAppModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [appDisplayStatus, setAppDisplayStatus] = useState(1);
+
+    //edit application state variables
+    const [editUrl, setEditUrl] = useState('');
+    const [editCompany, setEditCompany] = useState('');
+    const [editJobTitle, setEditJobTitle] = useState('');
+    const [editDescription, setEditDescription] = useState('');
+    const [editAddress, setEditAddress] = useState('');
+    const [editStatus, setEditStatus] = useState(1);
+    const [editId, setEditId] = useState(null);
+    const editStates = {editId, setEditId,editUrl,setEditUrl,editCompany,setEditCompany,editJobTitle,setEditJobTitle,editDescription,setEditDescription,editAddress,setEditAddress,editStatus,setEditStatus }
+
+
     const sessionUser = useSelector(state => state.session.user);
-    console.log('USERRRRRR',sessionUser)
     if(!sessionUser){
         console.log("user null")
         dispatch(authenticate());
@@ -30,7 +44,7 @@ function Home(){
             }
             setLoaded(true)
         }
-    },[sessionUser,showModal,showAppModal])
+    },[sessionUser,showModal,showAppModal,showEditModal])
 
     const staging_apps = useSelector(state => state.application.staging_apps)
     const applied_apps = useSelector(state => state.application.applied_apps)
@@ -38,6 +52,7 @@ function Home(){
     const interviewing_apps = useSelector(state => state.application.interviewing_apps)
     function handleAppSelection(appId,status){
         setAppId(appId)
+        setAppDisplayStatus(status)
         setShowAppModal(true)
     }
     if(!loaded){
@@ -51,17 +66,18 @@ function Home(){
             </div>
         )
     }
-
     return (
     <div className="home-container">
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
-          <Application appId={appId} setShowAppModal={setShowModal}/>
+          <Application appId={appId} setShowAppModal={setShowAppModal} setShowEditModal={setShowEditModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}  editStates={editStates}/>
         </Modal>
         )}
 
+
         <div className="home-header">
-            <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal showModal={showModal} setShowModal={setShowModal}/></div>
+            <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
+        <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
         </div>
         {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">
