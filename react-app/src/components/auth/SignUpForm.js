@@ -41,7 +41,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
@@ -107,7 +107,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       </div>
 
       </div>
-
+      <image src="https://giphy.com/gifs/animated-hello-waving-bcKmIWkUMCjVm.gif" />
     </div>
   );
 };

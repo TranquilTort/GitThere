@@ -13,7 +13,7 @@ const NavBar = ({ setAuthenticated }) => {
 
         <div className="nav-left">
           <div className="nav-home">
-            <NavLink to="/" exact={true} activeClassName="active">
+            <NavLink to="/home" exact={true} activeClassName="active">
             <i className="fas fa-home home-icon"></i>
             </NavLink>
           </div>
