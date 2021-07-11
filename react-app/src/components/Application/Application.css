@@ -197,6 +197,7 @@ input[type="file"] {
 }
 .note-selection {
     background-color: lightblue;
+
     width: 50%;
     padding: 5px;
     border-top-left-radius: 4px;
@@ -206,7 +207,8 @@ input[type="file"] {
 }
 
 .ref-selection {
-    background-color: blue;
+    background-color: #2d333f;
+    color: #d8d9db;
     padding: 5px;
     border-top-right-radius: 4px;
     width: 50%;
@@ -222,4 +224,13 @@ input[type="file"] {
     height: 90%;
     overflow-y: auto;
 
+}
+.ref-selection-display {
+    background-color: rgba(99, 135, 201, 0.795);
+    padding: 10px;
+    min-height: fit-content;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    height: 90%;
+    overflow-y: auto;
 }

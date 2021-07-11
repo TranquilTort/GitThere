@@ -9,6 +9,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.note_routes import note_routes
+from .api.reference_routes import reference_routes
 from .api.application_routes import application_routes
 
 from .seeds import seed_commands
@@ -21,11 +22,9 @@ app = Flask(__name__)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
@@ -35,6 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(application_routes, url_prefix='/api/application')
 app.register_blueprint(note_routes, url_prefix='/api/note')
+app.register_blueprint(reference_routes, url_prefix='/api/reference')
 db.init_app(app)
 Migrate(app, db,compare_type=True)
 

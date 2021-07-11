@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import {add_one_note} from "../../store/note"
 import "./NotesForm.css"
 function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
-    
+
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        add_one_note(appId,)
         toggleForm()
         await dispatch(add_one_note(appId,title,body));
-        // await dispatch(addOneReview(restaurant.id, sessionUser.id, body, stars, title))
+        setBody('')
+        setTitle('')
     }
     return(
         <div >

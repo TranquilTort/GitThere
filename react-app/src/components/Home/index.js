@@ -30,6 +30,8 @@ function Home(){
     const [editId, setEditId] = useState(null);
     const editStates = {editId, setEditId,editUrl,setEditUrl,editCompany,setEditCompany,editJobTitle,setEditJobTitle,editDescription,setEditDescription,editAddress,setEditAddress,editStatus,setEditStatus }
 
+    //colorPicker (offset by one so that status can still start at one)
+    const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
 
     const sessionUser = useSelector(state => state.session.user);
     if(!sessionUser){
@@ -70,7 +72,7 @@ function Home(){
     <div className="home-container">
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
-          <Application appId={appId} setShowAppModal={setShowAppModal} setShowEditModal={setShowEditModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}  editStates={editStates}/>
+          <Application colors={colors} appId={appId} setShowAppModal={setShowAppModal} setShowEditModal={setShowEditModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}  editStates={editStates}/>
         </Modal>
         )}
 
@@ -81,10 +83,10 @@ function Home(){
         </div>
         {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">
-           <AppDisplayColumn key={1} status={1} handleAppSelection={handleAppSelection} applications={staging_apps} user={sessionUser.id}/>
-           <AppDisplayColumn key={2} status={2} handleAppSelection={handleAppSelection} applications={applied_apps} user={sessionUser.id}/>
-           <AppDisplayColumn key={3} status={3} handleAppSelection={handleAppSelection} applications={in_contact_apps} user={sessionUser.id}/>
-           <AppDisplayColumn key={4} status={4} handleAppSelection={handleAppSelection} applications={interviewing_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={1} colors={colors} status={1} handleAppSelection={handleAppSelection} applications={staging_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={2} colors={colors} status={2} handleAppSelection={handleAppSelection} applications={applied_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={3} colors={colors} status={3} handleAppSelection={handleAppSelection} applications={in_contact_apps} user={sessionUser.id}/>
+           <AppDisplayColumn key={4} colors={colors} status={4} handleAppSelection={handleAppSelection} applications={interviewing_apps} user={sessionUser.id}/>
         </div>
     </div>)
 }

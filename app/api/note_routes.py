@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from sqlalchemy import desc
-from app.models import db, Application, Note, application_note
+from app.models import db, Note
 from app.forms import NoteForm
 note_routes = Blueprint('note', __name__)
 
