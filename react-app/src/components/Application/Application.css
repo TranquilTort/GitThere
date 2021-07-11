@@ -22,7 +22,7 @@
     text-decoration: none;
 }
 .app-job-link:hover {
-    color: #5a5d61;
+    color: #7d7f81;
 }
 
 .app-status-select {
@@ -81,6 +81,7 @@
 
 .delete-app-btn {
     border: 0px;
+    margin-right: 8px;
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
     background-color:#ece7ea;
     color: #2d333f;
@@ -111,8 +112,8 @@
     padding-right: 15px;
     border-radius:4px;
     cursor: pointer;
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .file-upload-form {

@@ -7,6 +7,7 @@ import {authenticate} from "../../store/session.js"
 import {get_all_applications} from "../../store/application.js"
 import { Modal } from '../Modal';
 import CreateApplicationModal from"../CreateApplicationModal"
+import EditApplicationModal from"../CreateApplicationModal"
 import "./Home.css"
 
 function Home(){
@@ -16,6 +17,7 @@ function Home(){
     const [noApps, setNoApps] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showAppModal, setShowAppModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [appDisplayStatus, setAppDisplayStatus] = useState(1);
     const sessionUser = useSelector(state => state.session.user);
     if(!sessionUser){
@@ -56,12 +58,14 @@ function Home(){
     <div className="home-container">
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
-          <Application appId={appId} setShowAppModal={setShowAppModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}/>
+          <Application appId={appId} setShowAppModal={setShowAppModal} setShowEditModal={setShowEditModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}/>
         </Modal>
         )}
 
+
         <div className="home-header">
             <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal showModal={showModal} setShowModal={setShowModal}/></div>
+        {showEditModal && <EditApplicationModal setShowEditModal={setShowEditModal}/>}
         </div>
         {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">

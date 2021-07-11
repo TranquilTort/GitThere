@@ -7,7 +7,7 @@ import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal}){
+function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal,setShowEditModal}){
     // const { appId } = useParams();
     const history = useHistory();
     const [fileType, setFileType] = useState("resume");
@@ -21,14 +21,10 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
     const [body, setBody] = useState('');
     const [showRefDisplay, setShowRefDisplay] = useState(false);
 
-
-
-
     const dispatch = useDispatch();
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
     let user = useSelector(state => state.session.user);
-
 
     //color picker
     let lightColor=''
@@ -100,18 +96,19 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
 
         }
     }
+    const handleEdit = (e) =>{
+        setShowAppModal(false);
+        setShowEditModal(true)
+    }
     function handleFileDownload(awsUrl) {
         console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
     }
     return (
     <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 8px`}}>
         <div className="app-info-container" >
-
             <a  className="app-job-link" href={`${application.url_link}`} target="_blank" alt="Job Application Link">{application.company}</a>
-
             <div className="app-job-title">
                 {application.job_title}
-
             </div>
             <div className="app-edit-span">
                 Status: <select className="app-status-select" onChange={e=>{
@@ -126,7 +123,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                     {application.status===3 ? <option selected value={3}>In Contact</option>:<option  value={3}>In Contact</option>}
                     {application.status===4 ? <option selected value={4}>Interviewing</option>:<option  value={4}>Interviewing</option>}
                 </select>
-                <button className="edit-app-btn">Edit</button>
+                <button className="edit-app-btn" onClick={handleEdit}>Edit</button>
                 <button className="delete-app-btn" onClick={handleDelete}>Delete</button>
             </div>
             <div className="app-updated-at">
@@ -167,7 +164,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 }
             </div>
             <div className="file-download-component">
-                {application.cover_letter? <div>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cv? <div>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
@@ -189,7 +186,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                  }
             </div>
             <div className="file-download-component">
-                {application.cv?<div>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cover_letter?<div>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cover_letter')
