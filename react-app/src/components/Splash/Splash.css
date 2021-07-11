@@ -1,9 +1,51 @@
 .splash-container {
-
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .splash-header-container {
+    /* background-color: lightblue; */
+    display: flex;
+    flex-direction: column;
     margin-top: 50px;
+    align-items: center;
+}
+
+.splash-slogan {
+    font-size: 50px;
+    width: 400px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;;
+}
+
+.splash-title {
+    font-size: 24px;
+    text-align: center;
+    width: 400px;
+}
+.splash-buttons {
+    margin-top: 15px;
+}
+.splash-go-to-signup {
+    cursor: pointer;
+    margin-left: 15px;
+    border:0px;
+    padding: 8px;
+    border-radius:5px;
+    box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
+}
+.splash-demo-btn {
+    cursor: pointer;
+    margin-left: 15px;
+    border:0px;
+    padding: 8px;
+    border-radius:5px;
+    box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
 }
 .splash-gif-container {
-
+    background: url('https://www.hubspot.com/hubfs/Smiling%20Leo%20Perfect%20GIF.gif');
+    height: 500px;
+    width: 500px;
 }

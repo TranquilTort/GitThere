@@ -19,7 +19,7 @@ const NavBar = ({ setAuthenticated }) => {
           </div>
         </div>
         <div className="nav-center">
-            GIT THERE
+            <img src={'https://i.imgur.com/F8tCf5u.png'} className='logo'/>
         </div>
         <div className="nav-right">
 
