@@ -19,7 +19,7 @@ function NoteDisplay({note,setShowNotesForm,setTitle,setBody, newInfo, setNewInf
             <div className="note-display-title">
                 {note.title}
             </div>
-            <div className="note-display-body">
+            <div title="Copy to Clipboard" onClick={e=>{navigator.clipboard.writeText(e.target.innerText)}} className="note-display-body">
             {note.body}
             </div>
             <div className="note-display-date">
