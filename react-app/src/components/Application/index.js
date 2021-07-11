@@ -7,7 +7,7 @@ import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal,setShowEditModal}){
+function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal,setShowEditModal, editStates}){
     // const { appId } = useParams();
     const history = useHistory();
     const [fileType, setFileType] = useState("resume");
@@ -97,6 +97,13 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
         }
     }
     const handleEdit = (e) =>{
+        editStates.setEditUrl(application.url_link);
+        editStates.setEditId(application.id);
+        editStates.setEditCompany(application.company);
+        editStates.setEditJobTitle(application.job_title);
+        editStates.setEditDescription(application.description);
+        editStates.setEditAddress(application.address);
+        editStates.setEditStatus(appDisplayStatus)
         setShowAppModal(false);
         setShowEditModal(true)
     }
@@ -142,7 +149,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 Application Documents: {(fileLoading)&& <p>Loading...</p>}
             </div>
             <div className="file-download-component">
-                {application.resume? <div>Download Resume: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.resume)} ><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.resume? <div>Download Resume: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.resume)} ><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('resume')
@@ -155,7 +162,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                             accept=".pdf,.docx"
                             onChange={e=>{setResume(e.target.files[0])}}
                             />
-                            <i class="fas fa-plus"></i>
+                            <i className="fas fa-plus"></i>
                         </label>
                         {resume&&
                         <button className='upload-file-btn' type="submit">Upload {resume.name}</button>
@@ -164,7 +171,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 }
             </div>
             <div className="file-download-component">
-                {application.cv? <div>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cv? <div>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
@@ -177,7 +184,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                             accept=".pdf,.docx"
                             onChange={e=>{setCV(e.target.files[0])}}
                             />
-                            <i class="fas fa-plus"></i>
+                            <i className="fas fa-plus"></i>
                         </label>
                         {cv&&
                         <button className='upload-file-btn' type="submit">Upload {cv.name}</button>
@@ -186,7 +193,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                  }
             </div>
             <div className="file-download-component">
-                {application.cover_letter?<div>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i class="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cover_letter?<div>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cover_letter')
@@ -199,7 +206,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                             accept=".pdf,.docx"
                             onChange={e=>{setCoverLetter(e.target.files[0])}}
                             />
-                            <i class="fas fa-plus"></i>
+                            <i className="fas fa-plus"></i>
                         </label>
                         {coverLetter&&
                         <button className='upload-file-btn' type="submit">Upload {coverLetter.name}</button>

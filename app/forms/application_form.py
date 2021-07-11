@@ -3,6 +3,7 @@ from wtforms import StringField, TextAreaField, IntegerField, BooleanField, Subm
 from wtforms.validators import DataRequired
 
 class ApplicationForm(FlaskForm):
+    status = IntegerField("status")
     applicant = IntegerField("applicant",)
     company = StringField("company", validators=[DataRequired()])
     url_link = TextAreaField("url_link")

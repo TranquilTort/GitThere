@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Modal } from '../Modal';
-function EditApplicationModal({setShowEditModal}) {
+import EditApplication from "../EditApplication"
+function EditApplicationModal({showEditModal, setShowEditModal,editStates}) {
+    console.log('EDIT MODALLLLLLL')
     return (
     <>
-      {showEditModal && (
+      {showEditModal &&
         <Modal onClose={() => setShowEditModal(false)}>
-          <div> HIIIIIIIIII</div>
+          <EditApplication setShowEditModal = {setShowEditModal} editStates={editStates}/>
         </Modal>
-      )}
+      }
     </>
   );
 }

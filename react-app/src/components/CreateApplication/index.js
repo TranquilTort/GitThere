@@ -5,7 +5,7 @@ import {Link,useHistory } from "react-router-dom"
 import {add_one_application} from "../../store/application.js"
 import {authenticate} from "../../store/session.js"
 import "./CreateApplication.css"
-function CreateApplication ({showModal, setShowModal}){
+function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,setAppDisplayStatus}){
     const dispatch = useDispatch();
     let history = useHistory ();
 
@@ -26,6 +26,7 @@ function CreateApplication ({showModal, setShowModal}){
     const [submitType, setSubmitType] = useState(1);
     const [priority, setPriority] = useState(false);
     const [showError, setShowError] = useState(false);
+    const [status, setStatus] = useState(1);
     //submit types: 1 return to home page
     //2: go to new app's page and
     //3: add anouther application (new form)
@@ -41,8 +42,9 @@ function CreateApplication ({showModal, setShowModal}){
         let job_title = jobTitle;
         let job_description = description
         console.log(applicant, url_link,company,job_title,job_description,address,priority)
-        const appId = await dispatch(add_one_application( applicant, url_link,company,job_title,job_description,address,priority))
-        console.log("RETURNED APP ID",appId)
+        const dataArr = await dispatch(add_one_application( status,applicant, url_link,company,job_title,job_description,address,priority))
+        console.log("RETURNED APP ID",dataArr[0])
+        const appId = dataArr[0]
         console.log("submitType",submitType)
         if(!appId){
             setShowError(true);
@@ -51,15 +53,15 @@ function CreateApplication ({showModal, setShowModal}){
         if(submitType === 1){
             console.log("go home")
             setShowModal(false)
-            return history.push ('/')
         }else if(submitType === 2){
-            return history.push(`/application/${appId}`)
+            setShowModal(false);
+            setAppId(dataArr[0])
+            setAppDisplayStatus(dataArr[1])
+            setShowAppModal(true)
         }else {
 
         }
     }
-
-
     return(
         <div className='create-app-form-container'>
             <form
@@ -68,47 +70,54 @@ function CreateApplication ({showModal, setShowModal}){
             >
                 <label >Link</label>
                 <input
-                className='create-app-url'
-                type='text'
-                onChange={e=>setUrl(e.target.value)}
-                value = {url}
-                name="url_link"
-                required
+                    className='create-app-url'
+                    type='text'
+                    onChange={e=>setUrl(e.target.value)}
+                    value = {url}
+                    name="url_link"
+                    required
                 ></input>
                 <label>Company Name</label>
                 <input
-                className='create-app-company'
-                type='text'
-                onChange={e=>setCompany(e.target.value)}
-                value = {company}
-                name="company"
-                required
+                    className='create-app-company'
+                    type='text'
+                    onChange={e=>setCompany(e.target.value)}
+                    value = {company}
+                    name="company"
+                    required
                 ></input>
                 <label>Job Title</label>
                 <input
-                className='create-app-job-title'
-                type='text-box'
-                onChange={e=>setJobTitle(e.target.value)}
-                value = {jobTitle}
-                name="job_title"
-                required
+                    className='create-app-job-title'
+                    type='text-box'
+                    onChange={e=>setJobTitle(e.target.value)}
+                    value = {jobTitle}
+                    name="job_title"
+                    required
                 ></input>
                 <label>Job Description</label>
                 <textarea
-                className='create-app-job-description'
-                onChange={e=>setDescription(e.target.value)}
-                value = {description}
-                name="job_description"
+                    className='create-app-job-description'
+                    onChange={e=>setDescription(e.target.value)}
+                    value = {description}
+                    name="job_description"
                 >
                 </textarea>
                 <label>Address</label>
                 <input
-                className='create-app-address'
-                onChange={e=>setAddress(e.target.value)}
-                value = {address}
-                name='address'
+                    className='create-app-address'
+                    onChange={e=>setAddress(e.target.value)}
+                    value = {address}
+                    name='address'
                 >
                 </input>
+                <label>Application Stage</label>
+                <select onChange={e=>setStatus(e.target.value)}>
+                    <option selected value={1}>Staging</option>
+                    <option  value={2}>Applied</option>
+                    <option  value={3}>In Contact</option>
+                    <option  value={4}>Interviewing</option>
+                </select>
                 {/* <label>Is this application a priority?</label>
                 <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
                 <div className="submission-btn-group">

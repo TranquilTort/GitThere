@@ -14,7 +14,7 @@ const NavBar = ({ setAuthenticated }) => {
         <div className="nav-left">
           <div className="nav-home">
             <NavLink to="/" exact={true} activeClassName="active">
-            <i class="fas fa-home home-icon"></i>
+            <i className="fas fa-home home-icon"></i>
             </NavLink>
           </div>
         </div>
@@ -22,7 +22,7 @@ const NavBar = ({ setAuthenticated }) => {
             GIT THERE
         </div>
         <div className="nav-right">
-          
+
           {(user!==null)&&<div className="nav-profile">
             <NavLink to="/users" exact={true} className="no-decoration">
               {user.username} Profile
