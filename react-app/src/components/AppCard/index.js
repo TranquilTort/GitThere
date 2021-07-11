@@ -24,7 +24,6 @@ function AppCard({application,status,user,handleAppSelection}){
             <div className="app-card-content">
                 <div className="app-card-company-container">
                     <div onClick={e=>handleAppSelection(application.id,status)} className="app-card-link">{application.company}</div>
-                    {/* <Link to={`/application/${application.id}`} className="app-card-link">{application.company}</Link> */}
 
                 </div>
                 <div className="app-card-ob-title">

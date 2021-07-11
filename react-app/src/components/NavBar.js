@@ -13,13 +13,13 @@ const NavBar = ({ setAuthenticated }) => {
 
         <div className="nav-left">
           <div className="nav-home">
-            <NavLink to="/" exact={true} activeClassName="active">
+            <NavLink to="/home" exact={true} activeClassName="active">
             <i className="fas fa-home home-icon"></i>
             </NavLink>
           </div>
         </div>
         <div className="nav-center">
-            GIT THERE
+            <img src={'https://i.imgur.com/F8tCf5u.png'} className='logo'/>
         </div>
         <div className="nav-right">
 

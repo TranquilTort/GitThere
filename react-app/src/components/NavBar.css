@@ -45,8 +45,11 @@
 
 }
 .nav-center {
-    color: #F6E0ED;
 
+    height:45px;
+}
+.logo {
+    max-height: 100%;
 }
 .no-decoration {
     text-decoration: none;

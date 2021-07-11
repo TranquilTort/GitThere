@@ -32,7 +32,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
@@ -40,7 +40,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       <div className="signup-form">
 
       <div className="signup-welcome">
-        WELCOME BACK TO THE HUSTLE
+        WELCOME BACK!
       </div>
     <form onSubmit={onLogin}>
       <div>
