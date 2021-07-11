@@ -21,7 +21,11 @@
     background-color:rgba(0, 0, 0, 0.1);
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 
+}
+.note-display-body:hover {
+    background-color:rgba(0, 0, 0, 0.3);
 }
 .note-display-date {
     font-size: 13px;
