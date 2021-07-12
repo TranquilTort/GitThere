@@ -72,6 +72,7 @@ function Splash(
             </div>
                 <div className="splash-gif">
                     <img className="splash-gif-container" src="https://i.imgur.com/II511kC.gif"></img>
+
                     
                 </div>
         </div>
