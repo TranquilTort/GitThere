@@ -4,12 +4,14 @@ import { useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {login} from "../../store/session.js"
 import "./Splash.css"
-function Splash({ authenticated, setAuthenticated }){
+function Splash(
+    // { authenticated, setAuthenticated }
+    ){
     const history = useHistory();
     const dispatch = useDispatch();
-    if (authenticated) {
-        return <Redirect to="/home" />;
-      }
+    // if (authenticated) {
+    //     return <Redirect to="/home" />;
+    //   }
     return (
         <div className="splash-container">
 
@@ -52,12 +54,12 @@ function Splash({ authenticated, setAuthenticated }){
                     onMouseLeave={e=>{
                         e.target.isthemouseover = false;
                     }}
-                    onClick={async(e)=> {
-                        const user = await dispatch(login("DemoUser@email.com", "password"));
-                        if (!user.errors) {
-                            setAuthenticated(true);
-                          }
-                    }}
+                    // onClick={async(e)=> {
+                    //     const user = await dispatch(login("DemoUser@email.com", "password"));
+                    //     if (!user.errors) {
+                    //         setAuthenticated(true);
+                    //       }
+                    // }}
                     >Checkout a demo</button>
 
                     <div className="login-link-container">
