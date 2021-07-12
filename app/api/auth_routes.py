@@ -60,6 +60,14 @@ def logout():
     logout_user()
     return {'message': 'User logged out'}
 
+@login_required
+@auth_routes.route('/addGoal/<int:id>/<int:goal>')
+def addGoal(id,goal):
+    
+    user = User.query.get(id)
+    user.apply_weekly_goal = goal;
+    db.session.commit()
+    return user.to_dict()
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():

@@ -28,7 +28,7 @@ function ReferenceForm({toggleForm, refTitle , setRefTitle, refBody, setRefBody,
                 className="note-form-body"
                 name='body'
                 placeholder='Add your reference here...'></textarea>
-                <button className='submit-note' type='submit'>Add Note</button>
+                <button className='submit-note' type='submit'>Submit</button>
             </form>
         </div>
     )

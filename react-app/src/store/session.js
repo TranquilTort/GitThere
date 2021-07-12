@@ -82,7 +82,15 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return {};
 }
 
-
+export const setGoal = (userId,goal) => async (dispatch) => {
+    const response = await fetch(`/api/auth/addGoal/${userId}/${goal}`)
+    const data = await response.json();
+    if (data.errors) {
+        return data;
+    }
+    dispatch(setUser(data));
+    return {};
+}
 
 const initialState = { user: null }
 

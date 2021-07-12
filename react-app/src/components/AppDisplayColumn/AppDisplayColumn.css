@@ -28,6 +28,7 @@
 }
 
 .scroll-up-btn {
+    transition: 0.2s;
     position: relative;
     top: -10px;
     height:25px;
@@ -40,6 +41,7 @@
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
 }
 .scroll-down-btn {
+    transition: 0.2s;
     position: relative;
     top: 10px;
     height:25px;

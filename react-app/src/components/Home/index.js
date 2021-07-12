@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import AppDisplayColumn from "../AppDisplayColumn"
 import Application from "../Application"
-import {authenticate} from "../../store/session.js"
+import {authenticate, setGoal} from "../../store/session.js"
 import {get_all_applications} from "../../store/application.js"
 import { Modal } from '../Modal';
 import CreateApplicationModal from"../CreateApplicationModal"
@@ -18,6 +18,8 @@ function Home(){
     const [showModal, setShowModal] = useState(false);
     const [showAppModal, setShowAppModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showGoalForm, setShowGoalForm] = useState(false);
+    const [goalApps, setGoalApps] = useState();
     const [appDisplayStatus, setAppDisplayStatus] = useState(1);
 
     //edit application state variables
@@ -34,6 +36,7 @@ function Home(){
     const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
 
     const sessionUser = useSelector(state => state.session.user);
+    console.log("USER RIGHT HERE",sessionUser)
     if(!sessionUser){
         console.log("user null")
         dispatch(authenticate());
@@ -52,6 +55,29 @@ function Home(){
     const applied_apps = useSelector(state => state.application.applied_apps)
     const in_contact_apps = useSelector(state => state.application.in_contact_apps)
     const interviewing_apps = useSelector(state => state.application.interviewing_apps)
+    let goalProgress=0;
+    let appliedWeekly=0;
+    let date = new Date();
+    date.setDate(date.getDate()-7)
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const yyyy = date.getFullYear();
+
+    applied_apps.forEach(el=>{
+        console.log("DATE CALCULATIONS")
+        let month = el.updated_at.substring(0,2)
+        let day = el.updated_at.substring(3,5)
+        let year = el.updated_at.substring(6,10)
+        if(!(year < yyyy)){
+            if(year > yyyy){
+                appliedWeekly ++;
+            }else if(dd < day && mm == month){
+                appliedWeekly ++;
+            }else if(mm < month){
+                appliedWeekly ++;
+            }
+        }
+    })
     function handleAppSelection(appId,status){
         setAppId(appId)
         setAppDisplayStatus(status)
@@ -78,8 +104,30 @@ function Home(){
 
 
         <div className="home-header">
-            <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
+            <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
         <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
+            {sessionUser.apply_weekly_goal? <div className="goal-message">Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div>Click here to set a weekly Goal: </div>}
+            <button onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}className="show-app-goal-form">Set a Goal!</button>
+            {showGoalForm &&
+            <form className='app-goal-form'
+            onSubmit={e=>{
+                e.preventDefault();
+                dispatch(setGoal(sessionUser.id,goalApps))
+                setShowGoalForm(false)
+                }}>
+                <input type="number"
+                className='goal-input'
+                    value={goalApps}
+                    onChange={e=>{
+                        if(e.target.value > 0){
+                            setGoalApps(e.target.value)
+                        }}
+                    }
+                />
+                <button type="submit"
+            className='show-app-goal-form'
+                >Add Goal</button>
+            </form>}
         </div>
         {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">

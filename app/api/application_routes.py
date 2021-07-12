@@ -103,6 +103,12 @@ def add_document(appId,fileType):
     db.session.commit()
     return {"url":url}
     # reference: https://hackmd.io/@jpshafto/SyWY45KGu
+@login_required
+@application_routes.route('/document/get/<string:url>')
+def download_file(url):
+    print("hit file download path")
+    return {}
+
 
 @login_required
 @application_routes.route('/delete/<int:appId>')

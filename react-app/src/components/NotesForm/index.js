@@ -28,7 +28,7 @@ function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
                 className="note-form-body"
                 name='body'
                 placeholder='Leave your note here...'></textarea>
-                <button className='submit-note' type='submit'>Add Note</button>
+                <button className='submit-note' type='submit'>Submit</button>
             </form>
         </div>
     )

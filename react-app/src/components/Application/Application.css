@@ -224,13 +224,18 @@ input[type="file"] {
     height: 90%;
     overflow-y: auto;
 
+
+
+
 }
 .ref-selection-display {
-    background-color: rgba(99, 135, 201, 0.795);
+    background-color: rgba(170, 195, 241, 0.795);
     padding: 10px;
     min-height: fit-content;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
     height: 90%;
     overflow-y: auto;
+    border: 2px solid #2d333f;
+
 }

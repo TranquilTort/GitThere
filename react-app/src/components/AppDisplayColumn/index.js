@@ -5,19 +5,14 @@ import AppCard from "../AppCard"
 import "./AppDisplayColumn.css"
 function AppDisplayColumn({status, applications,user,handleAppSelection,colors}){
     let statusMessage= "status";
-    let colColor = "#fff"
     if(status === 1){
         statusMessage = "APPLICATION STAGING"
-        colColor="#BF4444"
     }else if(status ===2 ){
         statusMessage = "APPLIED"
-        colColor="#E5853C"
     }else if(status ===3){
         statusMessage = "IN CONTACT"
-        colColor="#E5E570"
     }else {
         statusMessage = "INTERVIEWING"
-        colColor="#72B774"
     }
     let lastDayCount = 0;
     let today = new Date();
@@ -34,7 +29,14 @@ function AppDisplayColumn({status, applications,user,handleAppSelection,colors})
 
     function scrollColumn(scrollCol, direction){
         console.log("hi from onClick")
-        scrollCol.scrollTop += (60*direction);
+        let count = 50;
+        const interval= setInterval(function(){
+            scrollCol.scrollTop += (5*direction);
+            count --;
+            if(count == 0){
+                clearInterval(interval)
+            }
+        }, 20)
     }
 
     return(

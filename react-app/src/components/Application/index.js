@@ -109,7 +109,11 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
         setShowAppModal(false);
         setShowEditModal(true)
     }
-    function handleFileDownload(awsUrl) {
+    async function handleFileDownload(awsUrl) {
+        const response = await fetch(`/api/application/document/get/${awsUrl}`)
+        if(response.ok){
+                
+        }
         console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
     }
     return (
@@ -228,6 +232,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 style={{borderTop:`2px solid ${colors[appDisplayStatus].dark}`,
                         borderLeft:`2px solid ${colors[appDisplayStatus].dark}`,
                         borderRight:`2px solid ${colors[appDisplayStatus].dark}`,
+                        backgroundColor: colors[appDisplayStatus].dark
                     }}
                 >
                     Notes
@@ -250,9 +255,10 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 </div>
                 :
                 <div className="note-selection-display"
-                    style={{borderBottom:`2px solid ${darkColor}`,
-                        borderLeft:`2px solid ${darkColor}`,
-                        borderRight:`2px solid ${darkColor}`,
+                    style={{borderBottom:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderLeft:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderRight:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderTop:`2px solid ${colors[appDisplayStatus].dark}`,
                     }}
                 >
                 {showNotesForm ?<button style={{backgroundColor:colors[appDisplayStatus].light}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:"#ece7ea"}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
