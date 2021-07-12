@@ -223,10 +223,6 @@ input[type="file"] {
     border-bottom-right-radius:5px;
     height: 90%;
     overflow-y: auto;
-
-
-
-
 }
 .ref-selection-display {
     background-color: rgba(170, 195, 241, 0.795);
