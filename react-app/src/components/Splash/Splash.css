@@ -44,6 +44,10 @@
     border-radius:5px;
     box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
 }
+.login-link-container {
+    margin-top: 10px;
+    text-align: center;
+}
 .splash-gif-container {
 
     height: 90%;
