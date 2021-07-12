@@ -128,9 +128,9 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
                 {/* <label>Is this application a priority?</label>
                 <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
                 <div className="submission-btn-group">
-                    <button onClick={e=>setSubmitType(1)}type="submit" >Submit</button>
-                    <button onClick={e=>setSubmitType(2)}type="submit" >Add More Info</button>
-                    <button onClick={e=>setSubmitType(3)} type="submit" >Add Another App</button>
+                    <button className="submission-app-btn" onClick={e=>setSubmitType(1)}type="submit" >Submit</button>
+                    <button className="submission-app-btn" onClick={e=>setSubmitType(2)}type="submit" >Add More Info</button>
+                    <button className="submission-app-btn" onClick={e=>setSubmitType(3)} type="submit" >Add Another App</button>
                 </div>
                 {showError && <div className="Error Message"> THERE WAS AN ERROR IN FORM SUBMISSION</div>}
             </form>

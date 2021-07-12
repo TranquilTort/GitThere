@@ -7,8 +7,17 @@
 }
 .create-app-form-container {
     border-radius: 4px;
-    
+
 }
 .submission-btn-group {
     display: flex;
+
+}
+.submission-app-btn {
+    border: 0px;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
+    cursor: pointer;
 }
