@@ -40,7 +40,7 @@
     padding: 8px;
     border-radius:5px;
     box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
-    background: #BF4444;
+    background: linear-gradient(30deg, #BF4444 25%, #E5853C 50%,  #72B774 70%);
     color: #2d333f;
     font-weight: 700;
 }
@@ -51,6 +51,7 @@
     padding: 8px;
     border-radius:5px;
     box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
+    background: linear-gradient(120deg, #DEA4A4 25%, #E9E9B4 50%, #B5E3B7 70%);
 }
 .login-link-container {
     margin-top: 10px;

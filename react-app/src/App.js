@@ -43,7 +43,8 @@ function App() {
           />
         </Route>
         <Route path="/" exact={true}>
-          <Splash />
+          <Splash authenticated={authenticated}
+            setAuthenticated={setAuthenticated}/>
         </Route>
         <Route path="/sign-up" exact={true}>
         <NavBar setAuthenticated={setAuthenticated} />

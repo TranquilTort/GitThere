@@ -12,7 +12,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
-    console.log("INSIDE LOGIN Submit",email, password)
 
     e.preventDefault();
     const user = await dispatch(login(email, password));
@@ -22,7 +21,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       setErrors(user.errors);
     }
   };
-
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -30,11 +28,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
   if (authenticated) {
     return <Redirect to="/home" />;
   }
-
   return (
     <div className="login-container">
       <div className="signup-form">
