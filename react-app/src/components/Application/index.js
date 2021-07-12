@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NotesForm from "../NotesForm"
 import NoteDisplay from "../NoteDisplay"
+import ReferenceForm from "../ReferenceForm"
+import ReferenceDisplay from "../ReferenceDisplay"
 import {get_one_application,moveStatus,deleteApp} from "../../store/application"
 import {get_all_notes} from "../../store/note"
+import {get_all_refs} from "../../store/reference"
 import {authenticate} from "../../store/session.js"
 import "./Application.css"
-function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal,setShowEditModal, editStates}){
-    // const { appId } = useParams();
-    const history = useHistory();
-    const [fileType, setFileType] = useState("resume");
+function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppModal,setShowEditModal, editStates,colors}){
+
     const [newInfo, setNewInfo] = useState(1);
     const [coverLetter,setCoverLetter] = useState(null);
     const [cv,setCV] = useState(null);
@@ -21,10 +22,18 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
     const [body, setBody] = useState('');
     const [showRefDisplay, setShowRefDisplay] = useState(false);
 
+    //references state
+    const [refTitle,setRefTitle] = useState('');
+    const [refBody, setRefBody] = useState('');
+
+
     const dispatch = useDispatch();
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
+    let refs = useSelector(state => state.reference.references);
     let user = useSelector(state => state.session.user);
+
+    console.log("ALL REFS REACT", refs)
 
     //color picker
     let lightColor=''
@@ -45,6 +54,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
     useEffect (async ()=>{
         await dispatch(get_one_application(appId))
         await dispatch(get_all_notes(appId))
+        await dispatch(get_all_refs());
         await dispatch(authenticate());
     },[fileLoading,showNotesForm,newInfo,appDisplayStatus])
 
@@ -75,11 +85,6 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
             console.log("error");
         }
     }
-
-    // const updateFile = (e) => {
-    //     const file = e.target.files[0];
-    //     setFile(file);
-    // }
     const toggleForm=() =>{
         if (showNotesForm){
             setShowNotesForm(false);
@@ -92,9 +97,6 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
         setNewInfo(newInfo+1)
         setShowAppModal(false);
         console.log("DELETED RESPONSE",response);
-        if(response.success == 'deleted'){
-
-        }
     }
     const handleEdit = (e) =>{
         editStates.setEditUrl(application.url_link);
@@ -107,11 +109,15 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
         setShowAppModal(false);
         setShowEditModal(true)
     }
-    function handleFileDownload(awsUrl) {
+    async function handleFileDownload(awsUrl) {
+        const response = await fetch(`/api/application/document/get/${awsUrl}`)
+        if(response.ok){
+                
+        }
         console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
     }
     return (
-    <div className="app-page-container"  style={{backgroundColor:lightColor, border:`3px solid${darkColor}`,boxShadow:`${darkColor} 0px 0px 8px`}}>
+    <div className="app-page-container"  style={{backgroundColor:colors[appDisplayStatus].light, border:`3px solid${colors[appDisplayStatus].dark}`,boxShadow:`${colors[appDisplayStatus].dark} 0px 0px 8px`}}>
         <div className="app-info-container" >
             <a  className="app-job-link" href={`${application.url_link}`} target="_blank" alt="Job Application Link">{application.company}</a>
             <div className="app-job-title">
@@ -123,7 +129,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                     dispatch(moveStatus(e.target.value,application.id,user.id));
                     setNewInfo(newInfo+1)
                     }}
-                    style={{backgroundColor:lightColor}}
+                    style={{backgroundColor:colors[appDisplayStatus].light}}
                     >
                     {application.status===1 ? <option selected value={1}>Staging</option>:<option  value={1}>Staging</option>}
                     {application.status===2 ? <option selected value={2}>Applied</option>:<option  value={2}>Applied</option>}
@@ -223,9 +229,10 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                      e.preventDefault();
                      setShowRefDisplay(false)
                 }}className="note-selection"
-                style={{borderTop:`2px solid ${darkColor}`,
-                        borderLeft:`2px solid ${darkColor}`,
-                        borderRight:`2px solid ${darkColor}`,
+                style={{borderTop:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderLeft:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderRight:`2px solid ${colors[appDisplayStatus].dark}`,
+                        backgroundColor: colors[appDisplayStatus].dark
                     }}
                 >
                     Notes
@@ -240,16 +247,21 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
              {showRefDisplay
                 ?
                 <div className="ref-selection-display">
-                    ref display placeholder
+                    {showNotesForm ?<button style={{backgroundColor:colors[appDisplayStatus].light}} onClick={toggleForm} className="toggle-notes-btn">Add a Reference</button> :<button style={{backgroundColor:"#ece7ea"}} onClick={toggleForm} className="toggle-notes-btn">Add a Reference</button> }
+                    {showNotesForm && <ReferenceForm toggleForm={toggleForm} refTitle={refTitle} setRefTitle={setRefTitle} refBody={refBody} setRefBody={setRefBody} userId={user.id} />}
+                    {refs &&refs.length>0&& refs[0]!=='none' && refs.map((reference,index)=>(
+                    <ReferenceDisplay reference={reference} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setRefTitle={setRefTitle} setRefBody={setRefBody} setShowNotesForm={setShowNotesForm}/>
+                ))}
                 </div>
                 :
                 <div className="note-selection-display"
-                    style={{borderBottom:`2px solid ${darkColor}`,
-                        borderLeft:`2px solid ${darkColor}`,
-                        borderRight:`2px solid ${darkColor}`,
+                    style={{borderBottom:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderLeft:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderRight:`2px solid ${colors[appDisplayStatus].dark}`,
+                        borderTop:`2px solid ${colors[appDisplayStatus].dark}`,
                     }}
                 >
-                {showNotesForm ?<button style={{backgroundColor:lightColor}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:"#ece7ea"}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
+                {showNotesForm ?<button style={{backgroundColor:colors[appDisplayStatus].light}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> :<button style={{backgroundColor:"#ece7ea"}} onClick={toggleForm} className="toggle-notes-btn">Add a note</button> }
                 {showNotesForm && <NotesForm toggleForm={toggleForm} title={title} setTitle={setTitle} body={body} setBody={setBody} appId={appId} />}
                 {notes  && !notes.error && notes[0]!=='none' && notes.map((note,index)=>(
                     <NoteDisplay note={note} key={index} newInfo={newInfo} setNewInfo={setNewInfo} setTitle={setTitle} setBody={setBody} setShowNotesForm={setShowNotesForm}/>

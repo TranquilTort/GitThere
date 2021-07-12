@@ -3,19 +3,19 @@ import React, { useState, useEffect } from "react";
 import {add_one_note} from "../../store/note"
 import "./NotesForm.css"
 function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
-    
+
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        add_one_note(appId,)
         toggleForm()
         await dispatch(add_one_note(appId,title,body));
-        // await dispatch(addOneReview(restaurant.id, sessionUser.id, body, stars, title))
+        setBody('')
+        setTitle('')
     }
     return(
         <div >
-            <form className="note-form-container"onSubmit={handleSubmit}>
+            <form className="note-form-container"onSubmit={handleSubmit}autocomplete="off" >
                 <input type="text"
                 className="note-form-title"
                 onChange={(e) => setTitle(e.target.value)}
@@ -28,7 +28,7 @@ function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
                 className="note-form-body"
                 name='body'
                 placeholder='Leave your note here...'></textarea>
-                <button className='submit-note' type='submit'>Add Note</button>
+                <button className='submit-note' type='submit'>Submit</button>
             </form>
         </div>
     )

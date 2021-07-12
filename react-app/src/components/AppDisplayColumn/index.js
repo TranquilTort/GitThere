@@ -3,21 +3,16 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import AppCard from "../AppCard"
 import "./AppDisplayColumn.css"
-function AppDisplayColumn({status, applications,user,handleAppSelection}){
+function AppDisplayColumn({status, applications,user,handleAppSelection,colors}){
     let statusMessage= "status";
-    let colColor = "#fff"
     if(status === 1){
         statusMessage = "APPLICATION STAGING"
-        colColor="#BF4444"
     }else if(status ===2 ){
         statusMessage = "APPLIED"
-        colColor="#E5853C"
     }else if(status ===3){
         statusMessage = "IN CONTACT"
-        colColor="#E5E570"
     }else {
         statusMessage = "INTERVIEWING"
-        colColor="#72B774"
     }
     let lastDayCount = 0;
     let today = new Date();
@@ -34,7 +29,14 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
 
     function scrollColumn(scrollCol, direction){
         console.log("hi from onClick")
-        scrollCol.scrollTop += (60*direction);
+        let count = 50;
+        const interval= setInterval(function(){
+            scrollCol.scrollTop += (5*direction);
+            count --;
+            if(count == 0){
+                clearInterval(interval)
+            }
+        }, 20)
     }
 
     return(
@@ -43,20 +45,43 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
         <div className="column-info">Total: {applications.length} Today:{lastDayCount}</div>
         <div
             id={`scroll-button-up-${status}`}
-            // style={{display:'none'}}
-            className={`scroll-up-btn scroll-class-${status}`}
+            style={{
+                backgroundColor:colors[status].dark,
+                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px'
+            }}
+            onMouseEnter={e=>{
+                e.target.style.backgroundColor = colors[status].light;
+                e.target.style.boxShadow =`0px 0px 4px 4px ${colors[status].dark}`;
+            }}
+            onMouseLeave={e=>{
+                e.target.style.backgroundColor = colors[status].dark;
+                e.target.style.boxShadow ='rgba(0, 0, 0, 0.66) 0px 0px 4px'
+            }}
+            className={`scroll-up-btn`}
             onClick={(e)=>{
                 let scrollCol = document.getElementById(`app-column-${status}`)
                 scrollColumn(scrollCol,-1)
             }}
-        ><i className="fas fa-angle-double-up"></i></div>
-        <div style={{backgroundColor:`${colColor}`}} className="app-column" id={`app-column-${status}`}>
+        ><i className="fas fa-angle-double-up chevy"></i></div>
+        <div style={{backgroundColor:`${colors[status].dark}`}} className="app-column" id={`app-column-${status}`}>
 
             {applications.map((el,i)=>(
-                <AppCard key={i} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
+                <AppCard key={i} colors={colors} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
             ))}
         </div>
-            <div  className={`scroll-down-btn scroll-class-${status}`}
+            <div  className={`scroll-down-btn`}
+            style={{
+                backgroundColor:colors[status].dark,
+                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px'
+            }}
+            onMouseEnter={e=>{
+                e.target.style.backgroundColor = colors[status].light;
+                e.target.style.boxShadow =`0px 0px 4px 4px ${colors[status].dark}`;
+            }}
+            onMouseLeave={e=>{
+                e.target.style.backgroundColor = colors[status].dark;
+                e.target.style.boxShadow ='rgba(0, 0, 0, 0.66) 0px 0px 4px'
+            }}
             onClick={(e)=>{
                 let scrollCol = document.getElementById(`app-column-${status}`)
                 scrollColumn(scrollCol,1)

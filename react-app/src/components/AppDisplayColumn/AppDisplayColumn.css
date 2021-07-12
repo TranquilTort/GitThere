@@ -28,6 +28,7 @@
 }
 
 .scroll-up-btn {
+    transition: 0.2s;
     position: relative;
     top: -10px;
     height:25px;
@@ -40,6 +41,7 @@
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
 }
 .scroll-down-btn {
+    transition: 0.2s;
     position: relative;
     top: 10px;
     height:25px;
@@ -51,7 +53,7 @@
     align-items: center;
     justify-content: center;
 }
-.scroll-class-1 {
+/* .scroll-class-1 {
     background-color:#BF4444
 }
 .scroll-class-2 {
@@ -78,7 +80,7 @@
 .scroll-class-4:hover {
     box-shadow: 0px 0px 4px 4px #72B774;
     background-color: #B5E3B7;
-}
+} */
 
 .status-message {
     font-weight: bold;

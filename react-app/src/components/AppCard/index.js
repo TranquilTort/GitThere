@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import {moveStatus} from "../../store/application.js"
 import "./AppCard.css"
-function AppCard({application,status,user,handleAppSelection}){
+function AppCard({application,status,user,handleAppSelection, colors}){
     let dispatch = useDispatch();
     let style = '#E6FFFF'
     if(status == 1 ){
@@ -20,7 +20,7 @@ function AppCard({application,status,user,handleAppSelection}){
         dispatch(moveStatus(status+1,application.id,user))
     }
     return(
-        <div className="app-card-container" style={{backgroundColor:`${style}`}}>
+        <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
             <div className="app-card-content">
                 <div className="app-card-company-container">
                     <div onClick={e=>handleAppSelection(application.id,status)} className="app-card-link">{application.company}</div>
@@ -36,7 +36,7 @@ function AppCard({application,status,user,handleAppSelection}){
                     <a className="app-card-posting-link" href={`${application.url_link}`} target= "_blank">Go To Site</a>
                 </div>
             </div>
-            {(status<4)&&<button style={{backgroundColor:`${style}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
+            {(status<4)&&<button style={{backgroundColor:`${colors[status].light}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
                         <div className="fas fa-angle-right chevron-right"></div>
                     </button>}
 

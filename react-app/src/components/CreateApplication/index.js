@@ -59,7 +59,14 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
             setAppDisplayStatus(dataArr[1])
             setShowAppModal(true)
         }else {
-
+            setUrl('');
+            setCompany('');
+            setJobTitle('');
+            setDescription('');
+            setAddress('');
+            setStatus(1);
+            setShowModal(false);
+            setShowModal(true);
         }
     }
     return(
