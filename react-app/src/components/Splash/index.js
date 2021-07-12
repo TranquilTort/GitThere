@@ -56,13 +56,8 @@ function Splash({ authenticated, setAuthenticated }){
                         const user = await dispatch(login("DemoUser@email.com", "password"));
                         if (!user.errors) {
                             setAuthenticated(true);
-                          } else {
-
-                          }
+                          } 
                     }}
-
-
-
                     >Checkout a demo</button>
 
                     <div className="login-link-container">
