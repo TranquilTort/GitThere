@@ -1,10 +1,9 @@
 .signup-container {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #233043;
-    margin-bottom: 90px;
+    height: 83vh;
 }
 
 .signup-form {

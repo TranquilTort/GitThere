@@ -16,9 +16,22 @@ function Splash(){
                     Track your goals, organize your documents, and simplify your application workflow.
                 </div>
                 <div className="splash-buttons">
-                    <button className="splash-go-to-signup" onClick={e=>history.push('/sign-up')}>Sign up for free</button>
-
-
+                    <button className="splash-go-to-signup" onClick={e=>history.push('/sign-up')}
+                    onMouseEnter={e=>{
+                        e.target.isthemouseover = true;
+                        let count = 0;
+                        const interval = setInterval(() =>{
+                            count++
+                            e.target.style.background= `linear-gradient(${count}deg, #BF4444 25%, #E5853C 50%,  #72B774 70%)`
+                            if (count >= 270 || !e.target.isthemouseover){
+                                clearInterval(interval)
+                            }
+                        },3)
+                    }}
+                    onMouseLeave={e=>{
+                        e.target.isthemouseover = false;
+                    }}
+                    >Sign up for free</button>
                     <button className="splash-demo-btn">Check out a demo</button>
 
                     <div className="login-link-container">
@@ -30,9 +43,7 @@ function Splash(){
                 </div>
             </div>
                 <div className="splash-gif">
-
-                    <div className="splash-gif-container">
-                    </div>
+                    <img className="splash-gif-container" src="https://i.imgur.com/II511kC.gif"></img>
                 </div>
         </div>
     )

@@ -1,14 +1,13 @@
 .login-container {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #233043;
-    margin-bottom: 220px;
+    height: 85vh;
 }
 
 .login-welcome {
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 
 .sign-up-link {
