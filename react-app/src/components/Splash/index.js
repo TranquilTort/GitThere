@@ -29,9 +29,11 @@ function Splash(){
                     </div>
                 </div>
             </div>
-            <div className="splash-gif-container">
+                <div className="splash-gif">
 
-            </div>
+                    <div className="splash-gif-container">
+                    </div>
+                </div>
         </div>
     )
 }

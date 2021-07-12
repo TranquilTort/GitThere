@@ -45,7 +45,14 @@
     box-shadow: rgba(0,0,0,.40) 0px 0px 5px;
 }
 .splash-gif-container {
-    background: url('https://www.hubspot.com/hubfs/Smiling%20Leo%20Perfect%20GIF.gif');
-    height: 500px;
-    width: 500px;
+
+    height: 90%;
+    border-radius:5px;
+    width: auto;
+    background:url('https://i.imgur.com/II511kC.gif');
+}
+.splash-gif {
+
+    width: 600px;
+    z-index: 3;
 }

@@ -106,7 +106,7 @@ function Home(){
         <div className="home-header">
             <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
         <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
-            {sessionUser.apply_weekly_goal? <div className="goal-message">Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div>Click here to set a weekly Goal: </div>}
+            {sessionUser.apply_weekly_goal? <div className="goal-message">Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
             <button onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}className="show-app-goal-form">Set a Goal!</button>
             {showGoalForm &&
             <form className='app-goal-form'
@@ -129,7 +129,6 @@ function Home(){
                 >Add Goal</button>
             </form>}
         </div>
-        {noApps && <Link to="/create_app"> Add Application</Link>}
         <div className="app-display-container">
            <AppDisplayColumn key={1} colors={colors} status={1} handleAppSelection={handleAppSelection} applications={staging_apps} user={sessionUser.id}/>
            <AppDisplayColumn key={2} colors={colors} status={2} handleAppSelection={handleAppSelection} applications={applied_apps} user={sessionUser.id}/>

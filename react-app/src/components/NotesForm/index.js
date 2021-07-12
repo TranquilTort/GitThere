@@ -15,7 +15,7 @@ function NotesForm({toggleForm,appId, title , setTitle, body, setBody}) {
     }
     return(
         <div >
-            <form className="note-form-container"onSubmit={handleSubmit}>
+            <form className="note-form-container"onSubmit={handleSubmit}autocomplete="off" >
                 <input type="text"
                 className="note-form-title"
                 onChange={(e) => setTitle(e.target.value)}
