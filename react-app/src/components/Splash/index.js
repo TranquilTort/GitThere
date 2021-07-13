@@ -55,12 +55,13 @@ function Splash(
                         e.target.isthemouseover = false;
                     }}
                     onClick={async(e)=> {
+                        console.log("demo sign in")
                         const user = await dispatch(login("email@demo.com", "password"));
                         if (!user.errors) {
                             setAuthenticated(true);
                           }
                     }}
-                    >Checkout a demo</button>
+                    >Check Out a demo</button>
 
                     <div className="login-link-container">
                         <div>
