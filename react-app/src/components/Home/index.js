@@ -31,7 +31,7 @@ function Home(){
     const [editStatus, setEditStatus] = useState(1);
     const [editId, setEditId] = useState(null);
     const editStates = {editId, setEditId,editUrl,setEditUrl,editCompany,setEditCompany,editJobTitle,setEditJobTitle,editDescription,setEditDescription,editAddress,setEditAddress,editStatus,setEditStatus }
-
+    //add in color state here
     //colorPicker (offset by one so that status can still start at one)
     const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
 
