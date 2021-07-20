@@ -34,7 +34,7 @@ function Home(){
     //add in color state here
     //dark mode toggle can change the colors
     //need search functionality on the columns
-
+    //colors arr needs to have background and font colors too
 
 
     //colorPicker (offset by one so that status can still start at one)
