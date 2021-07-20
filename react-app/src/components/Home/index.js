@@ -33,6 +33,10 @@ function Home(){
     const editStates = {editId, setEditId,editUrl,setEditUrl,editCompany,setEditCompany,editJobTitle,setEditJobTitle,editDescription,setEditDescription,editAddress,setEditAddress,editStatus,setEditStatus }
     //add in color state here
     //dark mode toggle can change the colors
+    //need search functionality on the columns
+
+
+
     //colorPicker (offset by one so that status can still start at one)
     const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
 
