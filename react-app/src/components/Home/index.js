@@ -103,7 +103,9 @@ function Home(){
         )
     }
     return (
-    <div className="home-container">
+    <div className="home-container"
+        style={{backgroundColor:`${colors[0].background}`}}
+    >
         {showAppModal && (
         <Modal onClose={() => setShowAppModal(false)}>
           <Application colors={colors} appId={appId} setShowAppModal={setShowAppModal} setShowEditModal={setShowEditModal} setAppDisplayStatus={setAppDisplayStatus} appDisplayStatus={appDisplayStatus}  editStates={editStates}/>
@@ -112,9 +114,13 @@ function Home(){
 
 
         <div className="home-header">
-            <div className="header-text" >APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
+            <div className="header-text"
+                style={{color:`${colors[0].mainFontColor}`}}
+            >
+                APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/>
+            </div>
         <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
-            {sessionUser.apply_weekly_goal? <div className="goal-message">Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
+            {sessionUser.apply_weekly_goal? <div className="goal-message" style={{color:`${colors[0].secondaryFontColor}`}}>Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
             <button onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}className="show-app-goal-form">Set a Goal!</button>
             {showGoalForm &&
             <form className='app-goal-form'
