@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
+
+import {ColorContext} from "../../context/ColorContext"
 import AppDisplayColumn from "../AppDisplayColumn"
 import Application from "../Application"
 import {authenticate, setGoal} from "../../store/session.js"
@@ -35,10 +37,11 @@ function Home(){
     //dark mode toggle can change the colors
     //need search functionality on the columns
     //colors arr needs to have background and font colors too
+    const {colors} = useContext(ColorContext);
 
-
+    console.log("ALLL THE COLORS:", colors)
     //colorPicker (offset by one so that status can still start at one)
-    const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
+    // const colors = [[],{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}]
 
     const sessionUser = useSelector(state => state.session.user);
     console.log("USER RIGHT HERE",sessionUser)
@@ -109,7 +112,7 @@ function Home(){
 
 
         <div className="home-header">
-            <div className="header-text">APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
+            <div className="header-text" >APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/></div>
         <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
             {sessionUser.apply_weekly_goal? <div className="goal-message">Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
             <button onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}className="show-app-goal-form">Set a Goal!</button>

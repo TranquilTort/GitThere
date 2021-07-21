@@ -11,6 +11,8 @@ import CreateApplication from "./components/CreateApplication"
 import Splash from "./components/Splash"
 import { authenticate } from "./services/auth";
 
+
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
