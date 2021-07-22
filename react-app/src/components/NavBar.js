@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useContext} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import CreateApplicationModal from './CreateApplicationModal'
+import {ColorContext} from "../context/ColorContext"
 import "./NavBar.css"
 const NavBar = ({ setAuthenticated }) => {
   const user = useSelector(state => state.session.user);
-
+  const {colors, setColors} = useContext(ColorContext);
   console.log("NAV BAR USER PRINT",user)
+
+  function handleColorChange(){
+    if(colors[0].isDark){
+      setColors([{isDark:false,mainFontColor:"rgb(19, 24, 36)",secondaryFontColor:"rgba(45, 51, 63, 0.82)",background:"rgb(233, 233, 233)"},{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}])
+    }else{
+      setColors([{isDark:true,mainFontColor:"rgb(19, 24, 36)",secondaryFontColor:"rgba(45, 51, 63, 0.82)",background:"rgb(233, 233, 233)"},{light: '#DEA4A4',dark:"#BF4444"},{light: '#E5AB7E',dark:"#E5853C"},{light: '#E9E9B4',dark:"#E5E570"},{light: '#B5E3B7',dark:"#72B774"}])
+    }
+  }
   return (
     <div className="nav-bar-container">
 
@@ -22,7 +31,12 @@ const NavBar = ({ setAuthenticated }) => {
             <img src={'https://i.imgur.com/F8tCf5u.png'} className='logo'/>
         </div>
         <div className="nav-right">
+          <div className="dark-mode-btn"
+            onClick={e=>handleColorChange()}
+          >
+            {colors[0].isDark ?"light mode button":"dark mode button"}
 
+          </div>
           {(user!==null)&&<div className="nav-profile">
             <NavLink to="/users" exact={true} className="no-decoration">
               {user.username} Profile
