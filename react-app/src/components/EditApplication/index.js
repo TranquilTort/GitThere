@@ -49,7 +49,9 @@ function EditApplication ({ setShowEditModal,editStates,setShowAppModal,setAppId
         }
     }
     return(
-        <div className='create-app-form-container'>
+        <div className='create-app-form-container'
+        style={{backgroundColor:`${colors[0].background}`}}
+        >
             <form
             className='create-app-form'
             onSubmit={handleSubmit}
