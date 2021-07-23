@@ -1,13 +1,15 @@
 import { useDispatch,useSelector } from 'react-redux';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 
 import {Link,useHistory } from "react-router-dom"
 import {add_one_application} from "../../store/application.js"
 import {authenticate} from "../../store/session.js"
+import {ColorContext} from "../../context/ColorContext"
 import "./CreateApplication.css"
 function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,setAppDisplayStatus}){
     const dispatch = useDispatch();
     let history = useHistory ();
+    const {colors} =useContext(ColorContext);
 
     let sessionUser = useSelector(state => state.session.user);
     if(!sessionUser){
@@ -70,61 +72,91 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
         }
     }
     return(
-        <div className='create-app-form-container'>
+        <div className='create-app-form-container'
+            style={{backgroundColor:`${colors[0].background}`}}
+        >
             <form
             className='create-app-form'
             onSubmit={handleSubmit}
             >
-                <label >Link</label>
-                <input
-                    className='create-app-url'
-                    type='text'
-                    onChange={e=>setUrl(e.target.value)}
-                    value = {url}
-                    name="url_link"
-                    required
-                ></input>
-                <label>Company Name</label>
-                <input
-                    className='create-app-company'
-                    type='text'
-                    onChange={e=>setCompany(e.target.value)}
-                    value = {company}
-                    name="company"
-                    required
-                ></input>
-                <label>Job Title</label>
-                <input
-                    className='create-app-job-title'
-                    type='text-box'
-                    onChange={e=>setJobTitle(e.target.value)}
-                    value = {jobTitle}
-                    name="job_title"
-                    required
-                ></input>
-                <label>Job Description</label>
-                <textarea
-                    className='create-app-job-description'
-                    onChange={e=>setDescription(e.target.value)}
-                    value = {description}
-                    name="job_description"
-                >
-                </textarea>
-                <label>Address</label>
-                <input
-                    className='create-app-address'
-                    onChange={e=>setAddress(e.target.value)}
-                    value = {address}
-                    name='address'
-                >
-                </input>
-                <label>Application Stage</label>
-                <select onChange={e=>setStatus(e.target.value)}>
-                    <option selected value={1}>Staging</option>
-                    <option  value={2}>Applied</option>
-                    <option  value={3}>In Contact</option>
-                    <option  value={4}>Interviewing</option>
-                </select>
+                <div className='create-app-form-line'>
+                    <label
+                    style={{color:`${colors[0].mainFontColor}`}}
+                    >Job Title:</label>
+                    <input
+                        className='create-app-ele'
+                        type='text-box'
+                        onChange={e=>setJobTitle(e.target.value)}
+                        value = {jobTitle}
+                        name="job_title"
+                        required
+                        autocomplete= "off"
+                    ></input>
+
+                </div>
+                <div className='create-app-form-line'>
+                    <label
+                    style={{color:`${colors[0].mainFontColor}`}}
+                    >Company Name:</label>
+                    <input
+                        className='create-app-ele'
+                        type='text'
+                        onChange={e=>setCompany(e.target.value)}
+                        value = {company}
+                        name="company"
+                        required
+                        autocomplete= "off"
+                    ></input>
+                </div>
+                <div className='create-app-form-line'>
+                    <label
+                    style={{color:`${colors[0].mainFontColor}`}}
+                    >Link: </label>
+                    <input
+                        className='create-app-ele'
+                        type='text'
+                        onChange={e=>setUrl(e.target.value)}
+                        value = {url}
+                        name="url_link"
+                        autocomplete= "off"
+                        required
+                    ></input>
+                </div>
+                <div className='create-app-form-line'>
+                    <label style={{color:`${colors[0].mainFontColor}`}}>Job Description:</label>
+                    <textarea
+                        className='create-app-ele'
+                        onChange={e=>setDescription(e.target.value)}
+                        value = {description}
+                        name="job_description"
+                        autocomplete= "off"
+                    >
+                    </textarea>
+
+                </div>
+                <div className='create-app-form-line'>
+                    <label style={{color:`${colors[0].mainFontColor}`}}>Address:</label>
+                    <input
+                        className='create-app-ele'
+                        onChange={e=>setAddress(e.target.value)}
+                        value = {address}
+                        name='address'
+                        autocomplete= "off"
+                    >
+                    </input>
+                </div>
+                <div className='create-app-form-line'>
+                    <label style={{color:`${colors[0].mainFontColor}`}} >Application Stage:</label>
+                    <select className="app-status-select create-app-ele" onChange={e=>setStatus(e.target.value)}>
+                        <option selected value={1}>Staging</option>
+                        <option  value={2}>Applied</option>
+                        <option  value={3}>In Contact</option>
+                        <option  value={4}>Interviewing</option>
+                    </select>
+
+                </div>
+
+
                 {/* <label>Is this application a priority?</label>
                 <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
                 <div className="submission-btn-group">

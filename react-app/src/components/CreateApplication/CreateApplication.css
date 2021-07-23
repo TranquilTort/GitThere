@@ -1,13 +1,13 @@
 .create-app-form {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    margin: 20px;
+    max-width:700px;
+    padding: 20px;
     justify-content: space-between;
 }
 .create-app-form-container {
     border-radius: 4px;
-
+    width:600px;
 }
 .submission-btn-group {
     display: flex;
@@ -20,4 +20,19 @@
     margin: 5px;
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
     cursor: pointer;
+}
+.create-app-form-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    align-items: center;
+}
+.create-app-ele {
+    width: 65%;
+    border-radius:4px;
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
+
 }

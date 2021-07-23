@@ -23,19 +23,18 @@ const NavBar = ({ setAuthenticated }) => {
         <div className="nav-left">
           <div className="nav-home">
             <NavLink to="/home" exact={true} activeClassName="active">
-            <i className="fas fa-home home-icon"></i>
+            <img src={'https://i.imgur.com/F8tCf5u.png'} className='logo'/>
             </NavLink>
           </div>
         </div>
         <div className="nav-center">
-            <img src={'https://i.imgur.com/F8tCf5u.png'} className='logo'/>
+            {/* more info here? */}
         </div>
         <div className="nav-right">
           <div className="dark-mode-btn"
             onClick={e=>handleColorChange()}
           >
-            {colors[0].isDark ?"light mode button":"dark mode button"}
-
+            {colors[0].isDark ?<><i class="fas fa-sun"></i> Light Mode</>: <><i class="fas fa-moon"></i> Dark Mode</>}
           </div>
           {(user!==null)&&<div className="nav-profile">
             <NavLink to="/users" exact={true} className="no-decoration">
@@ -48,11 +47,6 @@ const NavBar = ({ setAuthenticated }) => {
           </div>}
 
         </div>
-
-
-
-
-
     </div>
 
   );
