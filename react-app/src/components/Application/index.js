@@ -28,7 +28,6 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
     const [refTitle,setRefTitle] = useState('');
     const [refBody, setRefBody] = useState('');
 
-
     const dispatch = useDispatch();
     let application = useSelector(state => state.application.one_application);
     let notes = useSelector(state => state.note.notes);
@@ -118,7 +117,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
             <div className="app-edit-span"
                 style={{color:`${colors[0].mainFontColor}`}}
             >
-                Status: <select className="app-status-select"
+                Status: &nbsp; &nbsp;<select className="app-status-select"
                     onChange={e=>{
                         setAppDisplayStatus(e.target.value)
                         dispatch(moveStatus(e.target.value,application.id,user.id));

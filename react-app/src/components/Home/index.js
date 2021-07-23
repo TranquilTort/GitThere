@@ -119,7 +119,7 @@ function Home(){
             >
                 APPLICATION DASHBOARD: <CreateApplicationModal colors={colors} showModal={showModal} setShowAppModal={setShowAppModal} setShowModal={setShowModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/>
             </div>
-        <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
+        <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates} setShowAppModal={setShowAppModal} setAppId={setAppId} setAppDisplayStatus={setAppDisplayStatus}/>
             {sessionUser.apply_weekly_goal? <div className="goal-message" style={{color:`${colors[0].secondaryFontColor}`}}>Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
             <button
                 onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}
