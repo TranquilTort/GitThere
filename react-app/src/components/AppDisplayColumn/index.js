@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext} from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
 import AppCard from "../AppCard"
+import {ColorContext} from "../../context/ColorContext"
 import "./AppDisplayColumn.css"
-function AppDisplayColumn({status, applications,user,handleAppSelection,colors}){
+function AppDisplayColumn({status, applications,user,handleAppSelection}){
+    const {colors} = useContext(ColorContext);
     let statusMessage= "status";
     if(status === 1){
         statusMessage = "APPLICATION STAGING"
@@ -41,13 +43,35 @@ function AppDisplayColumn({status, applications,user,handleAppSelection,colors})
 
     return(
         <div className="app-column-container">
-        <div className="status-message">{statusMessage}</div>
-        <div className="column-info">Total: {applications.length} Today:{lastDayCount}</div>
+        <div className="status-message"
+            style={{color:`${colors[0].mainFontColor}`}}
+        >{statusMessage}</div>
+        <div className="column-info"
+        style={{color:`${colors[0].secondaryFontColor}`}}>
+            <div className="col-count">
+                <div>
+                    Today:
+                </div>
+                <div>
+                    {lastDayCount}
+                </div>
+
+            </div>
+            <div className="col-count">
+                <div>
+                    Total:
+                </div>
+                <div>
+                    {applications.length}
+                </div>
+            </div>
+        </div>
         <div
             id={`scroll-button-up-${status}`}
             style={{
                 backgroundColor:colors[status].dark,
-                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px'
+                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px',
+                color:`${colors[0].mainFontColor}`
             }}
             onMouseEnter={e=>{
                 e.target.style.backgroundColor = colors[status].light;
@@ -72,7 +96,8 @@ function AppDisplayColumn({status, applications,user,handleAppSelection,colors})
             <div  className={`scroll-down-btn`}
             style={{
                 backgroundColor:colors[status].dark,
-                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px'
+                boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px',
+                color:`${colors[0].mainFontColor}`
             }}
             onMouseEnter={e=>{
                 e.target.style.backgroundColor = colors[status].light;

@@ -25,42 +25,43 @@ function Splash(
                 <div className="splash-buttons">
                     <button className="splash-go-to-signup" onClick={e=>history.push('/sign-up')}
                     onMouseEnter={e=>{
-                        e.target.isthemouseover = true;
+                        e.target.customMouseOverKey = true;
                         let count = 30;
                         const interval = setInterval(() =>{
                             count++
                             e.target.style.background= `linear-gradient(${count}deg, #BF4444 25%, #E5853C 50%,  #72B774 70%)`
-                            if (count >= 3000 || !e.target.isthemouseover){
+                            if (count >= 3000 || !e.target.customMouseOverKey){
                                 clearInterval(interval)
                             }
                         },3)
                     }}
                     onMouseLeave={e=>{
-                        e.target.isthemouseover = false;
+                        e.target.customMouseOverKey = false;
                     }}
                     >Sign up for free</button>
                     <button className="splash-demo-btn"
                     onMouseEnter={e=>{
-                        e.target.isthemouseover = true;
+                        e.target.customMouseOverKey = true;
                         let count = 3720;
                         const interval = setInterval(() =>{
                             count--
                             e.target.style.background= `linear-gradient(${count}deg, #DEA4A4 25%, #E9E9B4 50%, #B5E3B7 70%)`
-                            if (count <= 0 || !e.target.isthemouseover){
+                            if (count <= 0 || !e.target.customMouseOverKey){
                                 clearInterval(interval)
                             }
                         },3)
                     }}
                     onMouseLeave={e=>{
-                        e.target.isthemouseover = false;
+                        e.target.customMouseOverKey = false;
                     }}
                     onClick={async(e)=> {
+                        console.log("demo sign in")
                         const user = await dispatch(login("email@demo.com", "password"));
                         if (!user.errors) {
                             setAuthenticated(true);
                           }
                     }}
-                    >Checkout a demo</button>
+                    >Check Out a demo</button>
 
                     <div className="login-link-container">
                         <div>

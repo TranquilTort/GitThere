@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: .7s;
 }
 .app-column {
     box-shadow: rgba(0, 0, 0, 0.66) 0px 0px 5px;
@@ -85,11 +86,15 @@
 .status-message {
     font-weight: bold;
     font-size: 16px;
-    margin-bottom:20px;
+    margin-bottom:5px;
     border-bottom:1px solid #303636;
     color: #1e2530;
 }
 .column-info {
-    margin-bottom: 25px;
-
+    margin-bottom: 20px;
+    width: 28%;
+}
+.col-count {
+    display: flex;
+    justify-content: space-between;
 }

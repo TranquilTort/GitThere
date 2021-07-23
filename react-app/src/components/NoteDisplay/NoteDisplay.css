@@ -18,7 +18,7 @@
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color:rgba(0, 0, 0, 0.1);
+    background-color:rgba(0, 0, 0, 0.05);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -30,6 +30,7 @@
 .note-display-date {
     font-size: 13px;
     display: flex;
+    align-items: center;
 }
 
 .note-display-buttons {

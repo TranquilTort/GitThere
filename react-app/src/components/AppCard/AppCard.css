@@ -8,7 +8,7 @@
     display: flex;
     width: 90%;
     height: fit-content;
-
+    transition: .7s;
     align-items: center;
     position: relative;
 }
@@ -47,18 +47,18 @@
 }
 .app-card-link {
     text-decoration: none;
-    color: #233043;
+    width: fit-content;
     font-size: 20px;
     font-weight: 700;
     max-width: 100%;
     cursor: pointer;
 }
 .app-card-link:hover {
-    color: #000000;
+    font-size: 21px;
 }
 
 .app-card-posting-link {
-    color: #233043;
+
 }
 
 .app-card-posting-link:hover {
@@ -78,22 +78,25 @@
     border: .0625rem solid #d8d9db;
     box-shadow: 0 0.125rem 0.5rem hsl(0deg 0% 60% / 40%);
     cursor: pointer;
+    transition: 0.15s;
   /* display: inline-block; */
 }
 .scroll-button:hover {
-    border: 2px solid #233043;
+    height: 40px;
+    width: 50px;
+    padding-left: 10px;
 }
 .chevron-right {
     align-self: center;
     justify-self: center;
     margin-left: 30%;
     font-size: 30px;
-    color: #233043;
 }
 .app-card-date {
     font-size: 12px;
 }
-.app-card-ob-title {
+.app-card-job-title {
     margin-top: 3px;
     margin-bottom:5px;
+    font-weight: 700;
 }
