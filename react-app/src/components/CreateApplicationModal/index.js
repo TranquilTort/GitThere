@@ -6,6 +6,7 @@ function CreateApplicationModal({colors,showModal, setShowModal,setAppId,setAppD
     <>
       <button id="add-application-button" onClick={() => setShowModal(true)}
         style={{
+          color:`${colors[0].mainFontColor}`,
           background:`linear-gradient(90deg, ${colors[1].dark} 50%, ${colors[2].dark} 70%,  ${colors[4].dark} 90%)`
         }}
         onMouseEnter={e=>{e.target.style.background=`linear-gradient(90deg, ${colors[1].dark} 25%, ${colors[2].dark} 50%,  ${colors[4].dark} 70%)`}}

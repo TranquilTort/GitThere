@@ -121,7 +121,12 @@ function Home(){
             </div>
         <EditApplicationModal setShowEditModal={setShowEditModal} showEditModal={showEditModal} editStates={editStates}/>
             {sessionUser.apply_weekly_goal? <div className="goal-message" style={{color:`${colors[0].secondaryFontColor}`}}>Applications this week: {appliedWeekly}/{sessionUser.apply_weekly_goal}</div>: <div className="goal-message">Click here to set a weekly Goal: </div>}
-            <button onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}className="show-app-goal-form">Set a Goal!</button>
+            <button
+                onClick={e=>{showGoalForm?setShowGoalForm(false):setShowGoalForm(true)}}
+                className="show-app-goal-form"
+                style={{color:`${colors[0].background}`, backgroundColor:`${colors[0].mainFontColor}`}}
+
+            >Set a Goal!</button>
             {showGoalForm &&
             <form className='app-goal-form'
             onSubmit={e=>{

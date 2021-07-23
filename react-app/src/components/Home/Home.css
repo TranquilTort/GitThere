@@ -28,8 +28,7 @@
     padding: 5px;
     margin-top: 12px;
     cursor: pointer;
-    background-color:#2d333f;
-    color:#afb2b9;
+
 
 }
 .goal-message {
@@ -55,6 +54,7 @@ body {
 
 .home-container {
     height: 125vh;
+    transition: .7s;
 }
 #add-application-button {
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
@@ -73,8 +73,9 @@ body {
     margin-right: 30px;
     margin-left: 30px;
     font-weight: 700;
+    transition: 0.5s;
 }
 #add-application-button:hover {
     box-shadow: rgba(0, 0, 0, 0.76) 0px 0px 10px;
-    transition: 0.3s;
+
 }
