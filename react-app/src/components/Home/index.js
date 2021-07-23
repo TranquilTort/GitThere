@@ -145,6 +145,7 @@ function Home(){
                 />
                 <button type="submit"
             className='show-app-goal-form'
+            style={{color:`${colors[0].background}`, backgroundColor:`${colors[0].mainFontColor}`}}
                 >Add Goal</button>
             </form>}
         </div>
