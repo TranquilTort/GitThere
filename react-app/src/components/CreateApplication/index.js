@@ -158,8 +158,19 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
 
                 <div className='create-app-form-line'>
                     <label>Is this application a priority?</label>
-                    <div className="submission-app-btn"> Yes <div className='fa fa-star'> </div> </div>
-                    <div className="submission-app-btn"> No <div className='fa fa-star'> </div> </div>
+                    {priority?
+                    <>
+                        <div className="priority-app-btn-selected"> Yes <div className='fa fa-star'> </div> </div>
+                        <div onClick={priorityCheck} className="priority-app-btn"> No <div className='fa fa-star unchecked-star'> </div> </div>
+                    </>
+                    :
+                    <>
+                        <div onClick={priorityCheck} className="priority-app-btn"> Yes <div className='fa fa-star'> </div> </div>
+                        <div className="priority-app-btn-selected"> No <div className='fa fa-star not-priority'> </div> </div>
+                    </>
+                    }
+
+
 
                 </div>
 
