@@ -7,7 +7,7 @@ import "./AppCard.css"
 function AppCard({application,status,user,handleAppSelection}){
     const {colors} = useContext(ColorContext);
     let dispatch = useDispatch();
-
+    console.log("APP FROM CARD", application)
 
     const moveUp = (e)=>{
         dispatch(moveStatus(status+1,application.id,user))
@@ -16,7 +16,8 @@ function AppCard({application,status,user,handleAppSelection}){
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
 
             <div className="app-card-content">
-            <div className='fa fa-star card-priority'></div>
+            {application.priority === true ? <div className='fa fa-star card-priority'></div>: <div className='far fa-star card-priority'></div>}
+
                 <div className="app-card-company-container"
                     style={{color:`${colors[0].mainFontColor}`}}
                 >
