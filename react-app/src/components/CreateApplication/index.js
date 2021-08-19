@@ -160,13 +160,13 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
                     <label style={{color:`${colors[0].mainFontColor}`}} >Is this application a priority?</label>
                     {priority?
                     <>
-                        <div  style={{color:`${colors[0].mainFontColor}`}} className="priority-app-btn-selected"> Yes <div className='fa fa-star'> </div> </div>
+                        <div  style={{color:`${colors[0].mainFontColor}`, boxShadow:`${colors[0].mainFontColor} 0px 0px 10px`}} className="priority-app-btn"> Yes <div className='fa fa-star'> </div> </div>
                         <div  style={{color:`${colors[0].mainFontColor}`}} onClick={priorityCheck} className="priority-app-btn"> No <div className='far fa-star'> </div> </div>
                     </>
                     :
                     <>
                         <div style={{color:`${colors[0].mainFontColor}`}} onClick={priorityCheck} className="priority-app-btn"> Yes <div className='fa fa-star'> </div> </div>
-                        <div style={{color:`${colors[0].mainFontColor}`}} className="priority-app-btn-selected"> No <div className='far fa-star'> </div> </div>
+                        <div style={{color:`${colors[0].mainFontColor}`, boxShadow:`${colors[0].mainFontColor} 0px 0px 10px`}} className="priority-app-btn"> No <div className='far fa-star'> </div> </div>
                     </>
                     }
 
