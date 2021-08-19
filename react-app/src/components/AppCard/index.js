@@ -14,7 +14,9 @@ function AppCard({application,status,user,handleAppSelection}){
     }
     return(
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
+
             <div className="app-card-content">
+            <div className='fa fa-star card-priority'></div>
                 <div className="app-card-company-container"
                     style={{color:`${colors[0].mainFontColor}`}}
                 >
@@ -37,6 +39,7 @@ function AppCard({application,status,user,handleAppSelection}){
                     >Go To Site</a>
                 </div>
             </div>
+
             {(status<4)&&<button style={{backgroundColor:`${colors[status].light}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
                         <div className="fas fa-angle-right chevron-right"
                             style={{color:`${colors[0].mainFontColor}`}}

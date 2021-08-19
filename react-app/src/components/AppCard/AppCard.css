@@ -36,7 +36,21 @@
 }
 .app-card-content {
     width: fit-content;
+    position: relative;
     margin: 8px;
+}
+.app-card-company-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+.card-priority {
+    margin-left: 10px;
+    position: absolute;
+    left: 173px;
+
 }
 .app-card-company {
     font-weight: 700;
@@ -53,9 +67,9 @@
     max-width: 100%;
     cursor: pointer;
 }
-.app-card-link:hover {
+/* .app-card-link:hover {
     font-size: 21px;
-}
+} */
 
 .app-card-posting-link {
 
