@@ -59,6 +59,9 @@
     width: fit-content;
     position: relative;
     margin: 8px;
+    width: fit-content;
+    position: relative;
+    margin: 8px;
 }
 .app-card-company {
     font-weight: 700;
