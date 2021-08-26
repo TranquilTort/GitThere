@@ -54,6 +54,7 @@
 }
 .git-class {
     margin-left: 10px;
+    position: absolute;
 }
 .app-card-company {
     font-weight: 700;
