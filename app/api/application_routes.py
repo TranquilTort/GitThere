@@ -69,6 +69,12 @@ def change_app_status(userId, appId, newStatus):
         return {}
 
 @login_required
+@application_routes.route('/priority<int:userId>/<int:appId>')
+def change_app_priority(userId, appId):
+    if(userId == current_user.id ):
+        pass
+
+@login_required
 @application_routes.route('/document/add/<int:appId>/<string:fileType>', methods=["POST"])
 def add_document(appId,fileType):
     print("hit route")

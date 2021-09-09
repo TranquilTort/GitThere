@@ -14,7 +14,7 @@ function AppCard({application,status,user,handleAppSelection}){
     }
 
     const handlePriorityClick= (e)=>{
-        dispatch(changePriority(application.id, user.id));
+        dispatch(changePriority(application.id, user));
     }
     return(
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
