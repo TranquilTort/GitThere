@@ -70,7 +70,7 @@ function Home(){
     const dd = String(date.getDate()).padStart(2, '0');
     const mm = String(date.getMonth() + 1).padStart(2, '0');
     const yyyy = date.getFullYear();
-
+    // add time since update in min, sort by min 
     applied_apps.forEach(el=>{
         console.log("DATE CALCULATIONS")
         let month = el.updated_at.substring(0,2)
