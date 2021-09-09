@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useContext } from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
-import {moveStatus} from "../../store/application.js"
+import {moveStatus , changePriority} from "../../store/application.js"
 import {ColorContext} from "../../context/ColorContext"
 import "./AppCard.css"
 function AppCard({application,status,user,handleAppSelection}){
@@ -12,11 +12,15 @@ function AppCard({application,status,user,handleAppSelection}){
     const moveUp = (e)=>{
         dispatch(moveStatus(status+1,application.id,user))
     }
+
+    const handlePriorityClick= (e)=>{
+        dispatch(changePriority(application.id, user.id));
+    }
     return(
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
 
             <div className="app-card-content">
-            {application.priority === true ? <div className='fa fa-star card-priority'></div>: <div className='far fa-star card-priority'></div>}
+            {application.priority === true ? <div onClick={handlePriorityClick} className='fa fa-star card-priority'></div>: <div onClick={handlePriorityClick} className='far fa-star card-priority'></div>}
 
                 <div className="app-card-company-container"
                     style={{color:`${colors[0].mainFontColor}`}}
