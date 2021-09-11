@@ -45,7 +45,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
     let priorityIndexArray = [];
     let nonPriorityIndexArray = [];
     for(let i=0; i<applications.length;i++){
-        if(applications[i].priority == true){
+        if(applications[i].priority === true){
             priorityIndexArray.push(i);
         }
         else{
@@ -58,18 +58,20 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
     let priorityCount = 0;
     let nonPriorityCount = 0;
     const priorityArrLen = priorityIndexArray.length;
-    const nonPriorityArrLen = nonPriorityIndexArray;
-    for(let i = 0; i< (priorityArrLen+nonPriorityArrLen);i++){
-        if(priorityCount < priorityIndexArray.length){
-            priorityCount++;
-            console.log(priorityCount)
-            sortedApplicationArray.push(applications[priorityIndexArray[priorityCount]]);
-        }else if (nonPriorityCount < nonPriorityIndexArray){
-            nonPriorityCount++;
-            console.log(nonPriorityCount)
-            sortedApplicationArray.push(applications[nonPriorityIndexArray[nonPriorityCount]]);
-        }
+    const nonPriorityArrLen = nonPriorityIndexArray.length;
+
+    while(priorityCount < priorityArrLen){
+        console.log("pcount",priorityCount)
+        console.log("the app:", )
+        sortedApplicationArray.push(applications[priorityIndexArray[priorityCount]]);
+        priorityCount++;
     }
+    while(nonPriorityCount < nonPriorityArrLen){
+        console.log(nonPriorityCount)
+        sortedApplicationArray.push(applications[nonPriorityIndexArray[nonPriorityCount]]);
+        nonPriorityCount++;
+    }
+
     console.log("SORTED APPLICATIONS",sortedApplicationArray)
 
     return(
