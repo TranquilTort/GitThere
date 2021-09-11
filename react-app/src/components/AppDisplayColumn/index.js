@@ -42,11 +42,27 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
     }
 
     //priority sorting
-    let priorityArray = [];
-    for(let i=0; i<=applications.length;i++){
+    let priorityIndexArray = [];
+    let nonPriorityIndexArray = [];
+    for(let i=0; i<applications.length;i++){
         if(applications[i].priority == true){
-            priorityArray.push(applications.splice(i,1));
-            i++
+            priorityArray.push(i);
+        }
+        else{
+            nonPriorityArray.push(i);
+        }
+    }
+
+    let sortedApplicationArray = [];
+    let priorityCount = 0;
+    let nonPriorityCount = 0;
+    while(nonPriorityCount+priorityCount < applications.length){
+        if(priorityCount < priorityIndexArray.length){
+            priorityCount++;
+            sortedApplicationArray.push(applications[priorityIndexArray[priorityCount]]);
+        }else if (nonPriorityCount < nonPriorityIndexArray){
+            nonPriorityCount++;
+            sortedApplicationArray.push(applications[nonPriorityIndexArray[nonPriorityCount]]);
         }
     }
 
