@@ -41,6 +41,15 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
         }, 20)
     }
 
+    //priority sorting
+    let priorityArray = [];
+    for(let i=0; i<=applications.length;i++){
+        if(applications[i].priority == true){
+            priorityArray.push(applications.splice(i,1));
+            i++
+        }
+    }
+
     return(
         <div className="app-column-container">
         <div className="status-message"
