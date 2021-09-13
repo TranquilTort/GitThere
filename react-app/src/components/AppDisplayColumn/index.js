@@ -57,7 +57,6 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
     let nonPriorityCount = 0;
     const priorityArrLen = priorityIndexArray.length;
     const nonPriorityArrLen = nonPriorityIndexArray.length;
-
     while(priorityCount < priorityArrLen){
         sortedApplicationArray.push(applications[priorityIndexArray[priorityCount]]);
         priorityCount++;
@@ -66,8 +65,6 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
         sortedApplicationArray.push(applications[nonPriorityIndexArray[nonPriorityCount]]);
         nonPriorityCount++;
     }
-
-    console.log("SORTED APPLICATIONS",sortedApplicationArray)
 
     return(
         <div className="app-column-container">
