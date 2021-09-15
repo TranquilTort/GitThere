@@ -158,7 +158,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                                             <i className="fa fa-download" aria-hidden="true">
                                             </i>
                                     </a>
-                                    
+
                 </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
@@ -217,7 +217,15 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                  }
             </div>
             <div className="file-download-component">
-                {application.cover_letter?<div style={{color:`${colors[0].mainFontColor}`}}>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cover_letter ?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download Cover Letter: &nbsp;
+                            <a href={application.resume}
+                                        className="delete-app-btn"
+                                        target="_blank">
+                                    <i className="fa fa-download" aria-hidden="true"></i>
+                            </a>
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cover_letter')
