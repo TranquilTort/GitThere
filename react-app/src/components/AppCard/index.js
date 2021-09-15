@@ -20,7 +20,22 @@ function AppCard({application,status,user,handleAppSelection}){
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
 
             <div className="app-card-content">
-            {application.priority === true ? <div onClick={handlePriorityClick} className='fa fa-star card-priority'></div>: <div onClick={handlePriorityClick} className='far fa-star card-priority'></div>}
+                {application.priority === true
+                ?
+                <div
+                    onClick={handlePriorityClick}
+                    className='fa fa-star card-priority'
+                    style={{color:`${colors[0].mainFontColor}`}}
+                >
+
+                </div>
+                :
+                <div
+                    onClick={handlePriorityClick}
+                    className='far fa-star card-priority'
+                    style={{color:`${colors[0].mainFontColor}`}}
+                ></div>
+                }
 
                 <div className="app-card-company-container"
                     style={{color:`${colors[0].mainFontColor}`}}

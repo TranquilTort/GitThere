@@ -43,11 +43,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    align-items: center;
-    align-items: center;
-    align-items: center;
-    align-items: center;
-    align-items: center;
 
 
 }
@@ -58,27 +53,7 @@
     cursor: pointer;
 
 }
-.git-class {
-    width: fit-content;
-    position: relative;
-    margin: 8px;
-    width: fit-content;
-    position: relative;
-    margin: 8px;
-    width: fit-content;
-    position: relative;
-    margin: 8px;
-    width: fit-content;
-    position: relative;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-    margin: 8px;
-}
+
 .app-card-company {
     font-weight: 700;
     font-size: 20px;
