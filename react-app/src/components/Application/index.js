@@ -155,7 +155,16 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 Application Documents: {(fileLoading)&& <p>Loading...</p>}
             </div>
             <div className="file-download-component">
-                {application.resume? <div style={{color:`${colors[0].mainFontColor}`}}>Download Resume: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.resume)} ><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.resume?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download Resume: &nbsp;
+                                    <a href={application.resume} className="delete-app-btn" target="_blank"><i className="fa fa-download" aria-hidden="true"></i></a>
+                                    {/* <button
+                                        className="delete-app-btn"
+                                        onClick={e=>handleFileDownload(application.resume)} >
+                                            <i className="fa fa-download" aria-hidden="true"></i>
+                                    </button> */}
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('resume')
@@ -179,7 +188,17 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 }
             </div>
             <div className="file-download-component">
-                {application.cv? <div style={{color:`${colors[0].mainFontColor}`}}>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cv ?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download CV:
+
+                    <button
+                                    className="delete-app-btn"
+                                    onClick={e=>handleFileDownload(application.cv)}>
+                                        <i className="fa fa-download" aria-hidden="true">
+                                        </i>
+                                </button>
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
