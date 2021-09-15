@@ -185,14 +185,16 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
             <div className="file-download-component">
                 {application.cv ?
                 <div style={{color:`${colors[0].mainFontColor}`}}>
-                    Download CV:
+                    Download CV:&nbsp;
+                        <a href={application.resume}
+                                        className="delete-app-btn"
+                                        target="_blank"
+                                        className="delete-app-btn"
+                                        >
 
-                    <button
-                                    className="delete-app-btn"
-                                    onClick={e=>handleFileDownload(application.cv)}>
                                         <i className="fa fa-download" aria-hidden="true">
                                         </i>
-                                </button>
+                                </a>
                 </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
