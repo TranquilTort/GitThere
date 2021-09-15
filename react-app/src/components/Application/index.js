@@ -95,13 +95,7 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
         setShowAppModal(false);
         setShowEditModal(true)
     }
-    async function handleFileDownload(awsUrl) {
-        const response = await fetch(`/api/application/document/get/${awsUrl}`)
-        if(response.ok){
 
-        }
-        console.log('INSIDE HANDLE DOWNLOAD',awsUrl)
-    }
     return (
     <div className="app-page-container"  style={{backgroundColor:colors[appDisplayStatus].light, border:`3px solid${colors[appDisplayStatus].dark}`,boxShadow:`${colors[appDisplayStatus].dark} 0px 0px 8px`}}>
         <div className="app-info-container" >
@@ -155,7 +149,17 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 Application Documents: {(fileLoading)&& <p>Loading...</p>}
             </div>
             <div className="file-download-component">
-                {application.resume? <div style={{color:`${colors[0].mainFontColor}`}}>Download Resume: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.resume)} ><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.resume?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download Resume: &nbsp;
+                                    <a href={application.resume}
+                                        className="delete-app-btn"
+                                        target="_blank">
+                                            <i className="fa fa-download" aria-hidden="true">
+                                            </i>
+                                    </a>
+
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('resume')
@@ -179,7 +183,19 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                 }
             </div>
             <div className="file-download-component">
-                {application.cv? <div style={{color:`${colors[0].mainFontColor}`}}>Download CV: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cv)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cv ?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download CV:&nbsp;
+                        <a href={application.resume}
+                                        className="delete-app-btn"
+                                        target="_blank"
+                                        className="delete-app-btn"
+                                        >
+
+                                        <i className="fa fa-download" aria-hidden="true">
+                                        </i>
+                                </a>
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cv')
@@ -203,7 +219,15 @@ function Application({appId, appDisplayStatus, setAppDisplayStatus,setShowAppMod
                  }
             </div>
             <div className="file-download-component">
-                {application.cover_letter?<div style={{color:`${colors[0].mainFontColor}`}}>Download Cover Letter: <button className="delete-app-btn" onClick={e=>handleFileDownload(application.cover_letter)}><i className="fa fa-download" aria-hidden="true"></i></button> </div>:
+                {application.cover_letter ?
+                <div style={{color:`${colors[0].mainFontColor}`}}>
+                    Download Cover Letter: &nbsp;
+                            <a href={application.resume}
+                                        className="delete-app-btn"
+                                        target="_blank">
+                                    <i className="fa fa-download" aria-hidden="true"></i>
+                            </a>
+                </div>:
                     <form className="file-upload-form" onSubmit={e =>{
                         e.preventDefault();
                         handleFileSubmit('cover_letter')

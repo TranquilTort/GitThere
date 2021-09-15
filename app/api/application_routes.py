@@ -14,13 +14,11 @@ application_routes = Blueprint('application', __name__)
 def add_one_application():
     form = ApplicationForm();
     form['csrf_token'].data = request.cookies['csrf_token']
-
     print(form.data)
     if form.validate_on_submit():
         new_application = Application()
         form.populate_obj(new_application)
         new_application.created_at=datetime.now()
-        print("APP ADD SUCCESS", new_application)
         db.session.add(new_application)
         db.session.commit()
         return new_application.to_dict();
@@ -37,7 +35,6 @@ def edit_application(id):
         form.populate_obj(edit_application)
         edit_application.updated_at=datetime.now()
         db.session.commit()
-        print("App Edit Success", edit_application)
         return edit_application.to_dict();
     else:
         print('APP FORM DID NOT VALIDATE', form.errors)
@@ -71,6 +68,19 @@ def change_app_status(userId, appId, newStatus):
     else:
         return {}
 
+@login_required
+@application_routes.route('/priority/<int:userId>/<int:appId>')
+def change_app_priority(userId, appId):
+    if(userId == current_user.id ):
+        changed_app = Application.query.filter_by(id=appId).first()
+        if(changed_app.priority == False):
+            changed_app.priority = True
+        else:
+            changed_app.priority = False
+        changed_app.updated_at = datetime.now();
+        db.session.commit();
+        return {}
+    return {"error":"wrong user"}
 @login_required
 @application_routes.route('/document/add/<int:appId>/<string:fileType>', methods=["POST"])
 def add_document(appId,fileType):

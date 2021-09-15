@@ -1,20 +1,42 @@
 import React, { useState, useEffect,useContext } from "react";
 import { useDispatch,useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
-import {moveStatus} from "../../store/application.js"
+import {moveStatus , changePriority} from "../../store/application.js"
 import {ColorContext} from "../../context/ColorContext"
 import "./AppCard.css"
 function AppCard({application,status,user,handleAppSelection}){
     const {colors} = useContext(ColorContext);
     let dispatch = useDispatch();
-
+    console.log("APP FROM CARD", application)
 
     const moveUp = (e)=>{
         dispatch(moveStatus(status+1,application.id,user))
     }
+
+    const handlePriorityClick= (e)=>{
+        dispatch(changePriority(application.id, user));
+    }
     return(
         <div className="app-card-container" style={{backgroundColor:`${colors[status].light}`}}>
+
             <div className="app-card-content">
+                {application.priority === true
+                ?
+                <div
+                    onClick={handlePriorityClick}
+                    className='fa fa-star card-priority'
+                    style={{color:`${colors[0].mainFontColor}`}}
+                >
+
+                </div>
+                :
+                <div
+                    onClick={handlePriorityClick}
+                    className='far fa-star card-priority'
+                    style={{color:`${colors[0].mainFontColor}`}}
+                ></div>
+                }
+
                 <div className="app-card-company-container"
                     style={{color:`${colors[0].mainFontColor}`}}
                 >
@@ -37,6 +59,7 @@ function AppCard({application,status,user,handleAppSelection}){
                     >Go To Site</a>
                 </div>
             </div>
+
             {(status<4)&&<button style={{backgroundColor:`${colors[status].light}`}} className="scroll-button"onClick={(e)=>{moveUp(status,application.id)}}>
                         <div className="fas fa-angle-right chevron-right"
                             style={{color:`${colors[0].mainFontColor}`}}

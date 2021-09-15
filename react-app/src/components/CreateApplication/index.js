@@ -156,9 +156,24 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
 
                 </div>
 
+                <div className='create-app-form-line'>
+                    <label style={{color:`${colors[0].mainFontColor}`}} >Is this application a priority?</label>
+                    {priority?
+                    <>
+                        <div  style={{color:`${colors[0].mainFontColor}`, boxShadow:`${colors[0].mainFontColor} 0px 0px 10px`}} className="priority-app-btn"> Yes <div className='fa fa-star'> </div> </div>
+                        <div  style={{color:`${colors[0].mainFontColor}`}} onClick={priorityCheck} className="priority-app-btn"> No <div className='far fa-star'> </div> </div>
+                    </>
+                    :
+                    <>
+                        <div style={{color:`${colors[0].mainFontColor}`}} onClick={priorityCheck} className="priority-app-btn"> Yes <div className='fa fa-star'> </div> </div>
+                        <div style={{color:`${colors[0].mainFontColor}`, boxShadow:`${colors[0].mainFontColor} 0px 0px 10px`}} className="priority-app-btn"> No <div className='far fa-star'> </div> </div>
+                    </>
+                    }
 
-                {/* <label>Is this application a priority?</label>
-                <input type="checkbox" value={priority} onChange={priorityCheck}></input> */}
+
+
+                </div>
+
                 <div className="submission-btn-group">
                     <button className="submission-app-btn" onClick={e=>setSubmitType(1)}type="submit" >Submit</button>
                     <button className="submission-app-btn" onClick={e=>setSubmitType(2)}type="submit" >Add More Info</button>

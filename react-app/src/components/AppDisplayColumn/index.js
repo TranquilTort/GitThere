@@ -41,6 +41,31 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
         }, 20)
     }
 
+    //priority sorting
+    let priorityIndexArray = [];
+    let nonPriorityIndexArray = [];
+    for(let i=0; i<applications.length;i++){
+        if(applications[i].priority === true){
+            priorityIndexArray.push(i);
+        }
+        else{
+            nonPriorityIndexArray.push(i);
+        }
+    }
+    let sortedApplicationArray = [];
+    let priorityCount = 0;
+    let nonPriorityCount = 0;
+    const priorityArrLen = priorityIndexArray.length;
+    const nonPriorityArrLen = nonPriorityIndexArray.length;
+    while(priorityCount < priorityArrLen){
+        sortedApplicationArray.push(applications[priorityIndexArray[priorityCount]]);
+        priorityCount++;
+    }
+    while(nonPriorityCount < nonPriorityArrLen){
+        sortedApplicationArray.push(applications[nonPriorityIndexArray[nonPriorityCount]]);
+        nonPriorityCount++;
+    }
+
     return(
         <div className="app-column-container">
         <div className="status-message"
@@ -89,7 +114,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
         ><i className="fas fa-angle-double-up chevy"></i></div>
         <div style={{backgroundColor:`${colors[status].dark}`}} className="app-column" id={`app-column-${status}`}>
 
-            {applications.map((el,i)=>(
+            {sortedApplicationArray.map((el,i)=>(
                 <AppCard key={i} colors={colors} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
             ))}
         </div>

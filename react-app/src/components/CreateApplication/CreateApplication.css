@@ -36,3 +36,17 @@
     box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
     padding: 7px;
 }
+.priority-star {
+    cursor: pointer;
+
+}
+.priority-app-btn {
+    border: 0px;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px 0px 2px;
+    cursor: pointer;
+}
+
+

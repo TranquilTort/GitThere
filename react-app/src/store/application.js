@@ -82,6 +82,16 @@ export const moveStatus = ( newStatus,applicationId, userId) => async(dispatch)=
         console.log("MOVE STATUS ERRORS");
     }
 }
+export const changePriority = (applicationId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/application/priority/${userId}/${applicationId}`)
+    if(response.ok) {
+        const data = await response.json();
+        dispatch(get_all_applications(userId))
+        return data;
+    }else{
+        console.log("Change priority error")
+    }
+}
 
 export const deleteApp = (appId)=> async (dispatch) => {
     const response = await fetch(`/api/application/delete/${appId}`);
