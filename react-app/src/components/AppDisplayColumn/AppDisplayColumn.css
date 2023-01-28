@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     transition: .7s;
+    overflow: visible;
 }
 .app-column {
     box-shadow: rgba(0, 0, 0, 0.66) 0px 0px 5px;
@@ -13,7 +14,7 @@
     padding-top: 20px;
     padding-bottom: 10px;
     padding-right: 20px;
-    overflow-y: scroll;
+    overflow-y: visible;
 
     border-radius:4px;
     min-width: 240px;
@@ -22,10 +23,23 @@
     flex-direction: column;
     align-items: center;
     background-color: #01cdfe;
+    overflow-x: hidden;
 
 }
-.app-column::-webkit-scrollbar {
-    display: none;
+.app-column::-webkit-scrollbar-track {
+
+}
+
+.app-column::-webkit-scrollbar
+{
+	width: auto;
+}
+
+.app-column::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);
+	background-color: rgba(19, 24, 36, .8);
 }
 
 .scroll-up-btn {

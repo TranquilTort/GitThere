@@ -6,7 +6,7 @@
     z-index: 2;
     border-radius:4px;
     display: flex;
-    width: 90%;
+    width: 220px;
     height: fit-content;
     transition: .7s;
     align-items: center;
@@ -87,9 +87,9 @@
     left: 200px;
     align-content: center;
     justify-items: center;
-    height: 45px;
-    width: 45px;
-    background-color: rgb(236, 236, 236);
+    height: 35px;
+    width: 35px;
+    /* background-color: currentColor; */
     border-radius: 50%;
     border: .0625rem solid #d8d9db;
     box-shadow: 0 0.125rem 0.5rem hsl(0deg 0% 60% / 40%);
@@ -101,8 +101,9 @@
 .chevron-right {
     align-self: center;
     justify-self: center;
-    margin-left: 30%;
+    margin-left: 23%;
     font-size: 30px;
+
 }
 .app-card-date {
     font-size: 12px;

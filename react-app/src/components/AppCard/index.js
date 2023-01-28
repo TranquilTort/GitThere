@@ -62,13 +62,25 @@ function AppCard({application,status,user,handleAppSelection}){
 
             {(status<4)&&<button style={{backgroundColor:`${colors[status].light}`}} className="scroll-button"
                 onClick={(e)=>{moveUp(status,application.id)}}
-                onMouseEnter = {e=>{e.target.style.background = colors[status].dark}}
-                onMouseLeave = {e=>{e.target.style.background = colors[status].light}}
+                onMouseEnter= {e=>{
+                    e.target.style.background = colors[status].dark;
+                    // e.target.firstElementChild.style.background = colors[status].dark;
+                }}
+                onMouseLeave = {e=>{
+                    e.target.style.background = colors[status].light
+                    // e.target.firstElementChild.style.background = colors[status].light;
+                }}
                 >
-                        <div className="fas fa-angle-right chevron-right"
-                            style={{color:`${colors[0].mainFontColor}`}}
-                        ></div>
-                    </button>
+                    <div aria-hidden={false} className="fas fa-angle-right chevron-right"
+
+                        onMouseEnter= {e=>{
+                            e.target.style.background = "inherit"
+                        }}
+                        onMouseLeave = {e=>{
+                            e.target.style.background = "inherit"
+                        }}
+                    ></div>
+                </button>
             }
 
         </div>

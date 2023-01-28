@@ -30,7 +30,6 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
     })
 
     function scrollColumn(scrollCol, direction){
-        console.log("hi from onClick")
         let count = 50;
         const interval= setInterval(function(){
             scrollCol.scrollTop += (5*direction);
@@ -91,7 +90,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
                 </div>
             </div>
         </div>
-        <div
+        {/* <div
             id={`scroll-button-up-${status}`}
             style={{
                 backgroundColor:colors[status].dark,
@@ -111,14 +110,14 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
                 let scrollCol = document.getElementById(`app-column-${status}`)
                 scrollColumn(scrollCol,-1)
             }}
-        ><i className="fas fa-angle-double-up chevy"></i></div>
+        ><i className="fas fa-angle-double-up chevy"></i></div> */}
         <div style={{backgroundColor:`${colors[status].dark}`}} className="app-column" id={`app-column-${status}`}>
 
             {sortedApplicationArray.map((el,i)=>(
                 <AppCard key={i} colors={colors} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
             ))}
         </div>
-            <div  className={`scroll-down-btn`}
+            {/* <div  className={`scroll-down-btn`}
             style={{
                 backgroundColor:colors[status].dark,
                 boxShadow:'rgba(0, 0, 0, 0.66) 0px 0px 4px',
@@ -137,7 +136,7 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
                 scrollColumn(scrollCol,1)
             }}
             // add animation and smart hiding
-            ><i className="fas fa-angle-double-down"></i></div>
+            ><i className="fas fa-angle-double-down"></i></div> */}
         </div>
     )
 }
