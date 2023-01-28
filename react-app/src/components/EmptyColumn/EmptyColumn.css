@@ -1,0 +1,8 @@
+.empty-column {
+    border: 2px solid rgba(19, 24, 36);
+    text-align: center;
+    padding: 10px;
+    border-radius:3px;
+    margin-top: 50%;
+    font-size: LARGE;
+}

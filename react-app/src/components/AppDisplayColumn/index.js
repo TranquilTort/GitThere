@@ -1,9 +1,10 @@
 import React, { useState, useEffect,useContext} from "react";
 import { useDispatch,useSelector } from 'react-redux';
-import {Link} from "react-router-dom"
-import AppCard from "../AppCard"
-import {ColorContext} from "../../context/ColorContext"
-import "./AppDisplayColumn.css"
+import {Link} from "react-router-dom";
+import AppCard from "../AppCard";
+import EmptyColumn from "../EmptyColumn";
+import {ColorContext} from "../../context/ColorContext";
+import "./AppDisplayColumn.css";
 function AppDisplayColumn({status, applications,user,handleAppSelection}){
     const {colors} = useContext(ColorContext);
     let statusMessage= "status";
@@ -112,10 +113,15 @@ function AppDisplayColumn({status, applications,user,handleAppSelection}){
             }}
         ><i className="fas fa-angle-double-up chevy"></i></div> */}
         <div style={{backgroundColor:`${colors[status].dark}`}} className="app-column" id={`app-column-${status}`}>
-
-            {sortedApplicationArray.map((el,i)=>(
-                <AppCard key={i} colors={colors} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
-            ))}
+            {
+                (applications.length==0)
+                ?
+                <EmptyColumn />
+                :
+                sortedApplicationArray.map((el,i)=>(
+                    <AppCard key={i} colors={colors} status={status} application={el} user={user} handleAppSelection={handleAppSelection}/>
+                ))
+            }
         </div>
             {/* <div  className={`scroll-down-btn`}
             style={{
