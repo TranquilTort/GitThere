@@ -18,7 +18,7 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
     }
     sessionUser = useSelector(state => state.session.user);
 
-    console.log('USERRRRRR',sessionUser)
+    // console.log('USERRRRRR',sessionUser)
 
     const [url , setUrl] = useState('');
     const [company , setCompany] = useState('');
