@@ -1,0 +1,14 @@
+.testing-class {
+    position: fixed;
+    width: 50px;
+    height: auto;
+    background-color: red;
+    cursor: pointer;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.git-there-button-container {
+
+}
