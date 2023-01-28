@@ -97,11 +97,7 @@
     transition: 0.15s;
   /* display: inline-block; */
 }
-.scroll-button:hover {
-    height: 40px;
-    width: 50px;
-    padding-left: 10px;
-}
+
 .chevron-right {
     align-self: center;
     justify-self: center;

@@ -49,6 +49,7 @@ def login():
         print('USER SIGNED IN',  user)
 
         return user.to_dict()
+    print("User login error")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
@@ -63,7 +64,7 @@ def logout():
 @login_required
 @auth_routes.route('/addGoal/<int:id>/<int:goal>')
 def addGoal(id,goal):
-    
+
     user = User.query.get(id)
     user.apply_weekly_goal = goal;
     db.session.commit()

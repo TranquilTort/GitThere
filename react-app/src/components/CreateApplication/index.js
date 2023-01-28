@@ -18,8 +18,6 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
     }
     sessionUser = useSelector(state => state.session.user);
 
-    // console.log('USERRRRRR',sessionUser)
-
     const [url , setUrl] = useState('');
     const [company , setCompany] = useState('');
     const[jobTitle , setJobTitle] = useState('');
@@ -31,7 +29,7 @@ function CreateApplication ({showModal, setShowModal,setShowAppModal,setAppId,se
     const [status, setStatus] = useState(1);
     //submit types: 1 return to home page
     //2: go to new app's page and
-    //3: add anouther application (new form)
+    //3: add another application (new form)
     const priorityCheck = (e)=>{
         priority ? setPriority(false): setPriority(true);
     }
